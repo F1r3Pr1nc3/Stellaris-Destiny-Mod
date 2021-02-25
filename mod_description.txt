@@ -1,0 +1,11 @@
+[b][h2] Above [/h2][/b]
+Updated version for the outdated Destiny - The Traveler mod, see the original mod [url=https://steamcommunity.com/sharedfiles/filedetails/?id=847164184] here [/url]
+This mod currently has added the Traveler, a mysterious paracausal entity with the ability to bend or alter reality to a potentially extreme degree, to the Stellaris galaxy. While also adding bits and bobs from the Destiny Universe to the Stellaris Galaxy 
+
+Future plans mainly include optimizations, modernizing the mod's code, and adding additional things from both Destiny 2 and Destiny to Stellaris.
+
+[b][h2] Note[/h2][/b]
+This mod is currently in a beta version, and can include breaking save updates at any update without warning as I attempt to improve and expand the features of the mod and eliminate bugs.
+
+[b][h2] Changes [/h2][/b]
+The current version is simply a modernizing of the existing mod's code base, future features will be added soon.

@@ -1,0 +1,170 @@
+dest_building_warmind_facility = {
+	base_buildtime = 180
+	icon = "building_hypercomms_forum"
+	base_cap_amount = 1
+	planet_modifier = {
+		country_physics_research_produces_add = 5
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1000
+		}
+		upkeep = {
+			energy = 5
+		}
+	}
+
+	potential = {
+		planet = {
+			is_capital = yes
+		}
+	}
+	
+	upgrades = {
+		dest_building_warmind_prime
+	}
+	
+	prerequisites = {
+		"dest_tech_warmind"
+	}
+	
+	allow = {
+		has_upgraded_capital = yes
+	}
+	
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 1
+			NOR = {
+				has_deposit = d_betharian_deposit
+				has_deposit = d_alien_pets_deposit
+			}
+		}
+	}
+}
+dest_building_warmind_prime = {
+	base_buildtime = 360
+	icon = "building_institute"
+	base_cap_amount = 1
+	planet_modifier = {
+		country_physics_research_produces_add = 20
+		country_society_research_produces_add = 20
+		country_engineering_research_produces_add = 20
+	}
+	country_modifier = {
+		country_minerals_produces_mult = 0.10
+		country_food_produces_mult = 0.10
+		country_energy_produces_mult = 0.10
+		ship_fire_rate_mult = 0.10
+		all_technology_research_speed = 0.10
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1000
+		}
+		upkeep = {
+			energy = 10
+		}
+	}	
+	potential = {
+		planet = {
+			is_capital = yes
+		}
+	}
+	prerequisites = {
+		"dest_tech_warmind_prime"
+	}
+	
+	allow = {
+		has_upgraded_capital = yes
+	}
+	
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 2
+			NOR = {
+				has_deposit = d_betharian_deposit
+				has_deposit = d_alien_pets_deposit
+			}
+		}
+	}
+}
+dest_building_warmind_copy = {
+	base_buildtime = 180
+	icon = "building_hypercomms_forum"
+	base_cap_amount = 1	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1000
+		}
+		upkeep = {
+			energy = 8
+		}
+	}
+	planet_modifier = {
+		country_physics_research_produces_add = 10
+		country_society_research_produces_add = 10
+		country_engineering_research_produces_add = 10
+		planet_jobs_minerals_produces_mult = 0.10
+		planet_jobs_food_produces_mult = 0.10
+		planet_jobs_energy_produces_mult = 0.10
+	}	
+	potential = {
+		planet = {
+			is_capital = no
+		}
+	}
+	
+	prerequisites = {
+		"dest_tech_warmind_copy"
+	}
+	
+	allow = {
+		has_upgraded_capital = yes
+	}
+	
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 2
+			NOR = {
+				has_deposit = d_betharian_deposit
+				has_deposit = d_alien_pets_deposit
+			}
+		}
+	}
+}
+building_glimmer_network = {
+	base_buildtime = @b1_time
+	is_capped_by_modifier = yes
+	icon = "dest_building_glimmer_network_1"
+	category = resource
+	potential = {
+		NOT = {
+			has_modifier = resort_colony
+		}
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 200
+		}
+		upkeep = {
+			energy = 3
+		}
+	}
+	planet_modifier = {
+		country_minerals_produces_add = 6
+	}
+	prerequisites = {
+		"dest_tech_glimmer_extraction"
+	}
+	ai_weight = {
+		weight = 1000
+	}
+}

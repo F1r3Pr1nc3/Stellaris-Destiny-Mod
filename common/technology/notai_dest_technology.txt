@@ -1,0 +1,132 @@
+dest_tech_glimmer_extraction = {
+	cost = 360
+	area = engineering
+	tier = 2
+	category = { materials }
+	prerequisites = { "tech_space_construction" }
+	weight = 80
+	
+	weight_modifier = {
+		factor = 1
+		modifier = {
+			factor = 2
+			has_modifier = "dest_golden_age"
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				has_global_flag = traveler_exists
+			}
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet = {
+					has_deposit = dest_d_glimmer_deposit
+				}
+			}
+		}
+		modifier = {
+			factor = 2
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_materials"
+			}
+		}
+	}
+	
+	ai_weight = {
+		factor = 4
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_materials"
+			}
+		}		
+	}
+}
+
+dest_tech_warmind = {
+	cost = 5000
+	area = physics
+	tier = 3
+	category = { computing }
+	prerequisites = { "tech_self_aware_logic" }
+	weight = 30
+	is_rare = yes
+	
+	weight_modifier = {
+		factor = 0.5
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = physics
+				has_trait = "leader_trait_expertise_computing"
+			}
+		}
+		modifier = {
+			factor = 0
+			has_ethic = ethic_gestalt_consciousness
+		}
+	}
+	
+	ai_weight = {
+		factor = 3
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = physics
+				has_trait = "leader_trait_expertise_computing"
+			}
+		}		
+	}
+}
+
+dest_tech_warmind_prime = {
+	cost = 5500
+	icon = "dest_tech_warmind"
+	area = physics
+	tier = 3
+	category = { computing }
+	prerequisites = { }
+	weight = 0
+	is_rare = yes
+	ai_update_type = all
+	
+	weight_modifier = {
+		factor = 0
+	}
+}
+
+dest_tech_warmind_copy = {
+	cost = 4000
+	icon = "dest_tech_warmind"
+	area = physics
+	tier = 3
+	category = { computing }
+	prerequisites = { }
+	weight = 0
+	is_rare = yes
+	ai_update_type = all
+	
+	weight_modifier = {
+		factor = 0
+	}
+}
+
+dest_tech_traveler_material = {
+	cost = 4000
+	icon = "dest_tech_traveler_material"
+	area = physics
+	tier = 3
+	category = { materials }
+	prerequisites = {}
+	weight = 0
+	is_rare = yes
+	ai_update_type = all
+	
+	weight_modifier = {
+		factor = 0
+	}
+}

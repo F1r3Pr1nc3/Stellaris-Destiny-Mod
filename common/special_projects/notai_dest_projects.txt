@@ -1,0 +1,45 @@
+special_project = {
+	key = "DEST_TRAV_TERRAFORMING_PROJECT"
+	cost = 0
+	days_to_research = 90
+	tech_department = society_technology
+	picture = GFX_evt_landing_ship
+	
+	event_scope = ship_event
+	
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+		skill > 3
+	}
+	
+	on_success = {
+		owner = {
+			country_event = { id = traveler.501 }
+		}
+	}
+	
+	on_fail = {}
+}
+
+special_project = {
+	key = "DEST_TRAV_WARMIND"
+	cost = 5000
+	tech_department = physics_technology
+	picture = GFX_evt_landing_ship
+	
+	event_scope = planet_event
+	
+	requirements = {
+		
+	}
+	
+	on_success = {
+		# give_technology = dest_tech_warmind
+		owner = {
+			country_event = { id = traveler.401 }
+		}
+	}
+	
+	on_fail = {}
+}

@@ -1,0 +1,382 @@
+notai_dest_uplift_primitives = {
+	notai_dest_primitive_setup_country_effect = yes
+	notai_dest_primitive_control_space_effect = yes
+	notai_dest_primitive_add_country_resources_effect = yes
+	capital_scope = {
+		every_deposit = {
+			limit = {
+				is_blocker = yes
+			}
+			clear_blocker = yes
+		}
+		while = {
+			limit = { num_pops < 28 }
+			create_pop = {
+				species = owner
+				ethos = owner
+			}
+		}
+		notai_dest_primitive_add_energy_deposits_effect = yes
+		notai_dest_primitive_add_mineral_deposits_effect = yes
+		notai_dest_primitive_add_agri_deposits_effect = yes
+		notai_dest_primitive_add_districts_effect = yes
+		notai_dest_primitive_add_buildings_effect = yes
+		notai_dest_primitive_setup_armies_effect = yes
+	}
+	random_owned_ship = {
+		limit = { is_ship_size = primitive_space_station }
+		fleet = { destroy_fleet = THIS }
+	}
+}
+notai_dest_primitive_setup_country_effect = {
+	remove_country_flag = stone_age
+	remove_country_flag = bronze_age
+	remove_country_flag = iron_age
+	remove_country_flag = late_medieval_age
+	remove_country_flag = renaissance_age
+	remove_country_flag = steam_age
+	remove_country_flag = industrial_age
+	remove_country_flag = machine_age
+	remove_country_flag = atomic_age
+	remove_country_flag = early_space_age
+	set_country_flag = primitives_can_into_space
+	set_country_type = default
+	change_country_flag = random
+	notai_dest_primitive_setup_visuals_effect = yes			
+	change_government = {
+		authority = random
+		civics = random
+	}
+	set_name = random
+}
+notai_dest_primitive_setup_visuals_effect = {
+	if = {
+		limit = { is_species_class = MAM }
+		set_graphical_culture = mammalian_01
+	}
+	else_if = {
+		limit = { is_species_class = REP }
+		set_graphical_culture = reptilian_01
+	}
+	else_if = {
+		limit = { is_species_class = AVI }
+		set_graphical_culture = avian_01
+	}
+	else_if = {
+		limit = { is_species_class = ART }
+		set_graphical_culture = arthropoid_01
+	}
+	else_if = {
+		limit = { is_species_class = MOL }
+		set_graphical_culture = molluscoid_01
+	}
+	else_if = {
+		limit = { is_species_class = FUN }
+		set_graphical_culture = fungoid_01
+	}
+	else_if = {
+		limit = { is_species_class = PLANT }
+		set_graphical_culture = plantoid_01
+	}
+	else_if = {
+		limit = { is_species_class = LITHOID }
+		set_graphical_culture = lithoid_01
+	}
+	else_if = {
+		limit = { is_species_class = NECROID }
+		set_graphical_culture = necroid_01
+	}
+}
+notai_dest_primitive_setup_armies_effect = {
+	remove_all_armies = yes	
+	create_army = {
+		name = random
+		owner = PREV
+		species = owner_main_species
+		type = "defense_army"
+	}
+	create_army = {
+		name = random
+		owner = PREV
+		species = owner_main_species
+		type = "defense_army"
+	}	
+	create_army = {
+		name = random
+		owner = PREV
+		species = owner_main_species
+		type = "defense_army"
+	}	
+	create_army = {
+		name = random
+		owner = PREV
+		species = owner_main_species
+		type = "defense_army"
+	}	
+}
+notai_dest_primitive_add_country_resources_effect = {
+	add_resource = {
+		energy = 1000
+		minerals = 750
+		alloys = 750
+		influence = 300
+	}
+	if = {
+		limit = { 
+			NOR = {
+				is_lithoid = yes
+				is_robot_empire = yes
+			}
+		}
+		add_resource = {
+			food = 1000
+		}
+	}
+	if = {
+		limit = { 
+			NOT = {
+				has_ethic = ethic_gestalt_consciousness
+			}
+		}
+		add_resource = {
+			consumer_goods = 500
+		}
+	}
+}
+notai_dest_primitive_add_energy_deposits_effect = {
+	if = {
+		limit = { 
+			num_free_districts = {
+				type = district_generator
+				value = 0
+			}
+		}
+		add_deposit = d_rushing_waterfalls
+		add_deposit = d_rushing_waterfalls
+		add_deposit = d_arid_highlands
+	}
+	else_if = {
+		limit = { 
+			num_free_districts = {
+				type = district_generator
+				value = 1
+			}
+		}
+		add_deposit = d_rushing_waterfalls
+		add_deposit = d_rushing_waterfalls
+	}
+	else_if = {
+		limit = { 
+			num_free_districts = {
+				type = district_generator
+				value = 2
+			}
+		}
+		add_deposit = d_rushing_waterfalls
+		add_deposit = d_arid_highlands
+	}
+	else_if = {
+		limit = { 
+			num_free_districts = {
+				type = district_generator
+				value = 3
+			}
+		}
+		add_deposit = d_rushing_waterfalls
+	}
+	else_if = {
+		limit = { 
+			num_free_districts = {
+				type = district_generator
+				value = 4
+			}
+		}
+		add_deposit = d_arid_highlands
+	}
+}
+notai_dest_primitive_add_mineral_deposits_effect = {
+	if = {
+		limit = { 
+			num_free_districts = {
+				type = district_mining
+				value = 0
+			}
+		}
+		add_deposit = d_prosperous_mesa
+		add_deposit = d_prosperous_mesa
+		add_deposit = d_veiny_cliffs
+	}
+	else_if = {
+		limit = { 
+			num_free_districts = {
+				type = district_mining
+				value = 1
+			}
+		}
+		add_deposit = d_prosperous_mesa
+		add_deposit = d_prosperous_mesa
+	}
+	else_if = {
+		limit = { 
+			num_free_districts = {
+				type = district_mining
+				value = 2
+			}
+		}
+		add_deposit = d_prosperous_mesa
+		add_deposit = d_veiny_cliffs
+	}
+	else_if = {
+		limit = { 
+			num_free_districts = {
+				type = district_mining
+				value = 3
+			}
+		}
+		add_deposit = d_prosperous_mesa
+	}
+	else_if = {
+		limit = { 
+			num_free_districts = {
+				type = district_mining
+				value = 4
+			}
+		}
+		add_deposit = d_veiny_cliffs
+	}
+}
+notai_dest_primitive_add_agri_deposits_effect = {
+	if = {
+		limit = { 
+			num_free_districts = {
+				type = district_farming
+				value = 0
+			}
+		}
+		add_deposit = d_great_river
+		add_deposit = d_great_river
+		add_deposit = d_lichen_fields
+	}
+	else_if = {
+		limit = { 
+			num_free_districts = {
+				type = district_farming
+				value = 1
+			}
+		}
+		add_deposit = d_great_river
+		add_deposit = d_great_river
+	}
+	else_if = {
+		limit = { 
+			num_free_districts = {
+				type = district_farming
+				value = 2
+			}
+		}
+		add_deposit = d_great_river
+		add_deposit = d_lichen_fields
+	}
+	else_if = {
+		limit = { 
+			num_free_districts = {
+				type = district_farming
+				value = 3
+			}
+		}
+		add_deposit = d_great_river
+	}
+	else_if = {
+		limit = { 
+			num_free_districts = {
+				type = district_farming
+				value = 4
+			}
+		}
+		add_deposit = d_lichen_fields
+	}
+}
+notai_dest_primitive_add_districts_effect = {
+	remove_all_primitive_buildings = yes
+	while = {
+		count < 3
+		add_district = district_mining
+		add_district = district_generator
+		add_district = district_city
+	}
+	if = {
+		limit = { 
+			is_lithoid = yes
+		}
+		while = {
+			count < 3
+			add_district = district_mining
+		}
+	}
+	else_if = {
+		limit = { 
+			is_machine_empire = yes
+		}
+		add_district = district_generator
+	}
+	else = {
+		while = {
+			count < 3
+			add_district = district_farming
+		}
+	}
+}
+notai_dest_primitive_add_buildings_effect = {
+	if = {
+		limit = { 
+			has_authority = auth_hive_mind
+		}
+		add_building = building_hive_capital
+		add_building = building_hive_node
+		add_building = building_research_lab_1
+		add_building = building_foundry_1
+		add_building = building_spawning_pool
+	}
+	else_if = {
+		limit = {
+			has_authority = auth_machine_intelligence
+		 }
+		 add_building = building_machine_capital
+		 add_building = building_robot_assembly_plant
+		 add_building = building_uplink_node
+		 add_building = building_research_lab_1
+		 add_building = building_foundry_1
+	}
+	else = {		
+		add_building = building_capital
+		add_building = building_bureaucratic_1
+		add_building = building_research_lab_1
+		add_building = building_foundry_1
+		add_building = building_factory_1
+	}
+}
+notai_dest_primitive_control_space_effect = {	
+	if = {
+		limit = {
+			home_planet = {
+				has_observation_outpost = yes
+			}
+		}
+		home_planet = {
+			observation_outpost_owner = {
+				country_event = { id = primitive.17 }
+			}
+			observation_outpost = {
+				dismantle = yes
+			}
+			solar_system.starbase = {
+				if = {
+					limit = { 
+						exists = this
+					}
+					set_owner = prev.owner
+				}
+			}
+		}
+	}
+}

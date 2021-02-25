@@ -1,0 +1,41 @@
+change_pc_ideal = {
+	space_owner = {
+		save_event_target_as = owner_spec
+	}
+	while = {
+		limit = {
+			is_ideal_planet_class = {
+				who = event_target:owner_spec
+				status = no
+			}
+		}
+		change_pc = rl_habitable_normal
+	}
+}
+
+check_planet_size = {
+	IF = {
+		limit = {
+			OR = {
+				planet_size > 20
+				planet_size < 12
+			}
+		}
+		reset_size = yes
+	}
+}
+
+reset_size = {
+	IF = {
+		limit = {
+			planet_size > 20
+		}
+		change_planet_size = -1
+		check_planet_size = yes
+	}
+	IF = {
+		limit = { planet_size < 12 }
+		change_planet_size = 1
+		check_planet_size = yes
+	}
+}

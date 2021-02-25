@@ -1,0 +1,17 @@
+spriteTypes = {	
+
+
+	spriteType = {
+		name = "GFX_vex_citadel"
+		texturefile = "gfx/event_pictures/citadel.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes		
+	}
+	
+		spriteType = {
+		name = "GFX_traveler"
+		texturefile = "gfx/event_pictures/traveler.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes		
+	}
+}

@@ -1,0 +1,50 @@
+#vex ruins
+dest_category_vex_ruins = {
+	desc = "dest_category_vex_ruins_desc"
+	picture = GFX_evt_archaeological_dig
+	level = 1
+	#risk = 
+	
+	spawn_chance = {
+		base = 1
+		modifier = {
+			add = 1
+			is_planet_class = pc_toxic
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				is_planet_class = pc_gas_giant
+				is_star = yes
+			}
+		}
+	}
+	on_success = {
+		1 = dest_anomaly.1
+	}
+}
+
+dest_category_destroyed_by_hive = {
+	desc = "dest_category_destroyed_by_hive_desc"
+	picture = GFX_evt_archaeological_dig
+	level = 1
+	#risk = 
+	
+	spawn_chance = {
+		modifier = {
+			add = 1
+			uninhabitable_regular_planet = yes
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				is_planet_class = pc_gas_giant
+				is_star = yes
+			}
+		}
+	}
+	
+	on_success = {
+		1 = dest_anomaly.2
+	}
+}

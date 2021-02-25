@@ -1,0 +1,82 @@
+objectTypes = {
+	pdxmesh = {
+		name = "traveler_mesh"
+		file = "gfx/models/ships/traveler/traveler.mesh"
+		scale = 0.5
+		
+		animation = { id = "opened"			type = "traveler_opened_animation" }
+		animation = { id = "closed"			type = "traveler_closed_animation" }
+		animation = { id = "opening"		type = "traveler_opening_animation" }
+		animation = { id = "closing"		type = "traveler_closing_animation" }
+		animation = { id = "death"			type = "traveler_death_animation" }
+
+		meshsettings = {
+			name = "polySurface61Shape"
+			index = 0
+			texture_diffuse = "traveler_diffuse.dds"
+			texture_normal = "traveler_normal.dds"
+			texture_specular = "traveler_specular.dds"
+			shader = "PdxMeshShip"
+		}
+	}
+	
+	pdxmesh = {
+		name = "traveler_turret_small_mesh"
+		file = "gfx/models/ships/traveler/traveler_turret_small.mesh"
+		scale = 0.5
+
+		meshsettings = {
+			name = "polySurface1Shape"
+			index = 0
+			texture_diffuse = "traveler_diffuse.dds"
+			texture_normal = "traveler_normal.dds"
+			texture_specular = "traveler_specular.dds"
+			shader = "PdxMeshShip"
+		}
+	}
+	
+	pdxmesh = {
+		name = "traveler_turret_medium_mesh"
+		file = "gfx/models/ships/traveler/traveler_turret_medium.mesh"
+		scale = 0.5
+
+		meshsettings = {
+			name = "polySurface7Shape"
+			index = 0
+			texture_diffuse = "traveler_diffuse.dds"
+			texture_normal = "traveler_normal.dds"
+			texture_specular = "traveler_specular.dds"
+			shader = "PdxMeshShip"
+		}
+	}
+	
+		pdxmesh = {
+		name = "traveler_turret_large_mesh"
+		file = "gfx/models/ships/traveler/traveler_turret_large.mesh"
+		scale = 0.5
+
+		meshsettings = {
+			name = "polySurfaceShape11"
+			index = 0
+			texture_diffuse = "traveler_diffuse.dds"
+			texture_normal = "traveler_normal.dds"
+			texture_specular = "traveler_specular.dds"
+			shader = "PdxMeshShip"
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

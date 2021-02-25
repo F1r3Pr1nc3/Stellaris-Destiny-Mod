@@ -1,0 +1,18 @@
+﻿l_english:
+ #anomalies written by Cyan
+ 
+ #vex ruins
+ dest_category_vex_ruins:0 "A Temporal Oddity"
+ dest_category_vex_ruins_desc:0 "Our science ship has detected unique geomtetric structuring on [Root.GetName] during a routine survey and is requesting permission to investigate further."
+ dest_anomaly.1.name:0 "A Temporal Oddity"
+ dest_anomaly.1.desc:0 "[Root.GetLeaderName] has discovered alien ruins on [From.GetName], but what makes this discovery so strange is that the ruins appear to completely predate the age of the planet they currently reside on by millions of years. The ruins are extremely geometric in design and are completely devoid of any signs of life or habitation besides the strctures themselves, which seem to run on endlessly throughout the entire planet's crust."
+ dest_anomaly_fail.1.name:0 "Dissapointing"
+ dest_anomaly_fail.1.desc:0 "[Root.GetLeaderName] is displeased to report that the "unusual structuring" previously detected was simply a pile of smoothened rocks and other debris."
+ 
+ #planet destroyed by the hive
+ dest_category_destroyed_by_hive:0 "Carved in Ruin"
+ dest_category_destroyed_by_hive_desc:0 "Our science ship has detected unusual composition of [Root.GetName]'s crust that evidences external tampering and is requesting further permission to investigate."
+ dest_anomaly.2.name:0 "Carved in Ruin"
+ dest_anomaly.2.desc:0 "[Root.GetLeaderName] has deduced that [From.GetName] was formerly habitable, but it and its' former inhabitants were killed by a ruthless faction and the planet was consumed in fire and ash and salt, leaving it in its' current state. Remains of both factions have been found and transported back to xenoarchaeology teams back in our home system for further investigation."
+ dest_anomaly_fail.2.name:0 "Dissapointing"
+ dest_anomaly_fail.2.desc:0 "[Root.GetLeaderName] has reported that the planet had always been uninhabitable and that there was nothing else notable to report."
