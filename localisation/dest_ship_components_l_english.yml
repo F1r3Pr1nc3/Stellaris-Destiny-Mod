@@ -1,0 +1,14 @@
+﻿l_english:
+ ### Traveler Ship and Components
+ # Traveler Ship Size 
+ dest_traveler:0 "Traveler"
+ dest_traveler_plural:0 "Travelers"
+ dest_traveler_section_key:0 "Traveler"
+ # Traveler Ship Components
+ TRAVELER_DRIVE:0 "Traveler Jump Drive"
+ # Traveler Armour
+ DEST_TRAVELER_ARMOR:0 "Traveler Shell Armor"
+ DEST_TRAVELER_ARMOR_DESC:0 "The husk of a dead god turned shield. The strange properties of this material have been adapted to make unique armor for our ships."
+ SMALL_TRAVELER_ARMOR:0 "Small Traveler Shell Armor"
+ MEDIUM_TRAVELER_ARMOR:0 "Medium Traveler Shell Armor"
+ LARGE_TRAVELER_ARMOR:0 "Large Traveler Shell Armor"

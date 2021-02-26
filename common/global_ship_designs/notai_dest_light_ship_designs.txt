@@ -1,10 +1,10 @@
 ship_design = {
 	name = "Traveler"
-	ship_size = traveler
-	country_type = dest_traveler
+	ship_size = dest_traveler
+	country_type = dest_traveler_country
 	hide_size = yes
 	section = {
-		template = "traveler_key"
+		template = "dest_traveler_section_key"
 		slot = "mid"
 
 		component = {

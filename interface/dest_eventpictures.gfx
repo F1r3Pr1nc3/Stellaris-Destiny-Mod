@@ -1,6 +1,4 @@
 spriteTypes = {	
-
-
 	spriteType = {
 		name = "GFX_vex_citadel"
 		texturefile = "gfx/event_pictures/citadel.dds"

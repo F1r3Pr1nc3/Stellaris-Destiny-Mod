@@ -15,7 +15,7 @@ special_project = {
 	
 	on_success = {
 		owner = {
-			country_event = { id = traveler.501 }
+			country_event = { id = dest_traveler.501 }
 		}
 	}
 	
@@ -37,7 +37,7 @@ special_project = {
 	on_success = {
 		# give_technology = dest_tech_warmind
 		owner = {
-			country_event = { id = traveler.401 }
+			country_event = { id = dest_traveler.401 }
 		}
 	}
 	

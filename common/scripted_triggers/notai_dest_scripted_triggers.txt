@@ -1,0 +1,18 @@
+dest_is_traveler_terraformable_trigger = {
+	NOR = {
+		is_star = yes
+		has_planet_flag = has_megastructure
+		has_planet_flag = dest_no_terraform
+		is_colonizable = yes
+		has_modifier = terraforming_candidate
+	}
+	planet_size > 13
+	planet_size < 26
+	OR = {
+		is_planet_class = pc_toxic
+		is_planet_class = pc_molten
+		is_planet_class = pc_frozen
+		is_planet_class = pc_barren
+		is_planet_class = pc_barren_cold
+	}
+}

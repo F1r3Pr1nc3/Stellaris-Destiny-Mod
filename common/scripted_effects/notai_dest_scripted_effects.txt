@@ -12,9 +12,8 @@ change_pc_ideal = {
 		change_pc = rl_habitable_normal
 	}
 }
-
 check_planet_size = {
-	IF = {
+	if = {
 		limit = {
 			OR = {
 				planet_size > 20
@@ -24,16 +23,15 @@ check_planet_size = {
 		reset_size = yes
 	}
 }
-
 reset_size = {
-	IF = {
+	if = {
 		limit = {
 			planet_size > 20
 		}
 		change_planet_size = -1
 		check_planet_size = yes
 	}
-	IF = {
+	if = {
 		limit = { planet_size < 12 }
 		change_planet_size = 1
 		check_planet_size = yes

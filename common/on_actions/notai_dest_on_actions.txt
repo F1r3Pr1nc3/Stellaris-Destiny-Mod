@@ -1,65 +1,57 @@
 on_monthly_pulse = {
 	events = {
-		# traveler.203
-		traveler.14
+		dest_traveler.14
 	}
 }
 
 on_fleet_enter_orbit = {
 	events = {
-		traveler.1004
-		traveler.1008
-		traveler.1009
+		dest_traveler.1004
+		dest_traveler.1008
+		dest_traveler.1009
 	}
 }
 
 on_entering_system_fleet = {
 	events = {
-		traveler.1002
-		traveler.1006
+		dest_traveler.1002
+		dest_traveler.1006
 	}
 }
 
 on_entering_system = {
 	events = {
-		traveler.9
+		dest_traveler.9
 	}
 }
 
-# on_custom_diplomacy = {
-	# events = {
-		# traveler.100
-	# }
-# }
-
 on_game_start = {
 	events = {
-		traveler.1
-		# darkness.1
+		dest_traveler.0
 	}
 }
 
 on_building_complete = {
 	events = {
-		traveler.402
+		dest_traveler.402
 	}
 }
 
 on_building_upgraded = {
 	events = {
-		traveler.406
+		dest_traveler.406
 	}
 }
 
 on_fleet_destroyed_perp = {
 	events = {
-		traveler.502
-		traveler.1010
+		dest_traveler.502
+		dest_traveler.1010
 	}
 }
 
 on_leader_spawned = {
 	events = {
-		traveler.407
+		dest_traveler.407
 	}
 }

@@ -2,7 +2,7 @@
 # Originally Coded by Algae
 # Updated to recent versions by Not_AI
 
-namespace = traveler
+namespace = dest_traveler
 
 #####################################################
 #EVENTS KEY
@@ -14,98 +14,100 @@ namespace = traveler
 #####################################################
 
 ### DEBUG EVENT VALUES
-@traveler_event_start_time_1 = 1 
-@traveler_event_start_time_2 = 1
-@traveler_event_start_time_3 = 1
-@traveler_event_start_time_random = 1
-@traveler_arrival_time = 1
+@traveler_enter_galaxy_time_base = 1
+@traveler_enter_galaxy_time_random = 0
+@traveler_enter_system_time_base = 1
+@traveler_enter_system_time_random = 0
 
 ### RELEASE EVENT VALUES
-@traveler_event_start_time_1 = 18000 
-@traveler_event_start_time_2 = 36000
-@traveler_event_start_time_3 = 54000
-@traveler_event_start_time_random = 3600
-@traveler_arrival_time = 360
+#@traveler_enter_galaxy_time_base = 22500
+#@traveler_enter_galaxy_time_random = 4500
+#@traveler_enter_system_time_base = 360
+#@traveler_enter_system_time_random = 180
+#@traveler_arrival_time = 360
 @golden_age_length = 3600
 @terraforming_time = 360
 
-#game_start
+# Game_start
+### TODO
+# Revamp the spawn events to function off of a single call from the global event country - Done
+
+### Traveler Enter Galaxy Events
+# Global silent event to begin countdown to Traveler Arrival
 event = {
-	id = traveler.1
-	
+	id = dest_traveler.0
 	hide_window = yes
 	fire_only_once = yes
 	is_triggered_only = yes
 	
-	trigger = {
-		#has_leviathans = yes
-	}
-	
 	immediate = {
 		random_rim_system = {
-			# limit = {
-				# NOT = {
-					# space_owner = {
-						# OR = {
-							# is_country_type = fallen_empire
-							# is_country_type = awakened_empire
-						# }
-					# }
-				# }
-			# }
-			set_star_flag = trav_enter_system
-			save_global_event_target_as = trav_system
+		#random_system = {
+			set_star_flag = dest_traveler_arrival_system
+			clear_global_event_target = dest_traveler_current_system
+			save_global_event_target_as = dest_traveler_current_system
 		}
-		every_playable_country = {
-			random_list = {
-				30 = { country_event = { id = traveler.2 days = @traveler_event_start_time_1 random = @traveler_event_start_time_random } }
-				50 = { country_event = { id = traveler.2 days = @traveler_event_start_time_2 random = @traveler_event_start_time_random } }
-				20 = { country_event = { id = traveler.2 days = @traveler_event_start_time_3 random = @traveler_event_start_time_random } }
+		event_target:global_event_country = {
+			country_event = {
+				id = dest_traveler.1
+				days = @traveler_enter_galaxy_time_base
+				random = @traveler_enter_galaxy_time_random
 			}
 		}
 	}
 }
-
+# Hidden event to notify every empire that the Traveler is close to entering the Galaxy
 country_event = {
-	id = traveler.2
-	title = "traveler.2.name"
-	desc = "traveler.2.desc"
-	picture = "GFX_evt_physics_research"
-	
+	id = dest_traveler.1
+	hide_window = yes
+	fire_only_once = yes
 	is_triggered_only = yes
-	
-	trigger = {}
-	
-	immediate = {
-	
+
+	trigger = {
+		NOT = {
+			has_global_flag = dest_traveler_in_galaxy
+		}
 	}
-	
-	option = {
-		name = traveler.2.a
-		hidden_effect = {
-			country_event = { id = traveler.3 days = @traveler_arrival_time }
+
+	immediate = {
+		set_global_flag = dest_traveler_approaching
+		every_playable_country = {
+			country_event = {
+				id = dest_traveler.2
+			}
+		}		
+		country_event = {
+			id = dest_traveler.3
+			days = @traveler_enter_system_time_base
+			random = @traveler_enter_system_time_random
 		}
 	}
 }
-
-
-#traveler arrives
+# Visible event taking place in the Global Event Country and displays the Traveler is near notification
 country_event = {
-	id = traveler.3
-	
+	id = dest_traveler.2
+	is_triggered_only = yes
+	title = traveler.2.name
+	desc = traveler.2.desc
+	picture = "GFX_evt_physics_research"
+	show_sound = event_alien_signal
+	option = {
+		name = traveler.2.a
+	}
+}
+# Hidden event to handle the spawning of the Traveler into the game
+country_event = {
+	id = dest_traveler.3
 	hide_window = yes
-	
 	is_triggered_only = yes
 	fire_only_once = yes
-	
 	trigger = {
-		#has_leviathans = yes
 		NOT = {
-			has_global_flag = traveler_exists
+			has_global_flag = dest_traveler_in_galaxy
 		}
-	}
-	
+	}	
 	immediate = {
+		set_global_flag = dest_traveler_in_galaxy
 		create_species = {
 			name = "Ghost"
 			plural = "Ghosts"
@@ -114,26 +116,28 @@ country_event = {
 			portrait = random
 			immortal = yes
 			effect = {
-				save_global_event_target_as = ghost_species
+				save_global_event_target_as = dest_ghost_species
 			}
 		}
 		random_rim_system = {
-			limit = { has_star_flag = trav_enter_system }
-			IF = {
+		#random_system = {
+			limit = { has_star_flag = dest_traveler_arrival_system }
+			if = {
 				limit = {
 					exists = space_owner
 				}
+				#Phase this out?
 				space_owner = {
-					clear_global_event_target = trav_system_owner
-					save_global_event_target_as = trav_system_owner
+					clear_global_event_target = dest_traveler_current_system_owner
+					save_global_event_target_as = dest_traveler_current_system_owner
 				}
 			}
 			random_system_planet = {
-				set_planet_flag = no_tform
+				set_planet_flag = dest_no_terraform
 				create_country = {
 					name = "Traveler"
-					type = dest_traveler
-					species = event_target:ghost_species
+					type = dest_traveler_country
+					species = event_target:dest_ghost_species
 					name_list = AVI1
 					flag = {
 						icon = {
@@ -154,7 +158,7 @@ country_event = {
 					effect = {
 						create_leader = {
 							class = ruler
-							species = event_target:ghost_species
+							species = event_target:dest_ghost_species
 							name = random
 							skill = 10
 						}
@@ -171,59 +175,200 @@ country_event = {
 									graphical_culture = "techno"
 								}
 								set_location = PREVPREV
-								set_fleet_flag = traveler
+								set_fleet_flag = dest_traveler_ship
 								set_fleet_stance = passive
-								fleet_event = { id = traveler.1001 }
-								fleet_event = { id = traveler.1007 }
+								fleet_event = { id = dest_traveler.1001 }
+								fleet_event = { id = dest_traveler.1007 }
 								save_global_event_target_as = traveler_fleet
 							}
 						}
-						save_global_event_target_as = traveler_country
+						save_global_event_target_as = dest_traveler_country
 						set_country_flag = traveler_country_flag
 					}
 				}
 			}
-		}
-		IF = {
-			limit = {
-				exists = space_owner
-			}
-			space_owner = {
-				country_event = { id = traveler.6 }
-			}
-			every_country = {
+			if = {
 				limit = {
-					NOT = {
-						is_same_value = space_owner
+					exists = space_owner
+				}
+				space_owner = {
+					country_event = { id = dest_traveler.6 }
+				}
+				every_playable_country = {
+					limit = {
+						NOT = {
+							is_same_value = space_owner
+						}
+					}
+					country_event = { id = dest_traveler.7 }
+				}
+				else = {
+					every_playable_country = {
+						country_event = { id = dest_traveler.7 }
 					}
 				}
-				country_event = { id = traveler.7 }
 			}
-			else = {
-				every_country = {
-					country_event = { id = traveler.7 }
+			set_global_flag = dest_traveler_exists
+			every_playable_country = {
+				begin_event_chain = {
+					event_chain = traveler_chain
+					target = this
 				}
 			}
 		}
-		set_global_flag = traveler_exists
-		every_country = {
-			begin_event_chain = {
-				event_chain = traveler_chain
-				target = this
+	}
+}
+# Traveler spawn event for system owner
+country_event = {
+	id = dest_traveler.6
+	title = traveler.6.name
+	desc = "traveler.6.desc"
+	picture = "GFX_traveler"
+	location = event_target:traveler_fleet
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	trigger = {
+		NOT = {
+			has_country_flag = dest_met_traveler
+		}
+		if = {
+			limit = { 
+				exists = event_target:dest_traveler_current_system_owner
+			}
+			event_target:dest_traveler_current_system_owner = {
+				is_same_empire = ROOT
 			}
 		}
+	}	
+	immediate = {
+		set_country_flag = dest_met_traveler
+		establish_communications_no_message = event_target:dest_traveler_country
+	}
+	option = {
+		name = traveler.6.a
+	}
+}
+
+# Traveler spawn event for non-system owners
+country_event = {
+	id = dest_traveler.7
+	title = traveler.7.name
+	desc = {
+		trigger = {
+			any_country = {
+				event_target:traveler_fleet = {
+					is_inside_border = PREV
+				}
+			}
+		}
+		text = traveler.7.desc.owned
+	}
+	desc = {
+		trigger = {
+			NOT = {
+				any_country = {
+					event_target:traveler_fleet = {
+						is_inside_border = PREV
+					}
+				}
+			}
+		}
+		text = traveler.7.desc.unowned
+	}
+	picture = "GFX_evt_smugglers_in_bar"
+	location = event_target:traveler_fleet
+	
+	hide_window = no
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	trigger = {
+		NOT = {
+			has_country_flag = dest_met_traveler
+		}
+	}
+	
+	option = {
+		name = traveler.7.a
+	}
+}
+
+#traveler enters empire
+country_event = {
+	id = dest_traveler.8
+	title = "traveler.8.name"
+	desc = "traveler.8.desc"
+	picture = "GFX_traveler"
+	location = event_target:traveler_fleet
+	
+	is_triggered_only = yes
+	#fire_only_once = yes
+	
+	trigger = {
+		has_global_flag = dest_traveler_exists
+		NOT = { has_country_flag = dest_met_traveler }
+	}
+	
+	immediate = {
+		set_country_flag = dest_met_traveler
+		establish_communications_no_message = event_target:dest_traveler_country
+	}
+	
+	option = {
+		name = traveler.8.a
+		hidden_effect = {
+			#country_event = { id = dest_traveler.9 days = 1 }
+		}
+	}
+}
+
+ship_event = {
+	id = dest_traveler.9
+	title = "traveler.9.name"
+	desc = "traveler.9.desc"
+	picture = "GFX_traveler"
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		solar_system = {
+			any_ship_in_system = {
+				fleet = {
+					has_fleet_flag = dest_traveler_ship
+				}
+			}
+		}
+		owner = {
+			NOT = {
+				is_country_type = dest_traveler_country
+				has_country_flag = dest_met_traveler
+			}
+		}
+	}
+	
+	immediate = {
+		owner = {
+			establish_communications_no_message = event_target:dest_traveler_country
+			set_country_flag = dest_met_traveler
+		}
+	}
+	
+	option = {
+		name = traveler.9.a
 	}
 }
 
 #find planet in system, terraform
 fleet_event = {
-	id = traveler.1001
+	id = dest_traveler.1001
 	hide_window = yes
 	
 	is_triggered_only = yes
 	
 	trigger = {
-		has_fleet_flag = traveler
+		has_fleet_flag = dest_traveler_ship
 		solar_system = {
 			NOT = {
 				has_star_flag = visited
@@ -243,31 +388,17 @@ fleet_event = {
 			}
 			find_closest_planet = {
 				trigger = {
-					id = traveler.1001.trigger.1
-					AND = {
-						NOT = {
-							has_planet_flag = has_megastructure
-							has_planet_flag = no_tform
-							is_star = yes
-						}
-						OR = {
-							is_planet_class = pc_molten
-							is_planet_class = pc_barren
-							is_planet_class = pc_barren_cold
-							is_planet_class = pc_toxic
-							is_planet_class = pc_frozen
-						}
-						is_moon = no
-					}
+					id = "dest_traveler.1001.trigger.1"
+					dest_is_traveler_terraformable_trigger = yes
 				}
 				found_planet = {
 					orbit_planet = THIS
 				}
 				failed = {
 					effect = {
-						id = traveler.1001.effect.1
-						fleet_event = { id = traveler.1003 }
-						fleet_event = { id = traveler.1005 }
+						id = dest_traveler.1001.effect.1
+						fleet_event = { id = dest_traveler.1003 }
+						fleet_event = { id = dest_traveler.1005 }
 					}
 				}
 			}
@@ -275,15 +406,15 @@ fleet_event = {
 	}
 }
 
-#on enter system, check if system has trav_destination flag, remove, clear queue, call find planet event
+#on enter system, check if system has dest_traveler_destination flag, remove, clear queue, call find planet event
 fleet_event = {
-	id = traveler.1002
+	id = dest_traveler.1002
 	hide_window = yes
 	
 	is_triggered_only = yes
 	
 	trigger = {
-		has_fleet_flag = traveler
+		has_fleet_flag = dest_traveler_ship
 		solar_system = {
 			NOT = {
 				any_planet = {
@@ -296,19 +427,19 @@ fleet_event = {
 	immediate = {
 		solar_system = {
 			IF = {
-				limit = { has_star_flag = trav_destination }
-				remove_star_flag = trav_destination
+				limit = { has_star_flag = dest_traveler_destination }
+				remove_star_flag = dest_traveler_destination
 			}
-			clear_global_event_target = trav_system
-			save_global_event_target_as = trav_system
+			clear_global_event_target = dest_traveler_current_system
+			save_global_event_target_as = dest_traveler_current_system
 			IF = {
 				limit = {
 					exists = space_owner
 				}
 				space_owner = {
-					clear_global_event_target = trav_system_owner
-					save_global_event_target_as = trav_system_owner
-					country_event = { id = traveler.8 }
+					clear_global_event_target = dest_traveler_current_system_owner
+					save_global_event_target_as = dest_traveler_current_system_owner
+					country_event = { id = dest_traveler.8 }
 				}
 			}
 		}
@@ -319,10 +450,10 @@ fleet_event = {
 					has_star_flag = visited
 				}
 			}
-			fleet_event = { id = traveler.1003 }
-			fleet_event = { id = traveler.1005 }
+			fleet_event = { id = dest_traveler.1003 }
+			fleet_event = { id = dest_traveler.1005 }
 			else = {
-				fleet_event = { id = traveler.1001 }
+				fleet_event = { id = dest_traveler.1001 }
 			}
 		}
 	}
@@ -330,15 +461,15 @@ fleet_event = {
 
 #find system to jump to and jump, set system as "target"
 fleet_event = {
-	id = traveler.1003
+	id = dest_traveler.1003
 	hide_window = yes
 	
 	is_triggered_only = yes
 	
 	trigger = {
-		has_fleet_flag = traveler
+		has_fleet_flag = dest_traveler_ship
 		any_system = {
-			has_star_flag = trav_destination
+			has_star_flag = dest_traveler_destination
 		}
 	}
 	
@@ -350,8 +481,8 @@ fleet_event = {
 			}
 			find_random_system = {
 				trigger = {
-					id = traveler.1003.trigger.1
-					has_star_flag = trav_destination
+					id = dest_traveler.1003.trigger.1
+					has_star_flag = dest_traveler_destination
 				}
 				found_system = {
 					move_to = THIS
@@ -363,7 +494,7 @@ fleet_event = {
 
 #on orbit, terraform planet
 fleet_event = {
-	id = traveler.1004
+	id = dest_traveler.1004
 	hide_window = yes
 	
 	is_triggered_only = yes
@@ -377,7 +508,7 @@ fleet_event = {
 				is_capital = no
 			}
 		}
-		has_fleet_flag = traveler
+		has_fleet_flag = dest_traveler_ship
 	}
 	
 	immediate = {
@@ -387,7 +518,7 @@ fleet_event = {
 				random = 1
 			}
 			effect = {
-				id = traveler.1004.trigger.1
+				id = dest_traveler.1004.trigger.1
 				orbit = {
 					check_planet_size = yes
 					IF = {
@@ -426,14 +557,14 @@ fleet_event = {
 						random_list = {
 							15 = {
 								#orbit = {
-									planet_event = { id = traveler.500 }
+									planet_event = { id = dest_traveler.500 }
 								#}
 							}
 						}
 					}
 				}
-				fleet_event = { id = traveler.1003 }
-				fleet_event = { id = traveler.1005 }
+				fleet_event = { id = dest_traveler.1003 }
+				fleet_event = { id = dest_traveler.1005 }
 			}
 		}
 	}
@@ -441,17 +572,17 @@ fleet_event = {
 
 #find new destination
 fleet_event = {
-	id = traveler.1005
+	id = dest_traveler.1005
 	
 	hide_window = yes
 	
 	is_triggered_only = yes
 	
 	trigger = {
-		has_fleet_flag = traveler
+		has_fleet_flag = dest_traveler_ship
 		NOT = {
 			any_system = {
-				has_star_flag = trav_destination
+				has_star_flag = dest_traveler_destination
 			}
 		}
 	}
@@ -463,21 +594,21 @@ fleet_event = {
 					has_star_flag = visited
 				}
 			}
-			set_star_flag = trav_destination
+			set_star_flag = dest_traveler_destination
 		}
-		fleet_event = { id = traveler.1003 }
+		fleet_event = { id = dest_traveler.1003 }
 	}
 }
 
 #on enter system check if system is capital system or primitive system
 fleet_event = {
-	id = traveler.1006
+	id = dest_traveler.1006
 	hide_window = yes
 	
 	is_triggered_only = yes
 	
 	trigger = {
-		has_fleet_flag = traveler
+		has_fleet_flag = dest_traveler_ship
 		solar_system = {
 			OR = {
 				any_planet = {
@@ -492,37 +623,37 @@ fleet_event = {
 		solar_system = {
 			IF = {
 				limit = {
-					has_star_flag = trav_destination
+					has_star_flag = dest_traveler_destination
 				}
-				remove_star_flag = trav_destination
+				remove_star_flag = dest_traveler_destination
 			}
-			clear_global_event_target = trav_system
-			save_global_event_target_as = trav_system
+			clear_global_event_target = dest_traveler_current_system
+			save_global_event_target_as = dest_traveler_current_system
 			IF = {
 				limit = {
 					exists = space_owner
 				}
 				space_owner = {
-					clear_global_event_target = trav_system_owner
-					save_global_event_target_as = trav_system_owner
-					country_event = { id = traveler.8 }
+					clear_global_event_target = dest_traveler_current_system_owner
+					save_global_event_target_as = dest_traveler_current_system_owner
+					country_event = { id = dest_traveler.8 }
 				}
 			}
 		}
 		clear_orders = yes
-		fleet_event = { id = traveler.1007 }
+		fleet_event = { id = dest_traveler.1007 }
 	}
 }
 
 #find star in capital system, move to orbit
 fleet_event = {
-	id = traveler.1007
+	id = dest_traveler.1007
 	hide_window = yes
 	
 	is_triggered_only = yes
 	
 	trigger = {
-		has_fleet_flag = traveler
+		has_fleet_flag = dest_traveler_ship
 		solar_system = {
 			OR = {
 				any_planet = {
@@ -541,7 +672,7 @@ fleet_event = {
 			}
 			find_closest_planet = {
 				trigger = {
-					id = traveler.1007.trigger.1
+					id = dest_traveler.1007.trigger.1
 					is_star = yes
 				}
 				found_planet = {
@@ -554,13 +685,13 @@ fleet_event = {
 
 #on orbit of star in capital system, begin golden age events
 fleet_event = {
-	id = traveler.1008
+	id = dest_traveler.1008
 	hide_window = yes
 	
 	is_triggered_only = yes
 	
 	trigger = {
-		has_fleet_flag = traveler
+		has_fleet_flag = dest_traveler_ship
 		orbit = {
 			is_star = yes
 		}
@@ -575,12 +706,12 @@ fleet_event = {
 	immediate = {
 		solar_system = {
 			space_owner = {
-				country_event = { id = traveler.15 }
-				country_event = { id = traveler.11 }
+				country_event = { id = dest_traveler.15 }
+				country_event = { id = dest_traveler.11 }
 			}
 		}
 		every_country = {
-			country_event = { id = traveler.12 }
+			country_event = { id = dest_traveler.12 }
 		}
 		queue_actions = {
 			wait = {
@@ -588,9 +719,9 @@ fleet_event = {
 				random = 1
 			}
 			effect = {
-				id = traveler.1008.trigger.1
-				fleet_event = { id = traveler.1003 }
-				fleet_event = { id = traveler.1005 }
+				id = dest_traveler.1008.trigger.1
+				fleet_event = { id = dest_traveler.1003 }
+				fleet_event = { id = dest_traveler.1005 }
 			}
 		}
 	}
@@ -598,13 +729,13 @@ fleet_event = {
 
 #on orbit, uplift primitive
 fleet_event = {
-	id = traveler.1009
+	id = dest_traveler.1009
 	hide_window = yes
 	
 	is_triggered_only = yes
 	
 	trigger = {
-		has_fleet_flag = traveler
+		has_fleet_flag = dest_traveler_ship
 		solar_system = {
 			has_star_flag = primitive_system
 		}
@@ -620,7 +751,7 @@ fleet_event = {
 				random = 1
 			}
 			effect = {
-				id = traveler.1009.trigger.1
+				id = dest_traveler.1009.trigger.1
 				solar_system = {
 					every_system_planet = {
 						limit = { is_homeworld = yes }
@@ -634,10 +765,10 @@ fleet_event = {
 					}
 				}
 				every_country = {
-					country_event = { id = traveler.13 }
+					country_event = { id = dest_traveler.13 }
 				}
-				fleet_event = { id = traveler.1003 }
-				fleet_event = { id = traveler.1005 }
+				fleet_event = { id = dest_traveler.1003 }
+				fleet_event = { id = dest_traveler.1005 }
 			}
 		}
 	}
@@ -645,14 +776,14 @@ fleet_event = {
 
 #Attacked fixer
 country_event = {
-	id = traveler.1010
+	id = dest_traveler.1010
 	hide_window = yes
 	
 	is_triggered_only = yes
 	
 	trigger = {
 		FROMFROM = {
-			has_fleet_flag = traveler
+			has_fleet_flag = dest_traveler_ship
 		}
 	}
 	
@@ -661,23 +792,21 @@ country_event = {
 		FROMFROM = {
 			if = { #if attacked while terraforming, restart terraforming
 				limit = {
-					AND = {
-						has_fleet_order = no
-						NOT = {
-							OR = {
-								space_owner = {
-									has_modifier = "dest_golden_age"
-								}
-								solar_system = {
-									has_star_flag = primitive_system
-								}
+					has_fleet_order = no
+					NOT = {
+						OR = {
+							space_owner = {
+								has_modifier = "dest_golden_age"
+							}
+							solar_system = {
+								has_star_flag = primitive_system
 							}
 						}
 					}
 				}
 				clear_fleet_actions = this
-				fleet_event = { id = traveler.1002 }
-				fleet_event = { id = traveler.1006 }
+				fleet_event = { id = dest_traveler.1002 }
+				fleet_event = { id = dest_traveler.1006 }
 			}
 			if = { #if attacked while giving golden age, leave
 				limit = {
@@ -693,8 +822,8 @@ country_event = {
 						remove_modifier = "dest_golden_age"
 					}
 				}
-				fleet_event = { id = traveler.1003 }
-				fleet_event = { id = traveler.1005 }
+				fleet_event = { id = dest_traveler.1003 }
+				fleet_event = { id = dest_traveler.1005 }
 			}
 			if = { #if attacked while uplifting, restart uplifting
 				limit = {
@@ -703,246 +832,15 @@ country_event = {
 					}
 				}
 				clear_fleet_actions = this
-				fleet_event = { id = traveler.1007 }
+				fleet_event = { id = dest_traveler.1007 }
 			}
 		}
-	}
-}
-
-#local traveler spawn message
-country_event = {
-	id = traveler.6
-	title = "traveler.6.name"
-	desc = "traveler.6.desc"
-	picture = "GFX_traveler"
-	location = event_target:traveler_fleet
-	
-	is_triggered_only = yes
-	fire_only_once = yes
-	
-	trigger = {
-		NOT = {
-			has_country_flag = met_traveler
-		}
-		IF = {
-			limit = { 
-				exists = event_target:trav_system_owner
-			}
-			event_target:trav_system_owner = {
-				is_same_empire = ROOT
-			}
-		}
-
-	}
-	
-	immediate = {
-		set_country_flag = met_traveler
-		# country_event = { 
-			# id = traveler.9
-			# days = 720
-		# }
-		establish_communications_no_message = event_target:traveler_country
-	}
-
-	option = {
-		name = traveler.6.a
-	}
-	
-	# option = {
-		# name = traveler.6.b
-		# trigger = {
-			# OR = {
-				# has_ethic = ethic_spiritualist
-				# has_ethic = ethic_fanatic_spiritualist
-			# }
-		# }
-		# add_modifier = {
-			# modifier = dest_praising_traveler
-			# days = 360
-		# }
-	# }
-	
-	# option = {
-		# name = traveler.6.c
-		# trigger = {
-			# OR = {
-				# has_ethic = ethic_materialist
-				# has_ethic = ethic_fanatic_materialist
-			# }
-		# }
-		# add_modifier = {
-			# modifier = dest_observing_traveler
-			# days = 360
-		# }
-	# }
-}
-
-#non-local traveler spawn message
-country_event = {
-	id = traveler.7
-	title = "traveler.7.name"
-	desc = {
-		trigger = {
-			any_country = {
-				event_target:traveler_fleet = {
-					is_inside_border = PREV
-				}
-			}
-		}
-		text = traveler.7.desc.owned
-	}
-	desc = {
-		trigger = {
-			NOT = {
-				any_country = {
-					event_target:traveler_fleet = {
-						is_inside_border = PREV
-					}
-				}
-			}
-		}
-		text = traveler.7.desc.unowned
-	}
-	picture = "GFX_evt_smugglers_in_bar"
-	location = event_target:traveler_fleet
-	
-	hide_window = no
-	is_triggered_only = yes
-	fire_only_once = yes
-	
-	trigger = {
-		NOT = {
-			has_country_flag = met_traveler
-		}
-	}
-	
-	immediate = {
-		# country_event = { 
-			# id = traveler.9
-			# days = 720
-		# }
-	}
-	
-	option = {
-		name = traveler.7.a
-	}
-	
-	# option = {
-		# name = traveler.7.b
-		# trigger = {
-			# OR = {
-				# has_ethic = "ethic_fanatic_spiritualist"
-				# has_ethic = "ethic_spiritualist"
-			# }
-		# }
-	# }
-
-	# option = {
-		# name = traveler.7.c
-		# trigger = {
-			# OR = {
-				# has_ethic = "ethic_fanatic_materialist"
-				# has_ethic = "ethic_materialist"
-			# }
-		# }
-	# }	
-}
-
-#traveler enters empire
-country_event = {
-	id = traveler.8
-	title = "traveler.8.name"
-	desc = "traveler.8.desc"
-	picture = "GFX_traveler"
-	location = event_target:traveler_fleet
-	
-	is_triggered_only = yes
-	#fire_only_once = yes
-	
-	trigger = {
-		has_global_flag = traveler_exists
-		NOT = { has_country_flag = met_traveler }
-	}
-	
-	immediate = {
-		set_country_flag = met_traveler
-		establish_communications_no_message = event_target:traveler_country
-	}
-	
-	option = {
-		name = traveler.8.a
-		hidden_effect = {
-			#country_event = { id = traveler.9 days = 1 }
-		}
-	}
-	# option = {
-		# name = traveler.8.b
-		# trigger = {
-			# OR = {
-				# has_ethic = ethic_spiritualist
-				# has_ethic = ethic_fanatic_spiritualist
-			# }
-		# }
-		# add_modifier = {
-			# modifier = dest_praising_traveler
-			# days = 360
-		# }
-	# }
-	# option = {
-		# name = traveler.8.c
-		# trigger = {
-			# OR = {
-				# has_ethic = ethic_materialist
-				# has_ethic = ethic_fanatic_materialist
-			# }
-		# }
-		# add_modifier = {
-			# modifier = dest_observing_traveler
-			# days = 360
-		# }
-	# }
-}
-
-ship_event = {
-	id = traveler.9
-	title = "traveler.9.name"
-	desc = "traveler.9.desc"
-	picture = "GFX_traveler"
-	location = ROOT
-	
-	is_triggered_only = yes
-	
-	trigger = {
-		solar_system = {
-			any_ship_in_system = {
-				fleet = {
-					has_fleet_flag = traveler
-				}
-			}
-		}
-		owner = {
-			NOT = {
-				is_country_type = dest_traveler
-				has_country_flag = met_traveler
-			}
-		}
-	}
-	
-	immediate = {
-		owner = {
-			establish_communications_no_message = event_target:traveler_country
-			set_country_flag = met_traveler
-		}
-	}
-	
-	option = {
-		name = traveler.9.a
 	}
 }
 
 #begin golden age event chain
 country_event = {
-	id = traveler.11
+	id = dest_traveler.11
 	title = "traveler.11.name"
 	desc = "traveler.11.desc"
 	picture = "GFX_traveler"
@@ -993,7 +891,7 @@ country_event = {
 
 #announce Golden Age to other empires
 country_event = {
-	id = traveler.12
+	id = dest_traveler.12
 	title = "traveler.12.name"
 	desc = "traveler.12.desc"
 	picture = "GFX_evt_metropolis"
@@ -1003,7 +901,7 @@ country_event = {
 	
 	trigger = {
 		NOT = {
-			is_same_empire = event_target:trav_system_owner
+			is_same_empire = event_target:dest_traveler_current_system_owner
 		}
 	}
 	
@@ -1018,7 +916,7 @@ country_event = {
 
 #announce traveler uplifting primitives
 country_event = {
-	id = traveler.13
+	id = dest_traveler.13
 	title = "traveler.13.name"
 	desc = "traveler.13.desc"
 	picture = "GFX_evt_metropolis"
@@ -1037,7 +935,7 @@ country_event = {
 
 #Golden Age event control
 event = {
-	id = traveler.14
+	id = dest_traveler.14
 	hide_window = yes
 	
 	is_triggered_only = yes
@@ -1062,10 +960,10 @@ event = {
 			log = "tested"
 			random_list = {
 				0.5 = {
-					country_event = { id = traveler.400 } #warmind
+					country_event = { id = dest_traveler.400 } #warmind
 				}
 				0.5 = {
-					country_event = { id = traveler.408 } #medical breakthroughs
+					country_event = { id = dest_traveler.408 } #medical breakthroughs
 				}
 				99 = {
 				
@@ -1077,7 +975,7 @@ event = {
 
 #recurring Golden Age
 country_event = {
-	id = traveler.15
+	id = dest_traveler.15
 	title = "traveler.15.name"
 	desc = "traveler.15.desc"
 	picture = "GFX_evt_metropolis"
@@ -1125,7 +1023,7 @@ country_event = {
 
 # collapse
 # country_event = {
-	# id = traveler.301
+	# id = dest_traveler.301
 	# title = "traveler.301.name"
 	# desc = "traveler.301.desc"
 	
@@ -1141,8 +1039,8 @@ country_event = {
 	# option = {
 		# name = traveler.301.a
 		# random_list = {
-			# 30 = { country_event = { id = traveler.302 days = 180 random = 10 } }
-			# 30 = { country_event = { id = traveler.304 days = 180 random = 10 } }
+			# 30 = { country_event = { id = dest_traveler.302 days = 180 random = 10 } }
+			# 30 = { country_event = { id = dest_traveler.304 days = 180 random = 10 } }
 		# }
 	# }
 	
@@ -1151,15 +1049,15 @@ country_event = {
 		# add_energy = -3000
 		# add_influence = -200
 		# random_list = {
-			# 10 = { country_event = { id = traveler.302 days = 180 } }
-			# 10 = { country_event = { id = traveler.304 days = 180 } }
+			# 10 = { country_event = { id = dest_traveler.302 days = 180 } }
+			# 10 = { country_event = { id = dest_traveler.304 days = 180 } }
 		# }
 	# }
 # }
 
 # collapse: riots
 # country_event = {
-	# id = traveler.302
+	# id = dest_traveler.302
 	# title = "traveler.302.name"
 	# desc = "traveler.302.desc"
 	
@@ -1183,7 +1081,7 @@ country_event = {
 
 # collapse: riots ended
 # country_event = {
-	# id = traveler.303
+	# id = dest_traveler.303
 	# title = "traveler.303.name"
 	# desc = "traveler.303.desc"
 	
@@ -1203,7 +1101,7 @@ country_event = {
 #############
 #warmind
 country_event = {
-	id = traveler.400
+	id = dest_traveler.400
 	title = "traveler.400.name"
 	desc = "traveler.400.desc"
 	picture = GFX_evt_sapient_AI
@@ -1258,7 +1156,7 @@ country_event = {
 }
 
 country_event = {
-	id = traveler.401
+	id = dest_traveler.401
 	title = "traveler.401.name"
 	desc = "traveler.401.desc"
 	picture = GFX_evt_sapient_AI
@@ -1279,7 +1177,7 @@ country_event = {
 
 #Warmind - Alpha Build
 planet_event = {
-	id = traveler.402
+	id = dest_traveler.402
 	title = "traveler.402.name"
 	desc = "traveler.402.desc"
 	picture = GFX_evt_sapient_AI
@@ -1299,7 +1197,7 @@ planet_event = {
 		owner = {
 			set_country_flag = warmind_alpha
 			# country_event = {
-				# id = traveler.404
+				# id = dest_traveler.404
 				# days = 720
 			# }
 		}
@@ -1323,7 +1221,7 @@ planet_event = {
 		hidden_effect = {
 			owner = {
 				country_event = {
-					id = traveler.403
+					id = dest_traveler.403
 					days = 100
 				}
 			}
@@ -1341,7 +1239,7 @@ planet_event = {
 		hidden_effect = {
 			owner = {
 				country_event = {
-					id = traveler.403
+					id = dest_traveler.403
 					days = 720
 				}
 			}
@@ -1351,7 +1249,7 @@ planet_event = {
 
 #warmind - field tests
 country_event = {
-	id = traveler.403
+	id = dest_traveler.403
 	title = "traveler.403.name"
 	desc = "traveler.403.desc"
 	picture = GFX_evt_sapient_AI
@@ -1360,7 +1258,7 @@ country_event = {
 	
 	immediate = {
 		country_event = {
-			id = traveler.404
+			id = dest_traveler.404
 			days = 540
 			random = 180
 		}
@@ -1385,7 +1283,7 @@ country_event = {
 
 #warmind - upgrades
 country_event = {
-	id = traveler.404
+	id = dest_traveler.404
 	title = "traveler.404.name"
 	desc = "traveler.404.desc"
 	picture = GFX_evt_sapient_AI
@@ -1394,7 +1292,7 @@ country_event = {
 	
 	immediate = {
 		country_event = {
-			id = traveler.405
+			id = dest_traveler.405
 			days = 540
 			random = 180
 		}
@@ -1408,7 +1306,7 @@ country_event = {
 
 #Warmind - Rollout
 country_event = {
-	id = traveler.405
+	id = dest_traveler.405
 	title = "traveler.405.name"
 	desc = "traveler.405.desc"
 	picture = GFX_evt_sapient_AI
@@ -1425,7 +1323,7 @@ country_event = {
 }
 
 planet_event = {
-	id = traveler.406
+	id = dest_traveler.406
 	title = "traveler.406.name"
 	desc = "traveler.406.desc"
 	picture = GFX_evt_sapient_AI
@@ -1448,7 +1346,7 @@ planet_event = {
 
 #on_leader: give golden age med trait
 country_event = {
-	id = traveler.407
+	id = dest_traveler.407
 	hide_window = yes
 	
 	is_triggered_only = yes
@@ -1466,7 +1364,7 @@ country_event = {
 }
 
 country_event = {
-	id = traveler.408
+	id = dest_traveler.408
 	title = "traveler.408.name"
 	desc = "traveler.408.desc"
 	picture = GFX_evt_microscopic_life
@@ -1496,7 +1394,7 @@ country_event = {
 ##############
 #terraforming project
 planet_event = { 
-	id = traveler.500
+	id = dest_traveler.500
 	title = "traveler.500.name"
 	desc = "traveler.500.desc"
 	picture = GFX_evt_satellite_in_orbit #change
@@ -1523,7 +1421,7 @@ planet_event = {
 }
 
 country_event = {
-	id = traveler.501
+	id = dest_traveler.501
 	title = "traveler.501.name"
 	desc = "traveler.501.desc"
 	picture = GFX_evt_satellite_in_orbit
@@ -1609,7 +1507,7 @@ country_event = {
 
 #Traveler destroyed
 country_event = {
-	id = traveler.502
+	id = dest_traveler.502
 	title = "traveler.502.name"
 	desc = "traveler.502.desc"
 	picture = GFX_evt_small_space_battle #Change this
@@ -1618,19 +1516,19 @@ country_event = {
 	
 	trigger = {
 		FROMFROMFROM = {
-			has_fleet_flag = traveler
+			has_fleet_flag = dest_traveler_ship
 		}
 	}
 	
 	immediate = {
 		set_global_flag = traveler_destroyed
-		remove_global_flag = traveler_exists
+		remove_global_flag = dest_traveler_exists
 	}
 	
 	option = {
 		name = traveler.502.a
 		# country_event = { #uncomment when traveler armor is finished
-			# id = traveler.503
+			# id = dest_traveler.503
 			# days = 30
 		# }
 		every_country = {
@@ -1641,14 +1539,14 @@ country_event = {
 				} 
 			}
 			country_event = {
-				id = traveler.504
+				id = dest_traveler.504
 			}
 		}
 	}
 }
 
 country_event = {
-	id = traveler.503
+	id = dest_traveler.503
 	title = "traveler.503.name"
 	desc = "traveler.503.desc"
 	picture = GFX_evt_unknown_ships
@@ -1671,7 +1569,7 @@ country_event = {
 }
 
 country_event = {
-	id = traveler.504
+	id = dest_traveler.504
 	title = "traveler.504.name"
 	desc = "traveler.504.desc"
 	picture = GFX_evt_small_space_battle

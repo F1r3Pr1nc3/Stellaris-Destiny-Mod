@@ -1,4 +1,4 @@
-dest_traveler = {
+dest_traveler_country = {
 	show_in_contacts_list = yes
 	has_capital = no
 	orbital_bombardment = no
