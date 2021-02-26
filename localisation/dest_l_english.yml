@@ -206,6 +206,3 @@
  # Event Chain
  traveler_chain_title:0 "The Traveler"
  traveler_chain_desc:0 "The Traveler is in the [dest_traveler_current_system.GetName] system."
-
- # Tooltips
- requires_glimmer:0 "§RRequires an additional §Y$dest_d_glimmer_deposit$§! on planet.§!"  

@@ -42,7 +42,6 @@ event = {
 	
 	immediate = {
 		random_rim_system = {
-		#random_system = {
 			set_star_flag = dest_traveler_arrival_system
 			clear_global_event_target = dest_traveler_current_system
 			save_global_event_target_as = dest_traveler_current_system
@@ -120,7 +119,6 @@ country_event = {
 			}
 		}
 		random_rim_system = {
-		#random_system = {
 			limit = { has_star_flag = dest_traveler_arrival_system }
 			if = {
 				limit = {

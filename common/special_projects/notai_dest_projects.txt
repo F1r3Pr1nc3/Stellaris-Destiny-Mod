@@ -18,8 +18,6 @@ special_project = {
 			country_event = { id = dest_traveler.501 }
 		}
 	}
-	
-	on_fail = {}
 }
 
 special_project = {
@@ -35,11 +33,8 @@ special_project = {
 	}
 	
 	on_success = {
-		# give_technology = dest_tech_warmind
 		owner = {
 			country_event = { id = dest_traveler.401 }
 		}
 	}
-	
-	on_fail = {}
 }
