@@ -1,11 +1,16 @@
-[b][h2] Above [/h2][/b]
+[b][h2] About [/h2][/b]
 Updated version for the outdated Destiny - The Traveler mod, see the original mod [url=https://steamcommunity.com/sharedfiles/filedetails/?id=847164184] here [/url]
-This mod currently has added the Traveler, a mysterious paracausal entity with the ability to bend or alter reality to a potentially extreme degree, to the Stellaris galaxy. While also adding bits and bobs from the Destiny Universe to the Stellaris Galaxy 
+
+This mod seeks to merge the Destiny and Stellaris universes into one game, focusing primarily on the addition to darkness, light, and much of the lore before the current time of the Destiny games. Primarily this mod adds the Traveler, a mysterious city sized orb with reality defying powers, to your Stellaris games. Currently the Traveler will enter your galaxy part way through your game and begin to interact with it.
+
+Currently the Traveler will interact with your galaxy through terraforming planets, uplifting primitives, and granting golden ages - periods of great technological advancement - to the denizens of the galaxy. 
 
 Future plans mainly include optimizations, modernizing the mod's code, and adding additional things from both Destiny 2 and Destiny to Stellaris.
 
 [b][h2] Note[/h2][/b]
-This mod is currently in a beta version, and can include breaking save updates at any update without warning as I attempt to improve and expand the features of the mod and eliminate bugs.
+This mod is currently in a beta version, and could include breaking save updates at any update without warning as I attempt to improve and expand the features of the mod and eliminate bugs. I strongly advise that you do not get too attached to any playthroughs you start with this mod, as I can't guarantee their resilience to future updates.
+
+If you have a bug report please report it on this Google Form [url=https://forms.gle/M6Z5Wg5eLbvV1BAf9] Bug Report [/url]. Alternatively if you want to suggest a feature then head over to the Suggestions topic on this mod, please try to be clear on what you are expecting, what you want to see, what should happen etc. The clearer your ideas the more likely it is that I can use your suggestion for future updates to the mod.
 
 [b][h2] Changes [/h2][/b]
-The current version is simply a modernizing of the existing mod's code base, future features will be added soon.
+To view what changes occur in each update to the mod, see the [b]Change Notes[/b] tab of the mod.
