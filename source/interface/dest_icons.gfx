@@ -1,0 +1,6 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_dest_building_glimmer_network"
+		textureFile = "gfx/interface/icons/buildings/dest_building_glimmer_network.dds"
+	}
+}
