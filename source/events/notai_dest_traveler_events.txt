@@ -14,17 +14,17 @@ namespace = dest_traveler
 #####################################################
 
 ### DEBUG EVENT VALUES
-@traveler_enter_galaxy_time_base = 1
-@traveler_enter_galaxy_time_random = 0
-@traveler_enter_system_time_base = 1
-@traveler_enter_system_time_random = 0
+#@traveler_enter_galaxy_time_base = 1
+#@traveler_enter_galaxy_time_random = 0
+#@traveler_enter_system_time_base = 1
+#@traveler_enter_system_time_random = 0
 
 ### RELEASE EVENT VALUES
-#@traveler_enter_galaxy_time_base = 22500
-#@traveler_enter_galaxy_time_random = 4500
-#@traveler_enter_system_time_base = 360
-#@traveler_enter_system_time_random = 180
-#@traveler_arrival_time = 360
+@traveler_enter_galaxy_time_base = 22500
+@traveler_enter_galaxy_time_random = 4500
+@traveler_enter_system_time_base = 360
+@traveler_enter_system_time_random = 180
+@traveler_arrival_time = 360
 @golden_age_length = 3600
 @terraforming_time = 360
 

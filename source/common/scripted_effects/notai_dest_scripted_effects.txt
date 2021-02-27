@@ -28,12 +28,20 @@ reset_size = {
 		limit = {
 			planet_size > 20
 		}
-		change_planet_size = -1
-		check_planet_size = yes
+		while = {
+			limit = {
+				planet_size > 20
+			}
+			change_planet_size = -1
+		}
 	}
-	if = {
+	else_if = {
 		limit = { planet_size < 12 }
-		change_planet_size = 1
-		check_planet_size = yes
+		while = {
+			limit = {
+				planet_size < 12
+			}
+			change_planet_size = 1
+		}
 	}
 }

@@ -139,10 +139,9 @@ dest_building_warmind_copy = {
 		}
 	}
 }
-building_glimmer_network = {
+dest_building_glimmer_network = {
 	base_buildtime = @b1_time
 	is_capped_by_modifier = yes
-	icon = "dest_building_glimmer_network_1"
 	category = resource
 	potential = {
 		NOT = {
@@ -155,11 +154,11 @@ building_glimmer_network = {
 			minerals = 200
 		}
 		upkeep = {
-			energy = 3
+			energy = 1
 		}
 	}
 	planet_modifier = {
-		country_minerals_produces_add = 6
+		job_dest_glimmer_collector_add = 1
 	}
 	prerequisites = {
 		"dest_tech_glimmer_extraction"

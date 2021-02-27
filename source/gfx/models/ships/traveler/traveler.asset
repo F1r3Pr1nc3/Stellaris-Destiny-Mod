@@ -113,7 +113,7 @@ entity = {
 
 
 entity = {
-	name = "traveler_entity"
+	name = "dest_traveler_entity"
 	pdxmesh = "locator_mesh"
 	
 	locator = { name = "part1"			position = {  0 0 0	} }

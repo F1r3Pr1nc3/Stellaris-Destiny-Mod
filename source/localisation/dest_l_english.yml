@@ -1,4 +1,4 @@
-﻿l_english:
+﻿  l_english:
  ### Flag Localisation
  dest_traveler_in_galaxy:0 "The Traveler has entered the Galaxy"
  dest_traveler_exists:0 "The Traveler Exists"
@@ -174,8 +174,8 @@
  DEST_LEADER_TITLE:0 "Ghost"
  
  # Strategic Resource Deposits
- dest_d_glimmer_deposit:0 "Glimmer"
- dest_d_glimmer_deposit_desc:0 "A naturally forming programmable matter useful in producing a wide array of products."
+ dest_d_glimmer_deposit:0 "Glimmer Deposit"
+ dest_d_glimmer_deposit_desc:0 "A pocket of programmable matter found within the planet's crust. It is useful in producing a wide array of products."
  
  # Technology
  dest_tech_glimmer_extraction:0 "Glimmer Extraction"
@@ -190,8 +190,8 @@
  dest_tech_traveler_material_desc:0 "The husk of a dead god. It possesses strange, paracausal properties."
  
  # Planetary buildings
- building_glimmer_network:0 "Glimmer Mine"
- building_glimmer_network_desc:0 "A mine specially equiped with drills capable of reaching glimmer deposits deep below the surface."
+ dest_building_glimmer_network:0 "Glimmer Mine"
+ dest_building_glimmer_network_desc:0 "A mine specially equiped with drills capable of reaching glimmer deposits deep below the surface."
  dest_building_warmind_facility:0 "Warmind Facility"
  dest_building_warmind_facility_desc:0 "A state-of-the-art facility specially equipped with a powerful AI for R&D purposes."
  dest_building_warmind_prime:0 "Warmind Prime Core"
@@ -199,6 +199,18 @@
  dest_building_warmind_copy:0 "Colony Warmind"
  dest_building_warmind_copy_desc:0 "A less powerful Warmind for colony administration uses"
  
+ # Jobs
+ job_dest_glimmer_collector:0 "Glimmer Programmer"
+ job_dest_glimmer_collector_plural:0 "Glimmer Programmers"
+ job_dest_glimmer_collector_desc:0 "These capable workers work the machinery that converts Glimmer into usable substances."
+ job_dest_glimmer_collector_effect_desc:0 "£job_dest_glimmer_collector£ $job_dest_glimmer_collector_plural$ produce many £minerals£ §Y$minerals$§!"
+
+ ### Modifiers
+ # Job Modifiers
+ mod_job_dest_glimmer_collector_add:0 "$job_dest_glimmer_collector$ Jobs"
+ # Building Modifiers
+ mod_dest_building_glimmer_network_max:0 "Max $dest_building_glimmer_network$"
+
  # Special Projects
  DEST_TRAV_WARMIND:0 "Warmind Project"
  DEST_TRAV_WARMIND_DESC:0 "With the knowledge granted to us by The Traveler, our computing specialists believe they can devise a new, highly advanced method for developing artificial intelligence."

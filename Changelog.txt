@@ -7,6 +7,9 @@ Traveler Behaviour
  2. The Traveler should now terraform moons provided they fit into the above size requirement.
  3. Adjusted Traveler max speed by 20% (20 to 25)
  4. Adjusted Traveler acceleration by 5000% (0.5 to 25)
+Misc
+ 1. Changed the Gimmer Network to provide a new job: 'Glimmer Collecter', the replaces the static output of minerals.
+ 2. Added some icons and readded images for the Glimmer Mine (I apologize, i'm not artist so don't expect the best graphics).
 Backend
  1. Reorganised and renamed files to ease in future development of new features.
  2. Modernizing, optimizing, and preparing code for future expansion and work.
