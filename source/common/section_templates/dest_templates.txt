@@ -1,6 +1,6 @@
 ship_section_template = {
-	key = "dest_traveler_section_key"
-	ship_size = dest_traveler
+	key = "dest_traveler_ship_section_key"
+	ship_size = dest_traveler_ship_size
 	fits_on_slot = mid
 	entity = "traveler_hull_entity"
 	icon = "GFX_ship_part_core_mid"

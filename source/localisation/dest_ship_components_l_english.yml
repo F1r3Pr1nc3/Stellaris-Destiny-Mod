@@ -1,11 +1,11 @@
 ﻿l_english:
  ### Traveler Ship and Components
  # Traveler Ship Size 
- dest_traveler:0 "Traveler"
- dest_traveler_plural:0 "Travelers"
- dest_traveler_section_key:0 "Traveler"
+ dest_traveler_ship_size:0 "Mysterious Sphere"
+ dest_traveler_ship_size_plural:0 "Mysterious Spheres"
+ dest_traveler_ship_section_key:0 "Mysterious Orb"
  # Traveler Ship Components
- TRAVELER_DRIVE:0 "Traveler Jump Drive"
+ dest_traveler_drive:0 "Traveler FTL Drive"
  # Traveler Armour
  DEST_TRAVELER_ARMOR:0 "Traveler Shell Armor"
  DEST_TRAVELER_ARMOR_DESC:0 "The husk of a dead god turned shield. The strange properties of this material have been adapted to make unique armor for our ships."

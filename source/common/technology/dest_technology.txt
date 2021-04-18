@@ -15,7 +15,7 @@ dest_tech_glimmer_extraction = {
 		modifier = {
 			factor = 0
 			NOT = {
-				has_global_flag = traveler_exists
+				has_global_flag = dest_traveler_exists
 			}
 		}
 		modifier = {

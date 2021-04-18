@@ -1,0 +1,161 @@
+﻿l_english:
+ ### Traveler Events
+ # Traveler Spawn/Contact Events
+ traveler.2.name: "Extragalactic Event"
+ traveler.2.desc: "Observatories across the Galaxy have reported that a strange event has occured in intergalactic space. Gravitational waves stronger than any previously observed event were detected approximately 40,000 light years outside the galaxy. Oddly, the gravitational waves were accompanied by a burst of an unknown type of energy, far different than anything predicted by the current model of physics. Even stranger, the gravitational waves and unknown energy were detected simultaneously across the entire galaxy seemingly traveling faster than light. Scientists have refered to the event as "paracausal" as the readings seem to have ocurred outside the laws of causality."
+ traveler.2.a: "Interesting"
+ 
+ traveler.6.name: "A Mysterious Object"
+ traveler.6.desc.system_owner: "Civillian ships in the [dest_traveler_current_system.GetName] system have reported sightings of a mysterious spherical object. Initially believed to be a rogue planetoid, further investigations have determined that the object is too smooth and uniform to be natural. It appears to move under it's own will, and as such has been nicknamed The Traveler. Our scientists have linked the object to the extragalactic event which occured a year earlier as the Traveler radiates the same energy previously detected."
+ traveler.6.desc.unowned: "Rumors of a mysterious object travelling through uncolonized space near the [dest_traveler_current_system.GetName] have been spreading throughout our population. These rumors describe a white sphere the size of a planetoid apparently moving under it's own will. Although we have been unable to verify these claims, other empire's have reported similiar rumors in their own population."
+ traveler.6.option.generic: "Interesting. Continue observing the object."
+ traveler.6.option.materialist: "A marvel of some distant civilization!"
+ traveler.6.option.worship: "This object must be of a divine origin."
+ traveler.6.option.worship_tooltip: "Begin worshiping the Traveler."
+ traveler.6.rumors.a: "Continue looking into these rumors."
+ traveler.6.rumors.b: "This could change everything we know."
+ traveler.6.rumors.c: "This could be the work of the gods."
+ 
+ traveler.8.title: "The Traveler"
+ traveler.8.desc: "The object previously described only in rumors has entered our borders. Our scientists have detected no radio signals emminating from it. Now known as "The Traveler," the object is under constant observation by hundreds of scientists."
+ traveler.8.option.generic: "Continue observing the object."
+ traveler.8.option.worship: "Such an enigmatic creation must be divine in nature."
+ traveler.8.option.worship_tooltip: "Begin worshiping the Traveler."
+
+ traveler.9.name: "The Traveler"
+ traveler.9.desc: "Upon arriving in §S[traveler_discovery_fleet.GetStarName]§!, [traveler_discovery_fleet.GetName] initial scans revealed a signifigant anomaly. Closer inspection showed that this anomaly matches the description of the object described in recent rumors. [traveler_discovery_fleet.GetName] immediately sent a report back to the Capital.\n\nThe report describes the sphere as appearing neither mechanical, nor organic in nature, while also apparently moving with intelligence. While no radio signals were detected, an unknown energy which matches that of a previously observed extragalactic event seems to radiate from the object. The environment of a planet the object was seen orbiting appeared to be undergoing terraformation. However, no apparent interaction was observed between the object and the planet. A footnote included in the report by [traveler_discovery_fleet.GetLeaderName] requests that the object officialy be called §HThe Traveler§!."
+ traveler.9.a: "Interesting"
+ 
+ dest_golden_age.0.title: "Golden Age"
+ dest_golden_age.0.desc: "The Traveler has arrived in our capital system and has begun orbiting the star. Our scientists have reported hearing voices, which seem to be giving them assistance in their research. Experts are hailing this revelation as the begining of a Golden Age to technological growth."
+ dest_golden_age.0.option.generic: "Magnificent!"
+ dest_golden_age.0.option.worship: "We will ascend with this knowledge."
+ 
+ dest_golden_age.2.title: "Golden Age"
+ dest_golden_age.2.desc: "The [from.GetRulerTitle] of [from.GetName] has announced the beginning of a Golden Age within their empire. They claim The Traveler, which is currently orbiting the planet of [From.GetName], is granting them an era of rapid technological development."
+ dest_golden_age.2.option.generic: "Interesting."
+ 
+ dest_golden_age.3.title: "Traveler Uplifting"
+ dest_golden_age.3.desc: "A previously primitive species has broadcast a message announcing their arrival to the galactic stage. Initially our scientists are baffled by how such a primitive society has become so technologically advanced in such a short time. However, the message a detailed recent history of their rise into space. The new empire claims that the Traveler, which has been spotted in their home system, granted them the knowledge needed to achieve space travel. This new information only deepens the mystery of The Traveler."
+ dest_golden_age.3.option.generic: "Incredible."
+ 
+ traveler.15.name: "Traveler Returns"
+ traveler.15.desc: "The Traveler has returned to our home system. After it's long absence, the mysterious sphere has come back, granting us another golden age."
+ traveler.15.a: "Amazing!"
+ traveler.15.b: "We will ascend with this knowledge."
+ 
+ golden_age.400.name: "Golden Age - A New AI"
+ golden_age.400.desc: "With the knowledge granted to us by The Traveler, our computing specialists believe they can devise a new, highly advanced method for developing artificial intelligence. However, they require a hefty investment in order to develop such a powerful AI. If the government were to provide this investment, we would have more influence over how it is used. If we do not, the researchers are likely to look into private investors."
+ golden_age.400.a: "Invest in the research."
+ golden_age.400.a.notenoughminerals: "Not enough Minerals"
+ golden_age.400.a.notenoughenergy: "Not enough Energy"
+ golden_age.400.b: "We can't afford this."
+ 
+ golden_age.401.name: "Warmind - Construction"
+ golden_age.401.desc: "The initial research into the new AI project - now named Warmind - and are ready to move forward with a prototype. The newly designed facility will allow the project to develop the new ambitious AI with it's specialized AI core."
+ golden_age.401.a: "Ok."
+ 
+ golden_age.402.name: "Warmind - Alpha Build"
+ golden_age.402.desc: "The Warmind scientists are celebrating! The Alpha build of the Warmind AI is a success. Even in these early stages, the Warmind is operating beyond any previous artificial intelligence. It showed exceptional performance during standard combat training simulations. However, in order to perform more extensive tests the supercomputer will require far more energy than it is currently using. The Warmind Project has requested a large sum of energy credits be directed to the the project in order to achieve this."
+ golden_age.402.a: "Allocate the energy from our stockpiles."
+ golden_age.402.b: "Allocate a portion of our generated power."
+ 
+ golden_age.403.name: "Warmind - Field Trials"
+ golden_age.403.desc: "An update on the Warmind Project: The Warmind has performed so exceptionally and consistently throughout its simulated tests that the project leads have requested that we begin field tests immediately. The Project has suggested putting it into use in our fleet, and giving it limited control in order to improve combat efficiency."
+ golden_age.403.a: "Put the Warmind to work!"
+ golden_age.403.b: "Perhaps it would be better suited to a scientific field."
+ 
+ golden_age.404.name: "Warmind - Upgrades"
+ golden_age.404.desc: "With the Warmind Project excelling at an almost unbelievable rate, the project leads have informed us that another upgrade is needed. A new, massive AI core will need to be built in order for the Warmind to reach its true potential. Although they have yet to design such a computer, they assure us that with the help of our top scientists they will be able to complete it in no time."
+ golden_age.404.a: "Inform the scientists of the research."
+ 
+ golden_age.405.name: "Warmind - Rollout"
+ golden_age.405.desc: "While the main Warmind team was busy with the new AI core, a seperate team has been optimizing the Alpha build and has completed what they call "a retail build." Obviously no such AI would ever be cheap enough to sell off the shelf, but this team has presented us their vision of a Warmind on every colony. By building Warmind facilities across an empire, they could assist not only in strategic rolls, but also in improving economic efficiency and research assistance."
+ golden_age.405.a: "We will put this to good use."
+ 
+ golden_age.406.name: "Warmind - Online"
+ golden_age.406.desc: "Finally the day has come when the Warmind Project has achieved it's goal of hyper-intelligent AI. Upon activation, this Warmind - officialy named Warmind Prime - will gain executive control of many functions in the [Root.Owner.GetName] such as combat. "
+ golden_age.406.a: "Congratulations."
+ 
+ golden_age.407.name: "Golden Age - Medical Miracle"
+ golden_age.407.desc: "The onset of the Golden Age has caused advancement in many fields, but perhaps the most welcomed advancements are those in the medical field. Injuries and diseases previously thought to be fatal are now able to be treated and cured in a matter of days. As a result, the life expectancy in [This.GetName] has increased signifigantly. Our people are rejoicing in the streets."
+ golden_age.407.a: "Excellent."
+
+ traveler.502.name: "Light Snuffed Out"
+ traveler.502.desc: "In the moments before the final strike, a bright, intense, blinding light shone out from the Traveler. The burst of light crossed the galaxy instantaneously like a explosion announcing the death of the enigmatic machine. Sensors across the galaxy picked up gravitational waves more intense than any detected before. In that moment all lifeforms knew: The Traveler was dead."
+ traveler.502.a: "A momentous day indeed."
+ 
+ traveler.503.name: "Husk of a God"
+ traveler.503.desc: "The debris gathered from the Traveler is incomprehensibly complicated. While we were unable to determine the uses of the mechanical parts, the raw material could prove useful. Results from testing the material indicate that it is made of no known element. Even stranger, it responds to scanning as if it doesn't exist at all. However, it is incredibly durable and exhibits many unusual properties. By coating ship hulls with the material, the hull integrity, shield capability, heat resistance could all be increased beyond previous capacities."
+ traveler.503.a: "Research the material for military applications."
+ 
+ traveler.504.name: "Light Snuffed Out"
+ traveler.504.desc: "In a single instant, every living being felt the overwhelming dread of what had just occured. A bright, blinding light shone out across the entire galaxy, visible from everywhere at once, defying the speed of light. Sensors all across the galaxy - and perhaps the entire universe - flared as gravitational waves, gamma rays, and Light blasted out from the explosion. Without even being told we all knew: The Traveler was dead."
+ traveler.504.a: "We will never forget this day."
+ 
+ dest_traveler_enter_orbit_title: "The Traveler Rests"
+ dest_traveler_enter_orbit_desc: "Recently, observers in the §H[From.solar_system.GetStarName]§! System have spotted the Traveler, their reports have indicated that the Traveler has begun orbiting the uninhabited world of §H[From.GetName]§!. We currently do not know what it is doing or what to expect from these actions, but already we are seeing higher energy levels than we have never seen occuring naturally on the planet."
+ dest_traveler_enter_orbit_option_generic: "Fascinating"
+ dest_traveler_abandon_orbit_title: "§RTraveler Departs§!"
+ # Planet Terraforming Events
+ dest_traveler.1011.title: "$dest_traveler_enter_orbit_title$"
+ dest_traveler.1011.desc: "$dest_traveler_enter_orbit_desc$"
+ dest_traveler.1011.option.generic: "$dest_traveler_enter_orbit_option_generic$"
+ 
+ dest_traveler.1013.title: "[From.GetName] - First Rains"
+ dest_traveler.1013.desc: "Some time has passed since the Traveler took to orbiting the planet of §H[From.GetName]§! and in that time much has changed, the energy seemingly outputed by the Traveler seems to be warping and mutating the planet, converting it into a §G[From.GetClassName]!. Recently the atmosphere of §H[From.GetName]§! has shown signs of rain, amongst other signs of life and changes tectonic activity, this world has come a long way and could soon be habitable to our people."
+ dest_traveler.1013.option.generic: "Amazing, perhaps soon we will walk upon the surface."
+
+ dest_traveler.1016.title: "[From.GetName] - Nearing Completion"
+ dest_traveler.1016.desc: "As time has progressed in the §H[From.solar_system.GetName]§! System the Traveler has ever sat over the §H[From.GetName]§! planet, causing the planet to undergo a rapid conversion into a §G[from.GetClassName]§! Our most recent investigations into the planet have yielded results which indicate the planet is almost fully habitable for our people. Hopefully we will be able to touch down upon it's surface soon."
+ dest_traveler.1016.option.generic: "For now we wait."
+ 
+ dest_traveler.1018.title: "[From.GetName] - A Gift of the Traveler"
+ dest_traveler.1018.desc: "Following a short process in the §H[From.solar_system.GetName]§! System, the Traveler seems to have finished converting the world into a planet of exception habitability for our species. Early scans of the planet seem to indicate that this world is more suited to our biology than other worlds of equivalent classification. It appears as though this was the Traveler's intent with this world when it entered it's orbit. Now it is drifting away from the planet onto some other task."
+ dest_traveler.1018.option.generic: "Amazing."
+ dest_traveler.1018.option.worship: "This must be a sign."
+
+ dest_traveler.1019.title: "$dest_traveler_abandon_orbit_title$"
+ dest_traveler.1019.desc: "Hours ago the Traveler has left the planet of §H[From.GetName]§! behind, after being engaged in combat the planet appears to have been left in what can only be descibed as a semi complete state."
+ dest_traveler.1019.option.generic: "Hopefully it will return."
+
+ # Planet Augmentation Events
+ dest_traveler.1021.title: "$dest_traveler_enter_orbit_title$"
+ dest_traveler.1021.desc: "$dest_traveler_enter_orbit_desc$"
+ dest_traveler.1021.option.generic: "$dest_traveler_enter_orbit_option_generic$"
+ 
+ dest_traveler.1023.title: "Traveler's Presence"
+ dest_traveler.1023.desc: "After some time over §H[From.GetName]§! we have noticed a large increase in energy levels around the planet, presumably caused by the Traveler. Curiously though we have not noticed any major changes on the planet. What could be happening on the planet?"
+ dest_traveler.1023.option.generic: "I wonder what's happening."
+
+ dest_traveler.1026.title: "Refashioned World"
+ dest_traveler.1026.desc: "More time has passed with the Traveler, during which we have began to notice several prominent changes which have occured across the planet. It appears as though the Traveler is changing specific aspects of the planet to abide by some purpose."
+ dest_traveler.1026.option.generic: "Curious."
+ 
+ dest_traveler.1028.title: "[This.GetName] - A Gift of the Traveler"
+ dest_traveler.1028.desc: "After what has been a rather short period in the influence of §H[From.GetName]§! the Traveler has departed the planet's influence to another task. In it's wake the planet appears to have had some alterations done to it, though the full extent of them remains unknown."
+ dest_traveler.1028.option.generic: "Hopefully a boon for us."
+ 
+ dest_traveler.1029.title: "$dest_traveler_abandon_orbit_title$"
+ dest_traveler.1029.desc: "Moments ago the Traveler has seemingly disembarked from it's terraformation process due to an impending sitution arising near §H[From.GetName]§!. Currently we do not know the full depth of the Traveler's changes to the planet nor to any intentions it may have to return to the planet at a later point."
+ dest_traveler.1029.option.generic: "We will watch carefully."
+ 
+ dest_traveler.1033.title: "Augmentation of [From.GetName]"
+ dest_traveler.1033.desc.chosen: "The Traveler has recently taken to orbiting the world of [From.orbit.GetName] in the [From.solar_system.GetName] System, upon it's arrival huge energy emissions have been noticed occuring throughout the planet, likely todo with the Traveler's recent activity."
+ dest_traveler.1033.desc.system_owner: "The Traveler has recently taken to orbiting the world of [From.orbit.GetName] in the [From.solar_system.GetName] System, upon it's arrival huge energy emissions have been noticed occuring throughout the planet, likely todo with the Traveler's recent activity."
+ dest_traveler.1033.option.generic: "Fascinating."
+
+ dest_traveler.1035.title: "[From.GetName] - First Rains"
+ dest_traveler.1035.desc.golden_age_nation: "Some time has passed since the Traveler took to orbiting the planet of §H[From.GetName]§! and in that time much has changed, the energy seemingly outputed by the Traveler seems to be warping and mutating the planet, slowly converting it into a world suitable for our own inhabitation. This process seems to be showing signs of converting into a world much too similar of our own homeworld than to be a coincidence."
+ dest_traveler.1035.desc.generic: "Some time has passed since the Traveler took to orbiting the planet of §H[From.GetName]§! and in that time much has changed, the energy seemingly outputed by the Traveler seems to be warping and mutating the planet, slowly converting it into a world suitable for inhabitation. This process seems to be showing signs of converting into a world much too similar to another world found on the system, which holds another civilisation."
+ dest_traveler.1035.option.generic: "Amazing."
+
+ dest_traveler.1038.title: "[From.GetName] - Nearing Completion"
+ dest_traveler.1038.desc.golden_age_nation: "As time has progressed in the §H[From.solar_system.GetName]§! System the Traveler has ever sat over the §H[From.GetName]§! planet, causing the planet to undergo a rapid conversion into a §G[from.GetClassName]§! Our most recent investigations into the planet have yielded results which indicate the planet is almost fully habitable for our people. Hopefully we will be able to touch down upon it's surface soon."
+ dest_traveler.1038.desc.generic: "As time has progressed in the §H[From.solar_system.GetName]§! System the Traveler has ever sat over the §H[From.GetName]§! planet, causing the planet to undergo a rapid conversion into a §G[from.GetClassName]§! Our most recent investigations into the planet have yielded results which indicate the planet is almost fully habitable for their intended peoples. Hopefully we will be able to touch down upon it's surface soon."
+ dest_traveler.1038.option.generic: "For now we wait."
+
+ dest_traveler.1040.title: "[From.GetName] - A Gift of the Traveler"
+ dest_traveler.1040.desc.golden_age_nation: "Following a short process in the §H[From.solar_system.GetName]§! System, the Traveler seems to have finished converting the world into a planet of exception habitability for our species. Early scans of the planet seem to indicate that this world is more suited to our biology than other worlds of equivalent classification. It appears as though this was the Traveler's intent with this world when it entered it's orbit. Now it is drifting away from the planet onto some other task."
+ dest_traveler.1040.desc.generic: "Following a short process in the §H[From.solar_system.GetName]§! System, the Traveler seems to have finished converting the world into a planet of exception habitability for our species. Early scans of the planet seem to indicate that this world is more suited to the biology of carbon based lifeforms than other worlds of equivalent classification. It appears as though this was the Traveler's intent with this world when it entered it's orbit. Now it is drifting away from the planet onto some other task."
+ dest_traveler.1040.option.generic: "A great work of the Traveler"

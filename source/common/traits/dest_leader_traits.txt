@@ -12,7 +12,7 @@ dest_leader_trait_golden_age = {
 		from = {
 			has_country_flag = had_golden_age
 			NOR = {
-				has_country_flag = had_collapse
+				#has_country_flag = had_collapse
 				has_ethic = ethic_gestalt_consciousness
 			}
 		}

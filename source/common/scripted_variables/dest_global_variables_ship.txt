@@ -1,0 +1,38 @@
+### Global Event Variables
+@dest_traveler_enter_galaxy_time_base = 22500
+@dest_traveler_enter_galaxy_time_random = 4500
+@dest_traveler_enter_system_time_base = 360
+@dest_traveler_enter_system_time_random = 180
+@dest_traveler_arrival_time = 360
+@dest_traveler_terraforming_time = 360
+@dest_traveler_augmenting_time = 270
+@dest_traveler_time_to_uplift = 360
+@dest_golden_age_length = 5400
+### Traveler Variables
+@dest_traveler_speed = 100
+@dest_traveler_acceleration = 50
+@dest_traveler_evasion = 35
+@dest_traveler_armour_value = 100000
+@dest_traveler_shield_value = 50000
+@dest_traveler_hitpoints_value = 50000
+@dest_traveler_ftl_winddown_value = -1
+@dest_traveler_ftl_windup_value = -1
+# Traveler Armour Components
+# Small
+@dest_traveler_armour_small_cost_alloys = 29
+@dest_traveler_armour_small_upkeep_alloys = 0.058
+@dest_traveler_armour_small_upkeep_energy = 0.29
+@dest_traveler_armour_small_shield_value = 30
+@dest_traveler_armour_small_armour_value = 30
+# Medium
+@dest_traveler_armour_medium_cost_alloys = 57
+@dest_traveler_armour_medium_upkeep_alloys = 0.104
+@dest_traveler_armour_medium_upkeep_energy = 0.57
+@dest_traveler_armour_medium_shield_value = 60
+@dest_traveler_armour_medium_armour_value = 60
+# Large
+@dest_traveler_armour_large_cost_alloys = 114
+@dest_traveler_armour_large_upkeep_alloys = 0.196
+@dest_traveler_armour_large_upkeep_energy = 1.14
+@dest_traveler_armour_large_shield_value = 120
+@dest_traveler_armour_large_armour_value = 120

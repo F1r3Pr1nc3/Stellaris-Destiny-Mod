@@ -1,15 +1,50 @@
-spriteTypes = {	
+spriteTypes = {
+	spriteType= {
+		name = "GFX_evt_savannah"
+		textureFile = "gfx/event_pictures/savannah_planet.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_alpine"
+		textureFile = "gfx/event_pictures/alpine_planet.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaysTransparent = yes
+	}
 	spriteType = {
 		name = "GFX_vex_citadel"
 		texturefile = "gfx/event_pictures/citadel.dds"
 		masking_texture = "gfx/interface/situation_log/event_mask.dds"
-		alwaystransparent = yes		
-	}
-	
-		spriteType = {
+		alwaystransparent = yes
+	}	
+	spriteType = {
 		name = "GFX_traveler"
 		texturefile = "gfx/event_pictures/traveler.dds"
 		masking_texture = "gfx/interface/situation_log/event_mask.dds"
-		alwaystransparent = yes		
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_traveler_terraforming"
+		textureFile = "gfx/event_pictures/traveler_terraforming.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_traveler_over_city_one"
+		textureFile = "gfx/event_pictures/traveler_over_city_one.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_traveler_over_city_two"
+		textureFile = "gfx/event_pictures/traveler_over_city_two.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_traveler_bright"
+		textureFile = "gfx/event_pictures/traveler_bright.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
 	}
 }

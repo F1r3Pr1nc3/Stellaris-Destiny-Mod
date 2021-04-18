@@ -1,2 +1,50 @@
-4. Add icons for glimmer and glimmer related jobs
-Test and publish
+Traveler Todo
+1.  Redoing traveler decision making
+ - Implement primitive uplifting
+ - Implement starting golden age
+ - Implement limits on what the Traveler can terraform too or augment(not augmenting Ecus etc)
+ - Implement the last two planet backgrounds for events
+ - Visual events for when you encounter augemented worlds without witnessing the Traveler having done it in your territory
+2.1. Traveler Debugger/Control prompt
+    - Spawn Traveler
+    - Check which system the Traveler spawned in
+    - Goto the Traveler's current location
+    - Force the Traveler to recalculate it's action
+    - Force the Traveler to move system
+2.2. Event Messaging System
+    - Option to 'subscribe' and 'unsubscribe' to different messages of different types
+    - Change how certain visual events are displayed(with a message or with a full event or nothing)
+    - Opting for different parts of the event chains to display differently
+2.3. Attempt to make a retain compatibility system?
+    - Forcibly update obsolete parts of the mod to retain compatibility where possible with new versions
+3.1. Enhancing Golden Ages
+    - Implementation of Guardians
+    - More technology options
+3.2. Revamping Traveler Decision making again
+    - Adding Crisis behaviours
+    - Self Protection AI
+        - Flee Mechanics
+        - Avoiding Enemy Mechanics
+    - Special Actions?
+    - Different boons for killing the Traveler
+    - Caging the Traveler
+    - Improving decision making
+3.3. Traveler Worship
+    - Positive events relating to the Traveler and it's presence in your space
+    - Events related to beginning of Traveler worship
+4. Traveler Origin
+ - New Traveler creation method
+ - New origin
+ - Traveler spawns creating a long lasting golden age for a given empire
+ - Some way to make it only happen for one empire (:thonk:)
+?. Crisises
+ - Oryx/Hive rising from Fundament
+ - Oryx/Hive invading from another galaxy
+ - Pyramid Ships
+Side Projects:
+ - Reskinning the Traveler to something more original
+ - Destiny Portraits
+ - Destiny Namelists
+ - Traveler Revamp
+  - New insta kill 'light weapon'
+  - Redoing it's existing arsenal
