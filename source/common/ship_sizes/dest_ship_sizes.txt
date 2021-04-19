@@ -1,20 +1,17 @@
-dest_traveler = {
+dest_traveler_ship_size = {
 	is_space_object = yes
 	graphical_culture = { "techno" }
-	#graphical_culture = no
-	max_speed = 25
-	acceleration = 25
+	max_speed = @dest_traveler_speed
+	acceleration = @dest_traveler_acceleration
 	rotation_speed = 1.00
-	#combat_max_speed = 0.75
-	#combat_rotation_speed = 0.025
 	collision_radius = 20
 	modifier = {
-		ship_evasion_add = 35
-		ship_armor_add = 50000
-		ship_shield_add = 50000
+		ship_evasion_add = @dest_traveler_evasion
+		ship_armor_add = @dest_traveler_armour_value
+		ship_shield_add = @dest_traveler_shield_value
 		ships_upkeep_mult = -1
 	}
-	max_hitpoints = 100000
+	max_hitpoints = @dest_traveler_hitpoints_value
 	size_multiplier = 10
 	fleet_slot_size = 8
 	section_slots = { "mid" = { locator = "part1" } }

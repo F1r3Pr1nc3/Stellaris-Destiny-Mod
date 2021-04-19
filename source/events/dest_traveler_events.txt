@@ -1,0 +1,1815 @@
+# Destiny - The Traveler 
+# Originally Coded by Algae
+# Updated to 3.0.1 by Not_AI
+
+##### EVENTS KEY
+#1 - 99 = traveler spawn and contact events
+#100 - 299 = traveler diplomacy events
+#100x = traveler pathfinding
+
+##### DEBUG EVENT VALUES
+#@dest_traveler_enter_galaxy_time_base = 1
+#@dest_traveler_enter_galaxy_time_random = 0
+#@dest_traveler_enter_system_time_base = 1
+#@dest_traveler_enter_system_time_random = 0
+
+namespace = dest_traveler
+
+### Traveler Enter Galaxy Events
+# Global silent event to begin countdown to Traveler Arrival
+event = {
+	id = dest_traveler.0
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		random_rim_system = {
+			set_star_flag = dest_traveler_arrival_system
+			save_global_event_target_as = dest_traveler_current_system
+			save_global_event_target_as = dest_traveler_destination_system
+		}
+		event_target:global_event_country = {
+			country_event = {
+				id = dest_traveler.1
+				days = @dest_traveler_enter_galaxy_time_base
+				random = @dest_traveler_enter_galaxy_time_random
+			}
+		}
+	}
+}
+# Hidden event to notify every empire that the Traveler is close to entering the Galaxy
+country_event = {
+	id = dest_traveler.1
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { NOT = { has_global_flag = dest_traveler_in_galaxy } }
+	immediate = {
+		set_global_flag = dest_traveler_approaching
+		every_playable_country = {
+			country_event = {
+				id = dest_traveler.2
+			}
+		}
+		country_event = {
+			id = dest_traveler.3
+			days = @dest_traveler_enter_system_time_base
+			random = @dest_traveler_enter_system_time_random
+		}
+	}
+}
+# Visible event taking place in the Global Event Country and displays the Traveler is near notification
+country_event = {
+	id = dest_traveler.2
+	is_triggered_only = yes
+	title = traveler.2.name
+	desc = traveler.2.desc
+	picture = "GFX_evt_physics_research"
+	show_sound = event_alien_signal
+	option = {
+		name = traveler.2.a
+	}
+}
+# Hidden event to handle the spawning of the Traveler into the game
+country_event = {
+	id = dest_traveler.3
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		NOT = {
+			has_global_flag = dest_traveler_in_galaxy
+		}
+	}
+	immediate = {
+		set_global_flag = dest_traveler_in_galaxy
+		create_species = {
+			name = "Ghost"
+			plural = "Ghosts"
+			adjective = "Ghost"
+			class = ROBOT
+			portrait = random
+			immortal = yes
+			effect = {
+				save_global_event_target_as = dest_ghost_species
+			}
+		}
+		event_target:dest_traveler_current_system = {
+			random_system_planet = {
+				create_country = {
+					name = "The Traveler"
+					type = dest_traveler_country
+					species = event_target:dest_ghost_species
+					name_list = AVI1
+					flag = {
+						icon = {
+							category = "pirate"
+							file = "flag_pirate_7.dds"
+						}
+						background = {
+							category = "backgrounds"
+							file = "00_solid.dds"
+						}
+						colors = {
+							"grey"
+							"grey"
+							"null"
+							"null"
+						}
+					}
+					effect = {
+						create_leader = {
+							class = ruler
+							species = event_target:dest_ghost_species
+							name = random
+							skill = 10
+						}
+						create_fleet = {
+							name = "The Traveler"
+							settings = {
+								is_boss = yes
+								can_change_leader = no
+							}
+							effect = {
+								set_owner = PREV
+								create_ship = {
+									name = "The Traveler"
+									design = "Traveler"
+									graphical_culture = "techno"
+								}
+								set_location = PREVPREV
+								set_fleet_flag = dest_traveler_ship
+								set_fleet_stance = passive
+								save_global_event_target_as = dest_traveler_fleet
+								set_global_flag = dest_traveler_exists
+								fleet_event = {
+									id = dest_traveler.1000
+								}
+							}
+						}
+						save_global_event_target_as = dest_traveler_country
+						set_country_flag = traveler_country_flag
+					}
+				}
+			}
+			every_playable_country = {
+				country_event = {
+					id = dest_traveler.6
+				}
+			}
+			every_playable_country = {
+				begin_event_chain = {
+					event_chain = traveler_chain
+					target = this
+				}
+			}
+		}
+	}
+}
+# Traveler spawn event for system owner
+country_event = {
+	id = dest_traveler.6
+	title = traveler.6.name
+	picture = "GFX_traveler"
+	location = event_target:dest_traveler_fleet.solar_system
+	is_triggered_only = yes
+	fire_only_once = yes
+	desc = {
+		trigger = {
+			is_same_empire = event_target:dest_traveler_current_system.owner
+		}
+		text = traveler.6.desc.system_owner
+	}
+	desc = {
+		trigger = {
+			NOT = {
+				is_same_empire = event_target:dest_traveler_current_system.owner
+			}
+		}
+		text = traveler.6.desc.unowned
+	}
+	trigger = {
+		NOT = {
+			has_country_flag = dest_met_traveler
+		}
+	}
+	option = {
+		name = traveler.6.option.generic
+		trigger = {
+			is_same_empire = event_target:dest_traveler_current_system.owner
+		}
+		set_country_flag = dest_met_traveler
+		establish_communications_no_message = event_target:dest_traveler_country
+	}
+	option = {
+		name = traveler.6.option.materialist
+		trigger = {
+			is_materialist = yes
+			is_same_empire = event_target:dest_traveler_current_system.owner
+		}
+		set_country_flag = dest_met_traveler
+		establish_communications_no_message = event_target:dest_traveler_country
+	}
+	option = {
+		name = traveler.6.rumors.a
+		trigger = {
+			NOT = {
+				is_same_empire = event_target:dest_traveler_current_system.owner
+			}
+		}
+	}
+	option = {
+		name = traveler.6.rumors.b
+		trigger = {
+			NOT = {
+				is_same_empire = event_target:dest_traveler_current_system.owner
+			}
+		}
+	}
+}
+# Traveler enters empire borders
+country_event = {
+	id = dest_traveler.8
+	is_triggered_only = yes
+	hide_window = no
+
+	title = "traveler.8.title"
+	desc = "traveler.8.desc"
+	picture = "GFX_traveler"
+	show_sound = event_ship_bridge
+	location = event_target:dest_traveler_fleet
+	trigger = {
+		has_global_flag = dest_traveler_exists
+		NOT = {
+			has_country_flag = dest_met_traveler
+		}
+	}
+	immediate = {
+		set_country_flag = dest_met_traveler
+		establish_communications_no_message = event_target:dest_traveler_country
+	}
+	option = {
+		name = traveler.8.option.generic
+	}
+	#option = {
+	#	name = traveler.8.option.worship
+	#	custom_tooltip = traveler.8.option.worship_tooltip
+	#	trigger = {
+	#		is_spiritualist = yes
+	#	}
+	#	hidden_effect = {
+	#		set_country_flag = dest_worships_traveler
+	#	}
+	#}
+}
+# Fleet encounters the Traveler in a new system(Non traveler fleet)
+country_event = {
+	id = dest_traveler.9
+	is_triggered_only = yes
+	hide_window = no
+
+	title = "traveler.9.name"
+	desc = "traveler.9.desc"
+	picture = "GFX_traveler"
+	location = event_target:traveler_discovery_fleet
+
+	trigger = {
+		NOR = {
+			is_country_type = dest_traveler_country
+			has_country_flag = dest_met_traveler
+		}
+	}
+	immediate = {
+		establish_communications_no_message = event_target:dest_traveler_country
+		set_country_flag = dest_met_traveler
+	}
+	option = {
+		name = traveler.9.a
+	}
+}
+#Traveler destroyed
+country_event = {
+	id = dest_traveler.502
+	title = "traveler.502.name"
+	desc = "traveler.502.desc"
+	picture = GFX_evt_small_space_battle	#Change this
+	is_triggered_only = yes
+	trigger = {
+		FROMFROMFROM = {
+			has_fleet_flag = dest_traveler_ship
+		}
+	}
+	immediate = {
+		set_global_flag = traveler_destroyed
+		remove_global_flag = dest_traveler_exists
+	}
+	option = {
+		name = traveler.502.a
+		# country_event = { #uncomment when traveler armor is finished
+		# id = dest_traveler.503
+		# days = 30
+		# }
+		every_country = {
+			limit = {
+				is_ai = no
+				NOT = {
+					is_same_value = PREV
+				}
+			}
+			country_event = {
+				id = dest_traveler.504
+			}
+		}
+	}
+}
+country_event = {
+	id = dest_traveler.503
+	title = "traveler.503.name"
+	desc = "traveler.503.desc"
+	picture = GFX_evt_unknown_ships
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		name = traveler.503.a
+		give_technology = {
+			tech = dest_tech_traveler_material
+			message = no
+		}
+	}
+}
+country_event = {
+	id = dest_traveler.504
+	title = "traveler.504.name"
+	desc = "traveler.504.desc"
+	picture = GFX_evt_small_space_battle
+	is_triggered_only = yes
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		name = traveler.504.a
+	}
+}
+### Traveler decision making
+# Hidden event to determine what action the Traveler will take next in the system
+fleet_event = {
+	id = dest_traveler.1000
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		has_fleet_flag = dest_traveler_ship	# Must be the traveler to execute this
+	}
+	immediate = {
+		clear_orders = yes
+		clear_fleet_actions = this
+		solar_system = {
+			set_star_flag = dest_traveler_visited
+			if = {
+				limit = { exists = owner }
+				# If there is at least one terraformable planet, capture one of them it an event target
+				random_system_planet = {
+					limit = {
+						NOT = { has_planet_flag = dest_traveler_taken_action }
+						dest_is_traveler_terraformable_trigger = yes
+					}
+					save_event_target_as = terraformable_planet
+				}
+				# If there is a planet that is colonised to a normal empire
+				random_system_planet = {
+					limit = {
+						is_colony = yes
+						NOT = { has_planet_flag = dest_traveler_taken_action }
+						owner = { is_country_type = default }
+					}
+					save_event_target_as = colonized_planet
+				}
+			}
+			# If there is at least one habitable world capture it in an event target
+			random_system_planet = {
+				limit = {
+					NOT = { has_planet_flag = dest_traveler_taken_action }
+					is_colonizable = yes
+				}
+				save_event_target_as = colonizable_planet
+			}
+			# If there is a planet with primitives, capture one of them in an event target
+			random_system_planet = {
+				limit = {
+					exists = owner
+					NOT = { has_planet_flag = dest_traveler_taken_action }
+					owner = { is_country_type = primitive }
+				}
+				save_event_target_as = primitive_planet
+			}
+			random_list = {
+				# Traveler terraforms a planet
+				5 = {
+					root = { fleet_event = { id = dest_traveler.1002 scopes = { from = event_target:terraformable_planet } } } # Traveler moves to the terraformable planet and marks it for terraforming
+					modifier = {
+						factor = 0
+						NOT = { exists = event_target:terraformable_planet }
+						NOT = {	exists = owner }
+						NOT = { exists = event_target:terraformable_planet.owner }
+						check_variable = {
+							which = dest_traveler_actions
+							value > 1
+						}
+					}
+					modifier = {
+						add = 3
+						event_target:colonizable_planet.solar_system.owner = { has_country_flag = dest_recieved_golden_age }
+					}
+				}
+				# Traveler augments an existing colonisable planet
+				10 = {
+					root = { fleet_event = { id = dest_traveler.1003 scopes = { from = event_target:colonizable_planet } } } # Traveler moves to the colonisable planet and marks it for augmentation
+					modifier = {
+						factor = 0		# We don't want it spending it's entire life in one system
+						OR = {
+							NOT = { exists = owner }
+							NOT = { exists = event_target:colonizable_planet }
+							check_variable = {
+								which = dest_traveler_actions
+								value > 1
+							}
+						}
+					}
+					modifier = {
+						add = -2
+						exists = owner
+						event_target:colonizable_planet.solar_system.owner = { has_country_flag = dest_recieved_golden_age }
+					}
+				}
+				# Traveler triggers a golden age for a interstellar nation
+				10 = {
+					root = { fleet_event = { id = dest_traveler.1004 scopes = { from = event_target:colonized_planet } } } # Traveler moves to the planet in question and marks it for a golden age
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { exists = event_target:colonized_planet }
+							check_variable = {
+								which = dest_traveler_actions
+								value > 2
+							}
+						}
+					}
+					modifier = {
+						add = 15
+						exists = event_target:colonized_planet
+						event_target:colonized_planet = { is_capital = yes }
+					}
+				}
+				# Traveler uplifts a primitive civilisation
+				10 = {
+					root = { fleet_event = { id = dest_traveler.1005 scopes = { from = event_target:primitive_planet } } } # Traveler moves to the planet and marks it for some type of uplifting
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { exists = event_target:primitive_planet }
+							check_variable = {
+								which = dest_traveler_actions
+								value > 2
+							}
+						}
+					}
+					modifier = {
+						add = 15
+						exists = event_target:primitive_planet
+						NOT = { exists = owner }
+					}
+				}
+				# Traveler leaving system option
+				15 = {
+					root = { fleet_event = { id = dest_traveler.1001 } } # Traveler identifies the next system to move to
+					modifier = {
+						add = 5
+						check_variable = {
+							which = dest_traveler_actions
+							value > 0
+						}
+					}
+					modifier = {
+						add = 10
+						check_variable = {
+							which = dest_traveler_actions
+							value > 1
+						}
+					}
+					modifier = {
+						add = 10
+						check_variable = {
+							which = dest_traveler_actions
+							value > 2
+						}
+					}
+				}
+			}
+		}
+	}
+}
+# Traveler leaves the system
+fleet_event = {
+	id = dest_traveler.1001
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		dest_traveler_stop = yes
+		queue_actions = {
+			find_closest_system = {
+				trigger = {
+					id = "dest_traveler.1001.t1"
+					distance = {
+						source = root
+						type = hyperlane
+						use_bypasses = no
+						min_jumps = 0
+						max_jumps = 1
+					}
+					has_access_fleet = root.owner
+					NOT = { has_star_flag = dest_traveler_visited }
+				}
+				found_system = {
+					effect = {
+						id = "dest_traveler.1001.e1"
+						clear_global_event_target = dest_traveler_destination_system
+						save_global_event_target_as = dest_traveler_destination_system
+						# Traveler clears variables relating to it's current system as it is now leaving the system
+						root.solar_system = {
+							set_variable = {
+								which = dest_traveler_actions
+								value = 0
+							}
+						}
+					}
+					move_to = this
+				}
+				# If the Traveler has corned itself in a dead end find the closest system and carry on
+				failed = {
+					effect = {
+						id = "dest_traveler.1001.e2"
+						root = {
+							dest_traveler_stop = yes
+							queue_actions = {
+								find_closest_system = {
+									trigger = {
+										id = "dest_traveler.1001.t2"
+										distance = {
+											source = root
+											type = hyperlane
+											use_bypasses = no
+											min_jumps = 0
+										}
+										has_access_fleet = root.owner
+										NOT = {
+											has_star_flag = dest_traveler_visited
+										}
+									}
+									found_system = { 
+										effect = {
+											id = "dest_traveler.1001.e3"
+											clear_global_event_target = dest_traveler_destination_system
+											save_global_event_target_as = dest_traveler_destination_system
+											# Traveler clears variables relating to it's current system as it is now leaving the system
+											root.solar_system = {
+												set_variable = {
+													which = dest_traveler_actions
+													value = 0
+												}
+											}
+										}
+										move_to = this
+									}
+									# If the Traveler has somehow visited every accessable system, move to a system where it skipped
+									failed = {
+										effect = {
+											id = "dest_traveler.1001.e4"
+											queue_actions = {
+												find_closest_system = {
+													trigger = {
+														id = "dest_traveler.1001.t3"
+														distance = {
+															source = root
+															type = hyperlane
+															use_bypasses = no
+															min_jumps = 0
+														}
+														has_access_fleet = root.owner
+														NOT = {
+															has_star_flag = dest_traveler_performed_action
+														}
+													}
+													found_system = {
+														effect = {
+															id = "dest_traveler.1001.e5"
+															clear_global_event_target = dest_traveler_destination_system
+															save_global_event_target_as = dest_traveler_destination_system
+															# Traveler clears variables relating to it's current system as it is now leaving the system
+															root.solar_system = {
+																set_variable = {
+																	which = dest_traveler_actions
+																	value = 0
+																}
+															}
+														}
+														move_to = this
+													}
+													failed = {
+														effect = {
+															id = "dest_traveler.1001.e6"
+															log = "[root.GetName] failed to move to a new system from [root.solar_system.GetName] trying to recalculate a new course of actions to take, [root.GetName] is now dead in the water and needs a manual reset (Select [root.GetName] and type event dest_traveler.1000 into the console)."
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+# Traveler move to terraform event
+fleet_event = {
+	id = dest_traveler.1002
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		dest_traveler_stop = yes
+		queue_actions = {
+			find_closest_planet = {
+				trigger = {
+					id = "dest_travler.1002.t1"
+					is_same_value = from
+				}
+				found_planet = {
+					orbit_planet = this
+					wait = 1
+					effect = {
+						id = "dest_traveler.1002.e1"
+						solar_system = {
+							dest_traveler_assign_work = yes
+						}
+						set_planet_flag = dest_traveler_to_terraform
+						set_planet_flag = dest_traveler_taking_action
+						planet_event = { id = dest_traveler.1010 scopes = { from = root } }
+					}
+				}
+				failed = {
+					effect = {
+						id = "dest_traveler.1002.e2"
+						root = { fleet_event = { id = dest_traveler.1000 } } # If for some reason it fails to get this planet recalculate what to do
+					}
+				}
+			}
+		}
+	}
+}
+# Traveler move to enhance planet event
+fleet_event = {
+	id = dest_traveler.1003
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		dest_traveler_stop = yes
+		queue_actions = {
+			find_closest_planet = {
+				trigger = {
+					id = "dest_traveler.1003.t1"
+					is_same_value = from
+				}
+				found_planet = {
+					orbit_planet = this
+					wait = 1
+					effect = {
+						id = "dest_traveler.1003.e1"
+						solar_system = {
+							dest_traveler_assign_work = yes
+						}
+						set_planet_flag = dest_traveler_to_enhance
+						set_planet_flag = dest_traveler_taking_action
+						planet_event = { id = dest_traveler.1020 scopes = { from = root } }
+					}
+				}
+				failed = {
+					effect = {
+						id = "dest_traveler.1003.e2"
+						root = { fleet_event = { id = dest_traveler.1000 } } # If for some reason it fails to get this planet recalculate what to do
+					}
+				}
+			}
+		}
+	}
+}
+# Traveler move to start local golden age
+fleet_event = {
+	id = dest_traveler.1004
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		dest_traveler_stop = yes # Choose between starting a golden age, creating a planetary golden age, or enhance and create a planetary golden age
+		queue_actions = {
+			find_closest_planet = {
+				trigger = {
+					id = "dest_traveler.1004.t1"
+					is_same_value = from
+				}
+				found_planet = {
+					effect = {
+						id = "dest_traveler.1004.e1"
+						solar_system = {
+							dest_traveler_assign_work = yes
+						}
+						set_planet_flag = dest_traveler_start_golden_age
+						set_planet_flag = dest_traveler_taking_action
+					}
+					orbit_planet = this
+				}
+				failed = {
+					effect = {
+						id = "dest_traveler.1004.e2"
+						root = { fleet_event = { id = dest_traveler.1000 } } # If for some reason it fails to get this planet recalculate what to do
+					}
+				}
+			}
+		}
+	}
+}
+# Traveler move to uplift a primitive
+fleet_event = {
+	id = dest_traveler.1005
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		dest_traveler_stop = yes
+		queue_actions = {
+			find_closest_planet = {
+				trigger = {
+					id = "dest_traveler.1005.t1"
+					is_same_value = from
+				}
+				found_planet = {
+					orbit_planet = this
+					wait = 1
+					effect = {
+						id = "dest_traveler.1005.e1"
+						solar_system = {
+							dest_traveler_assign_work = yes
+						}
+						set_planet_flag = dest_traveler_start_golden_age
+						set_planet_flag = dest_traveler_taking_action
+						planet_event = { id = dest_traveler.1030 scopes = { from = root } }
+					}
+				}
+				failed = {
+					effect = {
+						id = "dest_traveler.1005.e2"
+						root = { fleet_event = { id = dest_traveler.1000 } }
+					}
+				}
+			}
+		}
+	}
+}
+### Traveler Planet Terraforming events
+# Entry event
+planet_event = {
+	id = dest_traveler.1010
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		has_planet_flag = dest_traveler_to_terraform
+		from = {
+			NOT = { has_fleet_flag = dest_traveler_in_golden_age_mode }
+			exists = solar_system.owner
+		}
+	}
+	immediate = {
+		if = {
+			limit = {
+				from.owner = { NOT = { has_special_project = dest_traveler_begin_terraform_planet } }
+			}
+			enable_special_project = {
+				name = dest_traveler_begin_terraform_planet
+				location = root
+				owner = from.owner
+			}
+		}
+		from = {
+			fleet_action_research_special_project = {
+				special_project = dest_traveler_begin_terraform_planet
+				target = root
+			}
+		}
+	}
+}
+# On start visual
+country_event = {
+	id = dest_traveler.1011
+	is_triggered_only = yes
+	hide_window = no
+	title = dest_traveler.1011.title
+	desc = dest_traveler.1011.desc
+	picture = GFX_evt_traveler_bright
+	show_sound = event_mystic_reveal
+	location = from
+	option = {
+		name = dest_traveler.1011.option.generic
+		default_hide_option = yes
+	}
+}
+# On 25% completion
+planet_event = {
+	id = dest_traveler.1012
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {	NOT = { has_planet_flag = dest_traveler_quarter_completion } }
+	immediate = {
+		solar_system.owner = {
+			random_owned_planet = {
+				limit = { solar_system = { is_same_value = root.solar_system } }
+				random_owned_species = { save_event_target_as = dest_target_species }
+			}
+			if = {
+				limit = { NOT = { exists = event_target:dest_target_species } }
+				owner_species = { save_event_target_as = dest_target_species }
+			}
+		}
+		planet_event = { id = dest_terraforming.0 scopes = { from = event_target:dest_target_species } }
+		add_deposit = dest_d_glimmer_deposit
+		add_modifier = { modifier = dest_began_terraforming }
+		reroll_planet = yes
+		dest_traveler_apply_random_modifiers = yes
+		set_planet_flag = dest_traveler_quarter_completion
+		solar_system.owner = { country_event = { id = dest_traveler.1013 scopes = { from = root } } }
+	}
+}
+# On 25% completion(visual)
+country_event = {
+	id = dest_traveler.1013
+	is_triggered_only = yes
+	hide_window = no
+	title = dest_traveler.1013.title
+	desc = dest_traveler.1013.desc
+	picture = GFX_evt_traveler_terraforming
+	show_sound = event_mystic_reveal_light
+	location = from
+	option = {
+		name = dest_traveler.1013.option.generic
+	}
+}
+# On 50% completion
+planet_event = {
+	id = dest_traveler.1014
+	is_triggered_only = yes
+	hide_window = no
+	trigger = {	NOT = { has_planet_flag = dest_traveler_half_completion } }
+	immediate = {
+		random = {
+			chance = 50
+			add_deposit = dest_d_glimmer_deposit
+		}		
+		remove_modifier = dest_began_terraforming
+		add_modifier = { modifier = dest_partial_terraforming }
+		dest_traveler_apply_random_modifiers = yes
+		set_planet_flag = dest_traveler_half_completion
+	}
+}
+# On 75% completion
+planet_event = {
+	id = dest_traveler.1015
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {	NOT = { has_planet_flag = dest_traveler_near_completion } }
+	immediate = {
+		random = {
+			chance = 50
+			add_deposit = dest_d_glimmer_deposit
+		}
+		remove_modifier = dest_partial_terraforming
+		add_modifier = { modifier = dest_completing_terraforming }
+		dest_traveler_apply_random_modifiers = yes
+		set_planet_flag = dest_traveler_near_completion
+		solar_system.owner = {
+			country_event = {
+				id = dest_traveler.1016
+				scopes = { from = root }
+			}
+		}
+	}
+}
+# On 75% completion(visual)
+country_event = {
+	id = dest_traveler.1016
+	is_triggered_only = yes
+	hide_window = no
+	title = dest_traveler.1016.title
+	desc = dest_traveler.1016.desc
+	picture = {
+		trigger = {	from = { is_planet_class = pc_continental } }
+		picture = GFX_evt_continental
+	}
+	picture = {
+		trigger = {	from = { is_planet_class = pc_ocean } }
+		picture = GFX_evt_ocean
+	}
+	picture = {
+		trigger = {	from = { is_planet_class = pc_tropical } }
+		picture = GFX_evt_tropical
+	}
+	picture = {
+		trigger = {	from = { is_planet_class = pc_desert } }
+		picture = GFX_evt_desert
+	}
+	picture = {
+		trigger = {	from = { is_planet_class = pc_arid } }
+		picture = GFX_evt_arid
+	}
+	picture = {
+		trigger = { from = { is_planet_class = pc_savannah } }
+		picture = GFX_evt_savannah
+	}
+	picture = {
+		trigger = {	from = { is_planet_class = pc_arctic } }
+		picture = GFX_evt_arctic
+	}
+	picture = {
+		trigger = {	from = { is_planet_class = pc_tundra } }
+		picture = GFX_evt_tundra
+	}
+	picture = {
+		trigger = { from = { is_planet_class = pc_alpine } }
+		picture = GFX_evt_alpine
+	}
+	picture = {
+		trigger = {	from = { is_planet_class = pc_gaia } }
+		picture = GFX_evt_gaia
+	}
+	show_sound = event_mystic_reveal_light
+	location = from
+	option = {
+		name = dest_traveler.1016.option.generic
+	}
+}
+# Terraformation complete
+planet_event = {
+	id = dest_traveler.1017
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		remove_modifier = dest_completing_terraforming
+		add_modifier = { modifier = dest_traveler_terraformed_generic }
+		random = {
+			chance = 10
+			add_deposit = dest_d_glimmer_deposit
+		}
+		remove_planet_flag = dest_traveler_quarter_completion
+		remove_planet_flag = dest_traveler_half_completion
+		remove_planet_flag = dest_traveler_near_completion
+		remove_planet_flag = dest_traveler_to_terraform
+		remove_planet_flag = dest_traveler_taking_action
+		set_planet_flag = dest_traveler_taken_action
+		solar_system.owner = {
+			country_event = {
+				id = dest_traveler.1018
+				scopes = { from = root }
+			}
+		}
+		from = { fleet_event = { id = dest_traveler.1000 } }
+	}
+}
+# Event window to inform the owner about the completion of the terraforming process
+country_event = {
+	id = dest_traveler.1018
+	is_triggered_only = yes
+	hide_window = no
+	title = dest_traveler.1018.title
+	desc = dest_traveler.1018.desc
+	picture = GFX_evt_alien_nature
+	show_sound = event_energy_field
+	location = from
+	option = {
+		name = dest_traveler.1018.option.generic
+	}
+}
+# Country event telling the owner of the incomplete state of the planet's terraformation
+country_event = {
+	id = dest_traveler.1019
+	is_triggered_only = yes
+	hide_window = no
+	title = dest_traveler.1019.title
+	desc = dest_traveler.1019.desc
+	picture = GFX_evt_traveler_bright
+	show_sound = event_mystic_reveal
+	location = from
+	option = {
+		name = dest_traveler.1019.option.generic
+	}
+}
+### Traveler Planet augmentation events
+# Entry Event
+planet_event = {
+	id = dest_traveler.1020
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = { has_planet_flag = dest_traveler_to_enhance }
+	immediate = {
+		if = {
+			limit = {
+				from.owner = { NOT = { has_special_project = dest_traveler_begin_augment_planet } }
+			}			
+			enable_special_project = {
+				name = dest_traveler_begin_augment_planet
+				location = this
+				owner = from.owner
+			}
+		}
+		from = {
+			fleet_action_research_special_project = {
+				special_project = dest_traveler_begin_augment_planet
+				target = root
+			}
+		}
+	}
+}
+# On start
+country_event = {
+	id = dest_traveler.1021
+	is_triggered_only = yes
+	hide_window = no
+	title = dest_traveler.1021.title
+	desc = dest_traveler.1021.desc
+	picture = GFX_evt_traveler_bright
+	show_sound = event_mystic_reveal
+	trigger = {
+		is_same_empire = from.solar_system.owner
+	}
+	option = {
+		name = dest_traveler.1021.option.generic
+		default_hide_option = yes
+	}
+}
+# On 25% completion
+planet_event = {
+	id = dest_traveler.1022
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = { NOT = { has_planet_flag = dest_traveler_quarter_completion } }
+	immediate = {
+		dest_traveler_apply_random_modifiers = yes
+		set_planet_flag = dest_traveler_quarter_completion
+		solar_system.owner = { country_event = { id = dest_traveler.1023 scopes = { from = root } } }
+	}
+}
+# On 25% completion(visual)
+country_event = {
+	id = dest_traveler.1023
+	is_triggered_only = yes
+	hide_window = no
+	title = dest_traveler.1023.title
+	desc = dest_traveler.1023.desc
+	picture = GFX_evt_alien_planet
+	show_sound = event_mystic_reveal_light
+	location = from
+	option = {
+		name = dest_traveler.1023.option.generic
+		default_hide_option = yes
+	}
+}
+# On 50% completion
+planet_event = {
+	id = dest_traveler.1024
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = { NOT = { has_planet_flag = dest_traveler_half_completion } }
+	immediate = {
+		dest_traveler_apply_random_modifiers = yes
+		random = {
+			chance = 10
+			add_deposit = dest_d_glimmer_deposit
+		}
+		set_planet_flag = dest_traveler_half_completion
+	}
+}
+# On 75% completion
+planet_event = {
+	id = dest_traveler.1025
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = { NOT = { has_planet_flag = dest_traveler_near_completion } }
+	immediate = {
+		dest_traveler_apply_random_modifiers = yes
+		set_planet_flag = dest_traveler_near_completion
+		solar_system.owner = { country_event = { id = dest_traveler.1026 scopes = { from = root } } }
+	}
+}
+# On 75% completion(visual)
+country_event = {
+	id = dest_traveler.1026
+	is_triggered_only = yes
+	hide_window = no
+	title = dest_traveler.1026.title
+	desc = dest_traveler.1026.desc
+	picture = GFX_evt_alien_planet
+	show_sound = event_mystic_reveal_light
+	location = from
+	option = {
+		name = dest_traveler.1026.option.generic
+		default_hide_option = yes
+	}
+}
+# Augmentation complete
+planet_event = {
+	id = dest_traveler.1027
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		random = {
+			chance = 33
+			add_deposit = dest_d_glimmer_deposit
+		}
+		remove_planet_flag = dest_traveler_quarter_completion
+		remove_planet_flag = dest_traveler_half_completion
+		remove_planet_flag = dest_traveler_near_completion
+		remove_planet_flag = dest_traveler_to_enhance
+		remove_planet_flag = dest_traveler_taking_action
+		set_planet_flag = dest_traveler_taken_action
+		solar_system.owner = {
+			country_event = {
+				id = dest_traveler.1028
+				scopes = { from = root }
+			}
+		}
+		event_target:dest_traveler_fleet = { fleet_event = { id = dest_traveler.1000 } }
+	}
+
+}
+# Augmentation complete(visual)
+country_event = {
+	id = dest_traveler.1028
+	is_triggered_only = yes
+	hide_window = no
+	title = dest_traveler.1028.title
+	desc = dest_traveler.1028.desc
+	picture = GFX_evt_traveler_bright
+	show_sound = event_energy_field
+	location = from
+	option = {
+		name = dest_traveler.1028.option.generic
+		default_hide_option = yes
+	}
+}
+# Augmentation cancel(visual)
+country_event = {
+	id = dest_traveler.1029
+	is_triggered_only = yes
+	hide_window = no
+	title = dest_traveler.1029.title
+	desc = dest_traveler.1029.desc
+	picture = GFX_evt_traveler_bright
+	show_sound = event_mystic_reveal
+	location = from
+	option = {
+		name = dest_traveler.1029.option.generic
+	}
+}
+### Traveler Golden Age start events
+# Entry
+planet_event = {
+	id = dest_traveler.1030
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = { has_planet_flag = dest_traveler_start_golden_age }
+	immediate = {
+		from = {
+			set_fleet_flag = dest_traveler_in_golden_age_mode
+			set_fleet_flag = dest_traveler_golden_age_terraforming
+		}
+		owner = {
+			set_country_flag = dest_to_recieve_golden_age
+			random = {
+				chance = 33
+				set_country_flag = dest_recieve_major_terraform_golden_age
+			}
+		}
+		solar_system = {
+			dest_traveler_assign_work = yes
+			while = {
+				count < 2
+				random_system_planet = {
+					limit = {
+						dest_is_traveler_terraformable_trigger = yes
+						NOR = {
+							has_planet_flag = dest_traveler_to_terraform
+							has_planet_flag = dest_traveler_taken_action
+						}
+					}
+					set_planet_flag = dest_traveler_to_terraform
+				}
+			}
+			if = {
+				limit = { root.owner = { has_country_flag = dest_recieve_major_terraform_golden_age } }
+				while = {
+					count < 3
+					random = {
+						chance = 80
+						random_system_planet = {
+							limit = {
+								dest_is_traveler_terraformable_trigger = yes
+								NOT = { has_planet_flag = dest_traveler_to_terraform }
+							}
+							solar_system = { dest_traveler_assign_work = yes }
+							set_planet_flag = dest_traveler_to_terraform
+						}
+					}
+				}
+				root.owner = { remove_country_flag = dest_recieve_major_terraform_golden_age }
+			}
+		}
+		set_planet_flag = dest_golden_age_world
+		from = { fleet_event = { id = dest_traveler.1031 } }
+	}
+}
+# Traveler Pathfinding event
+fleet_event = {
+	id = dest_traveler.1031
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		has_fleet_flag = dest_traveler_ship
+		has_fleet_flag = dest_traveler_in_golden_age_mode
+	}
+	immediate = {
+		if = {
+			limit = { has_fleet_flag = dest_traveler_golden_age_terraforming }
+			queue_actions = {
+				find_closest_planet = {
+					trigger = {
+						id = "dest_traveler.1031.t1"
+						has_planet_flag = dest_traveler_taking_action
+					}
+					found_planet = {
+						orbit_planet = this
+						wait = 1
+						effect = {
+							id = "dest_traveler.1031.e1"
+							# Trigger special project
+							if = {
+								limit = { has_planet_flag = dest_traveler_to_terraform }
+								planet_event = {
+									id = dest_traveler.1032
+									scopes = { from = root }
+								}
+							} # Review this area of code, ensure proper event is called
+							else = {
+								planet_event = {
+									id = dest_traveler.1045
+									scopes = { from = root }
+								}
+							}
+						}
+					}
+					failed = {
+						effect = {
+							id = "dest_traveler.1031.e2"
+							queue_actions = {	
+								find_closest_planet = {
+									trigger = {
+										id = "dest_traveler.1031.t2"
+										has_planet_flag = dest_traveler_to_terraform
+									}
+									found_planet = {
+										effect = {
+											id = "dest_traveler.1031.e3"
+											set_planet_flag = dest_traveler_taking_action
+										}
+										orbit_planet = this
+										wait = 1
+										effect = {
+											id = "dest_traveler.1031.e4"
+											# Trigger special project
+											planet_event = {
+												id = dest_traveler.1032
+												scopes = { from = root }
+											}
+										}
+									}
+									failed = {
+										effect = {
+											id = "dest_traveler.1031.e5"
+											remove_fleet_flag = dest_traveler_golden_age_terraforming	
+											queue_actions = {
+												find_closest_planet = {
+													trigger = {
+														id = "dest_traveler.1031.t3"
+														has_planet_flag = dest_traveler_start_golden_age
+													}
+													found_planet = {
+														effect = {
+															id = "dest_traveler.1031.e6"
+															set_planet_flag = dest_traveler_taking_action
+														}
+														orbit_planet = this
+														wait = 1
+														effect = {
+															id = "dest_traveler.1031.e7"
+															set_timed_planet_flag = {
+																flag = dest_planet_in_golden_age
+																days = @dest_golden_age_length
+															}
+															owner = {
+																country_event = {
+																	id = dest_golden_age.0
+																	scopes = {
+																		from = root
+																		fromfrom = event_target:dest_traveler_fleet
+																	}
+																}
+															}
+														}
+													}
+													failed = {	
+														effect = {
+															id = "dest_traveler.1031.e8"
+															fleet_event = { id = dest_traveler.1000 }
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		else = { fleet_event = { id = dest_traveler.1000 } }
+	}
+}
+# Terraforming start event
+planet_event = {
+	id = dest_traveler.1032
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		has_planet_flag = dest_traveler_to_terraform
+		from = {
+			has_fleet_flag = dest_traveler_ship
+			has_fleet_flag = dest_traveler_golden_age_terraforming
+		}
+	}
+	immediate = {
+		if = {
+			limit = { NOT = { event_target:dest_traveler_country = { has_special_project = dest_traveler_golden_age_terraform_planet } } }
+			enable_special_project = {
+				name = dest_traveler_golden_age_terraform_planet
+				owner = event_target:dest_traveler_country
+				location = root
+			}
+		}
+		from = {
+			fleet_action_research_special_project = {
+				special_project = dest_traveler_golden_age_terraform_planet
+				target = root
+			}
+		}
+	}
+}
+# Terraforming start event visual
+country_event = {
+	id = dest_traveler.1033
+	is_triggered_only = yes
+	hide_window = no
+	title = dest_traveler.1033.title
+	desc = {
+		trigger = { has_country_flag = dest_to_recieve_golden_age }
+		text = dest_traveler.1033.desc.chosen
+	}
+	desc = {
+		trigger = { is_same_value = from.solar_system.owner }
+		text = dest_traveler.1033.desc.system_owner
+	}
+	picture = GFX_evt_traveler_terraforming
+	show_sound = event_mystic_reveal
+	location = from
+	option = {
+		name = dest_traveler.1033.option.generic
+	}
+}
+# 25% Terraforming event
+planet_event = {
+	id = dest_traveler.1034
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		random_country = {
+			limit = { has_country_flag = dest_to_recieve_golden_age }
+			owner_species = { save_event_target_as = dest_target_species }
+		}
+		planet_event = { id = dest_terraforming.0 scopes = { from = event_target:dest_target_species } }
+		add_deposit = dest_d_glimmer_deposit
+		add_modifier = { modifier = dest_began_terraforming }
+		reroll_planet = yes
+		dest_traveler_apply_random_modifiers = yes
+		set_planet_flag = dest_traveler_quarter_completion
+		solar_system = { 
+			owner = {
+				country_event = {
+					id = dest_traveler.1035
+					scopes = { from = root }
+				}
+			}			
+			every_system_planet = {
+				limit = {
+					exists = owner
+					NOT = { owner = { is_same_empire = solar_system.owner } }
+				}
+				owner = {
+					country_event = {
+						id = dest_traveler.1035
+						scopes = { from = root }
+					}
+				}
+			}
+		}
+	}
+}
+# 25% Terraforming event(visual)
+country_event = {
+	id = dest_traveler.1035
+	is_triggered_only = yes
+	hide_window = no
+	title = dest_traveler.1035.title
+	desc = {
+		trigger = { has_country_flag = dest_to_recieve_golden_age }
+		text = dest_traveler.1035.desc.golden_age_nation
+	}
+	desc = {
+		trigger = { NOT = { has_country_flag = dest_to_recieve_golden_age } }
+		text = dest_traveler.1035.desc.generic
+	}
+	picture = GFX_evt_traveler_terraforming
+	show_sound = event_mystic_reveal_light
+	location = from
+	option = {
+		name = dest_traveler.1035.option.generic
+	}
+}
+# 50% Terraforming event
+planet_event = {
+	id = dest_traveler.1036
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		random = {
+			chance = 50
+			add_deposit = dest_d_glimmer_deposit
+		}
+		remove_modifier = dest_began_terraforming
+		add_modifier = { modifier = dest_partial_terraforming }
+		dest_traveler_apply_random_modifiers = yes
+		set_planet_flag = dest_traveler_half_completion
+	}
+}
+# 75% Terraforming event
+planet_event = {
+	id = dest_traveler.1037
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		random = {
+			chance = 50
+			add_deposit = dest_d_glimmer_deposit
+		}
+		remove_modifier = dest_partial_terraforming
+		add_modifier = { modifier = dest_completing_terraforming }
+		dest_traveler_apply_random_modifiers = yes
+		set_planet_flag = dest_traveler_near_completion
+		solar_system = {
+			owner = { 
+				country_event = {
+					id = dest_traveler.1038
+					scopes = { from = root }
+				}
+			}
+			every_system_planet = {
+				limit = {
+					exists = owner
+					NOT = { owner = { is_same_empire = solar_system.owner } }
+				}
+				owner = {
+					country_event = {
+						id = dest_traveler.1038
+						scopes = { from = root }
+					}
+				}
+			}
+		}
+	}
+}
+# 75% Terraforming event(visual)
+country_event = {
+	id = dest_traveler.1038
+	is_triggered_only = yes
+	hide_window = no
+	title = dest_traveler.1038.title
+	desc = {
+		trigger = { has_country_flag = dest_to_recieve_golden_age }
+		text = dest_traveler.1038.desc.golden_age_nation
+	}
+	desc = {
+		trigger = { NOT = { has_country_flag = dest_to_recieve_golden_age } }
+		text = dest_traveler.1038.desc.generic
+	}
+	picture = GFX_evt_traveler_terraforming
+	show_sound = event_mystic_reveal_light
+	location = from
+	option = {
+		name = dest_traveler.1038.option.generic
+	}
+}
+# Planet terraforming completed
+planet_event = {
+	id = dest_traveler.1039
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		remove_modifier = dest_completing_terraforming
+		add_modifier = { modifier = dest_traveler_terraformed_generic }
+		random = {
+			chance = 10
+			add_deposit = dest_d_glimmer_deposit
+		}
+		remove_planet_flag = dest_traveler_quarter_completion
+		remove_planet_flag = dest_traveler_half_completion
+		remove_planet_flag = dest_traveler_near_completion
+		remove_planet_flag = dest_traveler_to_terraform
+		remove_planet_flag = dest_traveler_taking_action
+		set_planet_flag = dest_traveler_taken_action
+		solar_system = {
+			owner = {
+				country_event = {
+					id = dest_traveler.1040
+					scopes = { from = root }
+				}
+			}
+			every_system_planet = {
+				limit = {
+					exists = owner
+					NOT = { owner = { is_same_empire = solar_system.owner } }
+				}
+				owner = {
+					country_event = {
+						id = dest_traveler.1040
+						scopes = { from = root }
+					}
+				}
+			}
+		}
+		from = { fleet_event = { id = dest_traveler.1031 } }
+	}
+}
+# Planet terraforming completed(visual)
+country_event = {
+	id = dest_traveler.1040
+	is_triggered_only = yes
+	hide_window = no
+	title = dest_traveler.1040.title
+	desc = {
+		trigger = { has_country_flag = dest_to_recieve_golden_age }
+		text = dest_traveler.1040.desc.golden_age_nation
+	}
+	desc = {
+		trigger = { NOT = { has_country_flag = dest_to_recieve_golden_age } }
+		text = dest_traveler.1040.desc.generic
+	}
+	picture = GFX_evt_traveler_terraforming
+	show_sound = event_mystic_reveal_light
+	location = from
+	option = {
+		name = dest_traveler.1040.option.generic
+	}
+}
+# Primitive uplift event
+# Finish primitive uplifting
+planet_event = {
+	id = dest_traveler.1045
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = { owner = { is_country_type = primitive } }
+	immediate = {
+		if = {
+			limit = { NOT = { event_target:dest_traveler_country = { has_special_project = dest_traveler_uplift_primitives } } }
+			enable_special_project = {
+				name = dest_traveler_uplift_primitives
+				owner = event_target:dest_traveler_country
+				location = root
+			}
+		}
+		from = {
+			fleet_action_research_special_project = {
+				special_project = dest_traveler_uplift_primitives
+				target = root
+			}
+		}
+	}
+}
+# On uplifting start
+fleet_event = {
+	id = dest_traveler.1046
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = { orbit = { has_planet_flag = dest_started_uplift } }
+	immediate = {
+		orbit = { set_planet_flag = dest_started_uplift }
+		# Trigger notifications for countries which can see it for different reasons
+		# (System owner, colony owners, observation post owners, passing fleets)
+	}
+}
+# On uplifting stage success(this = Traveler)
+fleet_event = {
+	id = dest_traveler.1050
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		if = {
+			limit = {
+				exists = orbit.owner
+				orbit.owner = { is_country_type = primitive }
+			}
+			orbit.owner = {
+				remove_country_flag = recently_advanced
+				switch = {
+					trigger = has_country_flag
+					early_space_age = { country_event = { id = primitive.16 } }
+					atomic_age = { country_event = { id = primitive.14 } }
+					machine_age = { country_event = { id = primitive.12 } }
+					industrial_age = { country_event = { id = primitive.10 } }
+					steam_age = { country_event = { id = primitive.28 } }
+					renaissance_age = { country_event = { id = primitive.26 } }
+					late_medieval_age = { country_event = { id = primitive.24 } }
+					iron_age = { country_event = { id = primitive.22 } }
+					bronze_age = { country_event = { id = primitive.20 } }
+					stone_age = { country_event = { id = primitive.30 } }
+				}
+			}
+			# Fire notifications about Traveler uplifting the primitives
+		}
+		else = { fleet_event = { id = dest_traveler.1000 } }
+	}
+}
+# On uplifting stage success - notification
+country_event = {
+	id = dest_traveler.1051
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		
+	}
+	immediate = {
+		
+	}
+}
+# On uplifting success success - notification
+country_event = {
+	id = dest_Traveler.1052
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		
+	}
+	immediate = {
+		
+	}
+}
+### On Actions
+# On action for the traveler to choose what it should do in the destination
+fleet_event = {
+	id = dest_traveler.1100
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		has_fleet_flag = dest_traveler_ship
+	}
+	immediate = { 
+		solar_system = {
+			clear_global_event_target = dest_traveler_current_system
+			save_global_event_target_as = dest_traveler_current_system
+			if = {
+				limit = { is_same_value = event_target:dest_traveler_destination_system }
+				root = { fleet_event = { id = dest_traveler.1000 } }
+			}
+		}
+	}
+}
+# On action for the Traveler entering a new empire's borders
+fleet_event = {
+	id = dest_traveler.1101
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		has_fleet_flag = dest_traveler_ship
+		exists = solar_system.owner
+	}
+	immediate = { solar_system.owner = { country_event = { id = dest_traveler.8 } } }
+}
+# On action for a fleet discovers the traveler in a system
+fleet_event = {
+	id = dest_traveler.1102
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		NOT = {
+			has_fleet_flag = dest_traveler_ship
+		}
+		has_global_flag = dest_traveler_exists
+		solar_system = {
+			any_fleet_in_system = {
+				has_fleet_flag = dest_traveler_ship
+			}
+		}
+	}
+	immediate = {
+		save_event_target_as = traveler_discovery_fleet 
+		owner = {
+			country_event = { 
+				id = dest_traveler.9
+			}
+		} 
+	}
+}
+# On action orbit to begin planet change process
+fleet_event = {
+	id = dest_traveler.1103
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		has_fleet_flag = dest_traveler_ship
+		from = { has_planet_flag = dest_traveler_taking_action }
+	}
+	immediate = {
+		from = {
+			# Terraform planet impl
+			planet_event = {
+				id = dest_traveler.1010
+				scopes = { from = prev }
+			}
+			# Enhance planet impl
+			planet_event = {
+				id = dest_traveler.1020
+				scopes = { from = prev }
+			}
+			# Start golden age impl
+			planet_event = { id = dest_traveler.1032 }
+		}
+	}
+}
+# On action when the Traveler wins or loses a space battle
+country_event = {
+	id = dest_traveler.1105
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		fromfrom = { has_fleet_flag = dest_traveler_ship }
+	}
+	immediate = {
+		fromfrom = {
+			queue_actions = {
+				find_closest_planet = {
+					trigger = {
+						id = "dest_traveler.1105.t1"
+						#solar_system = { is_same_value = root.solar_system }
+						has_planet_flag = dest_traveler_taking_action
+					}
+					found_planet = {
+						orbit_planet = this
+						wait = 1
+						effect = {
+							id = "dest_traveler.1105.e1"
+							switch = {
+								trigger = has_planet_flag
+								dest_traveler_to_terraform = { planet_event = { id = dest_traveler.1010 scopes = { from = fromfrom } } }
+								dest_traveler_to_enhance = { planet_event = { id = dest_traveler.1020 scopes = { from = fromfrom } } }
+								dest_traveler_start_golden_age = { fromfrom = { fleet_event = { id = dest_traveler.1031 } } }
+							}
+						}
+					}
+					failed = {
+						effect = {
+							id = "dest_traveler.1105.e2"
+							fleet_event = {	id = dest_traveler.1000	}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+# Compatibility/Settings Event

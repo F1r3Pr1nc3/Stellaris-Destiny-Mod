@@ -3,4 +3,8 @@ spriteTypes = {
 		name = "GFX_dest_building_glimmer_network"
 		textureFile = "gfx/interface/icons/buildings/dest_building_glimmer_network.dds"
 	}
+	spriteType = {
+		name = "GFX_dest_d_glimmer_deposit"
+		textureFile = "gfx/interface/icons/deposits/dest_d_glimmer_deposit.dds"
+	}
 }

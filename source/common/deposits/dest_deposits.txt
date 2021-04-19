@@ -1,0 +1,7 @@
+dest_d_glimmer_deposit = {
+	is_for_colonizeable = yes
+	category = deposit_cat_rare
+	potential = { can_have_habitable_deposits = yes }
+	planet_modifier = { dest_building_glimmer_network_max = 1 }
+	drop_weight = { weight = 0 }
+}

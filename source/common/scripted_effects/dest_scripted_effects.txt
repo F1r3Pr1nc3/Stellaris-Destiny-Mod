@@ -1,0 +1,164 @@
+# Fleet scope
+dest_traveler_stop = {
+	clear_orders = yes
+	clear_fleet_actions = this
+}
+# System scope
+dest_traveler_assign_work = {
+	set_star_flag = dest_traveler_performed_action
+	change_variable = {
+		which = dest_traveler_actions
+		value = 1
+	}
+}
+# Planet scope
+# parameter planet_class must be the key of the planet type removing the 'pc_' prefix
+dest_traveler_terraform_planet = {
+	change_pc = pc_$planet_class$
+	random_list = {
+		1 = { # 33% it will keep it as the primary habitable world
+		}
+		2 = { # 66% to semi randomize the planet spawns to one of the same climate
+			if = {
+				limit = { is_wet = yes }
+				change_pc = rl_habitable_normal
+				while = {
+					limit = { is_wet = no }
+					change_pc = rl_habitable_normal
+				}
+			}
+			else_if = {
+				limit = { is_dry = yes }
+				change_pc = rl_habitable_normal
+				while = {
+					limit = { is_dry = no }
+					change_pc = rl_habitable_normal
+				}
+			}
+			else_if = {
+				limit = { is_cold = yes }
+				change_pc = rl_habitable_normal
+				while = {
+					limit = { is_cold = no }
+					change_pc = rl_habitable_normal
+				}
+			}
+		}
+	}
+}
+# Planet scope
+dest_traveler_apply_random_modifiers = {
+	while = {
+		count < 2
+		random = {
+			chance = 90
+			random_list = {
+				1 = {
+					if = {
+						limit = { has_modifier = dest_resilient_life_moderate }
+						remove_modifier = dest_resilient_life_moderate
+						add_modifier = { modifier = dest_resilient_life_high }
+					}
+					else_if = {
+						limit = { has_modifier = dest_resilient_life_low }
+						remove_modifier = dest_resilient_life_low
+						add_modifier = { modifier = dest_resilient_life_moderate }
+					}
+					else = {
+						add_modifier = { modifier = dest_resilient_life_low }
+					}
+					modifier = {
+						factor = 0
+						has_modifier = dest_resilient_life_high
+					}
+					modifier = {
+						add = 1
+						OR = {
+							has_modifier = dest_resilient_life_low
+							has_modifier = dest_resilient_life_moderate
+						}
+					}
+				}
+				1 = {
+					if = {
+						limit = { has_modifier = dest_strange_materials_moderate }
+						remove_modifier = dest_strange_materials_moderate
+						add_modifier = { modifier = dest_strange_materials_high }
+					}
+					else_if = {
+						limit = { has_modifier = dest_strange_materials_low }
+						remove_modifier = dest_strange_materials_low
+						add_modifier = { modifier = dest_strange_materials_moderate }
+					}
+					else = {
+						add_modifier = { modifier = dest_strange_materials_low }
+					}
+					modifier = {
+						factor = 0
+						has_modifier = dest_strange_materials_high
+					}
+					modifier = {
+						add = 1
+						OR = {
+							has_modifier = dest_strange_materials_low
+							has_modifier = dest_strange_materials_moderate
+						}
+					}
+				}
+				1 = {
+					if = {
+						limit = { has_modifier = dest_mysterious_energies_moderate }
+						remove_modifier = dest_mysterious_energies_moderate
+						add_modifier = { modifier = dest_mysterious_energies_high }
+					}
+					else_if = {
+						limit = { has_modifier = dest_mysterious_energies_low }
+						remove_modifier = dest_mysterious_energies_low
+						add_modifier = { modifier = dest_mysterious_energies_moderate }
+					}
+					else = {
+						add_modifier = { modifier = dest_mysterious_energies_low }
+					}
+					modifier = {
+						factor = 0
+						has_modifier = dest_mysterious_energies_high
+					}
+					modifier = {
+						add = 1
+						OR = {
+							has_modifier = dest_mysterious_energies_low
+							has_modifier = dest_mysterious_energies_moderate
+						}
+					}
+				}
+				1 = {				
+					if = {
+						limit = { has_modifier = dest_friendly_world_moderate }
+						remove_modifier = dest_friendly_world_moderate
+						add_modifier = { modifier = dest_friendly_world_high }
+					}
+					else_if = {
+						limit = { has_modifier = dest_friendly_world_low }
+						remove_modifier = dest_friendly_world_low
+						add_modifier = { modifier = dest_friendly_world_moderate }
+					}
+					else = {
+						add_modifier = { modifier = dest_friendly_world_low }
+					}
+					modifier = {
+						factor = 0
+						has_modifier = dest_friendly_world_high
+					}
+					modifier = {
+						add = 1
+						OR = {
+							has_modifier = dest_friendly_world_low
+							has_modifier = dest_friendly_world_moderate
+						}
+					}
+				}
+				# Expand as get ideas
+			}
+		}
+	}
+}

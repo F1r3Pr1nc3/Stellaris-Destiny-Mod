@@ -1,0 +1,60 @@
+on_game_start = {
+	events = {
+		dest_traveler.0 # Begins spawning process for the Traveler
+	}
+}
+on_save_game_load = {
+	
+}
+on_monthly_pulse = {
+	events = {
+		dest_golden_age.1100 # Random Golden Age events - Needs rework later
+	}
+}
+on_fleet_enter_orbit = {
+	events = {
+		#dest_traveler.1103 # Event to have traveler perform an action to the planet
+	}
+}
+on_entering_system_fleet = {
+	events = {
+		dest_traveler.1100 # Updates the current location of the traveler
+		dest_traveler.1101 # If the Traveler enters the borders of a nation which hasn't discovered them yet
+		dest_traveler.1102 # If a nation that hasn't discovered the Traveler enters the same system as the Travler
+	}
+}
+# FromFrom = fleet 1
+# FromFromFrom = fleet 2
+on_space_battle_won = {
+	events = {
+		dest_traveler.1105
+	}
+}
+on_space_battle_lost = {
+	events = {
+		dest_traveler.1105
+	}
+}
+on_planet_transfer = {
+	events = {
+		#dest_traveler.1104 # Swap the Traveler's Gift modifiers for incompatible nations
+	}
+}
+
+on_building_complete = {
+	events = {
+		dest_golden_age.402
+	}
+}
+
+on_building_upgraded = {
+	events = {
+		dest_golden_age.406
+	}
+}
+
+on_fleet_destroyed_perp = {
+	events = {
+		dest_traveler.502 # On Traveler killed
+	}
+}

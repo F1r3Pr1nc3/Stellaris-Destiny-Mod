@@ -1,0 +1,82 @@
+#@dest_traveler_terraforming_time = 8
+# Regular terraforming
+special_project = {
+	key = "dest_traveler_begin_terraform_planet"
+	days_to_research = @dest_traveler_terraforming_time
+	event_scope = ship_event
+	location = yes
+	requirements = { shipclass_military = 1 }
+	on_start = { solar_system.owner = { country_event = { id = dest_traveler.1011 scopes = { from = root.orbit } } } }
+	on_progress_25 = { orbit = { planet_event = { id = dest_traveler.1012 } } }
+	on_progress_50 = { orbit = { planet_event = { id = dest_traveler.1014 } } }
+	on_progress_75 = { orbit = { planet_event = { id = dest_traveler.1015 } } }
+	on_success = { orbit = { planet_event = { id = dest_traveler.1017 scopes = { from = root } } } }
+	on_cancel = { from.solar_system.owner = { country_event = { id = dest_traveler.1019 scopes = { from = root.orbit } } } }
+}
+# Terraforming for a golden age
+special_project = {
+	key = "dest_traveler_golden_age_terraform_planet"
+	days_to_research = @dest_traveler_terraforming_time
+	event_scope = ship_event
+	location = yes
+	requirements = { shipclass_military = 1 }
+	on_start = { orbit.owner = { country_event = { id = dest_traveler.1033 scopes = { from = root.orbit } } } }
+	on_progress_25 = { orbit = { planet_event = { id = dest_traveler.1034 } } }
+	on_progress_50 = { orbit = { planet_event = { id = dest_traveler.1036 } } }
+	on_progress_75 = { orbit = { planet_event = { id = dest_traveler.1037 } } }
+	on_success = { orbit = { planet_event = { id = dest_traveler.1039 scopes = { from = root.orbit } } } }
+	on_cancel = { }
+}
+special_project = {
+	key = "dest_traveler_begin_augment_planet"
+	days_to_research = @dest_traveler_augmenting_time
+	event_scope = ship_event
+	location = yes
+	requirements = { shipclass_military = 1 }
+	on_start = {
+		if = {
+			limit = { exists = solar_system.owner }
+			solar_system.owner = { country_event = { id = dest_traveler.1021 scopes = { from = root } } }
+		}
+	}
+	on_progress_25 = { root.orbit = { planet_event = { id = dest_traveler.1022 scopes = { from = root } } } }
+	on_progress_50 = { root.orbit = { planet_event = { id = dest_traveler.1024 scopes = { from = root } } } }
+	on_progress_75 = { root.orbit = { planet_event = { id = dest_traveler.1025 scopes = { from = root } } } }
+	on_success = { root.orbit = { planet_event = { id = dest_traveler.1027 scopes = { from = root } } } }
+	on_cancel = {
+		from = {
+			if = {
+				limit = { exists = from.solar_system.owner }
+				from.solar_system.owner = { country_event = { id = dest_traveler.1029 scopes = { from = root.orbit } } }
+			}
+		}
+	}
+}
+special_project = {
+	key = "dest_traveler_uplift_primitives"
+	days_to_research = @dest_traveler_time_to_uplift
+	event_scope = ship_event
+	location = yes
+	requirements = { shipclass_military = 1 }
+	on_start = {  }
+	on_success = {  }
+	on_cancel = {  }
+}
+special_project = {
+	key = "DEST_TRAV_WARMIND"
+	cost = 5000
+	tech_department = physics_technology
+	picture = GFX_evt_landing_ship
+	
+	event_scope = planet_event
+	
+	requirements = {
+		
+	}
+	
+	on_success = {
+		owner = {
+			country_event = { id = dest_golden_age.401 }
+		}
+	}
+}

@@ -1,0 +1,156 @@
+### Events exposed for easier overwriting for compatibility mods
+namespace = dest_terraforming
+
+# Vanilla planet classes, only overwrite if you are removing vanilla classes or are only changing which or how planets spawn
+# Refactor into a set of on_actions
+planet_event = {
+	id = dest_terraforming.0
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		exists = from
+		from = { is_scope_type = species }
+	}
+
+	immediate = {
+		from = {
+			switch = {
+				trigger = ideal_planet_class
+				pc_arctic = {
+					root = {
+						# 5% chance to be a gaia world, 95% chance to be a arctic world
+						# Todo, add extra entries to make the planet have a chance to be other planets of the same category as the ideal
+						random_list = {
+							1 = {
+								change_pc = pc_gaia
+								add_modifier = { modifier = gaia_world }
+							}
+							19 = {
+								dest_traveler_terraform_planet = { planet_class = arctic }
+							}
+						}
+					}
+				}
+				pc_tundra = {
+					root = {
+						# 5% chance to be a gaia world, 95% chance to be a tundra world
+						random_list = {
+							1 = {
+								change_pc = pc_gaia
+								add_modifier = { modifier = gaia_world }
+							}
+							19 = {
+								dest_traveler_terraform_planet = { planet_class = tundra }
+							}
+						}
+					}
+				}
+				pc_alpine = {
+					root = {
+						# 5% chance to be a gaia world, 95% chance to be a alpine world
+						random_list = {
+							1 = {
+								change_pc = pc_gaia
+								add_modifier = { modifier = gaia_world }
+							}
+							19 = {
+								dest_traveler_terraform_planet = { planet_class = alpine }
+							}
+						}
+					}
+				}
+				pc_ocean = {
+					root = {
+						# 5% chance to be a gaia world, 95% chance to be a ocean world
+						random_list = {
+							1 = {
+								change_pc = pc_gaia
+								add_modifier = { modifier = gaia_world }
+							}
+							19 = {
+								dest_traveler_terraform_planet = { planet_class = ocean }
+							}
+						}
+					}
+				}
+				pc_continental = {
+					root = {
+						# 5% chance to be a gaia world, 95% chance to be a continental world
+						random_list = {
+							1 = {
+								change_pc = pc_gaia
+								add_modifier = { modifier = gaia_world }
+							}
+							19 = {
+								dest_traveler_terraform_planet = { planet_class = continental }
+							}
+						}
+					}
+				}
+				pc_tropical = {
+					root = {
+						# 5% chance to be a gaia world, 95% chance to be a tropical world
+						random_list = {
+							1 = {
+								change_pc = pc_gaia
+								add_modifier = { modifier = gaia_world }
+							}
+							19 = {
+								dest_traveler_terraform_planet = { planet_class = tropical }
+							}
+						}
+					}
+				}
+				pc_savannah = {
+					root = {
+						# 5% chance to be a gaia world, 95% chance to be a savannah world
+						random_list = {
+							1 = {
+								change_pc = pc_gaia
+								add_modifier = { modifier = gaia_world }
+							}
+							19 = {
+								dest_traveler_terraform_planet = { planet_class = savannah }
+							}
+						}
+					}
+				}
+				pc_desert = {
+					root = {
+						# 5% chance to be a gaia world, 95% chance to be a desert world
+						random_list = {
+							1 = {
+								change_pc = pc_gaia
+								add_modifier = { modifier = gaia_world }
+							}
+							19 = {								
+								dest_traveler_terraform_planet = { planet_class = desert }
+							}
+						}
+					}
+				}
+				pc_arid = {
+					root = {
+						# 5% chance to be a gaia world, 95% chance to be a arid world
+						random_list = {
+							1 = {
+								change_pc = pc_gaia
+								add_modifier = { modifier = gaia_world }
+							}
+							19 = {
+								dest_traveler_terraform_planet = { planet_class = arid }
+							}
+						}
+					}
+				}
+				default = {
+					root = {
+						change_pc = pc_gaia
+						add_modifier = { modifier = gaia_world }
+					}
+				}
+			}
+		}
+	}
+}

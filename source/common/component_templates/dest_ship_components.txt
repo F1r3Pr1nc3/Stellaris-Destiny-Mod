@@ -1,0 +1,71 @@
+utility_component_template = {
+	key = "SMALL_TRAVELER_ARMOR"
+	size = small
+	icon = "GFX_ship_part_dragon_armor"
+	icon_frame = 1
+	power = 0
+	resources = {
+		category = ship_components
+		cost = { alloys = @dest_traveler_armour_small_cost_alloys }
+		upkeep = {
+			alloys = @dest_traveler_armour_small_upkeep_alloys
+			energy = @dest_traveler_armour_small_upkeep_energy
+		}
+	}
+	
+	modifier = {
+		ship_shield_add = 30
+		ship_armor_add = @dest_traveler_armour_small_armour_value
+	}
+	
+	prerequisites = { "dest_tech_traveler_material" }
+	component_set = "DEST_TRAVELER_ARMOR"
+}
+
+utility_component_template = {
+	key = "MEDIUM_TRAVELER_ARMOR"
+	size = medium
+	icon = "GFX_ship_part_dragon_armor"
+	icon_frame = 1
+	power = 0
+	resources = {
+		category = ship_components
+		cost = { alloys = @dest_traveler_armour_medium_cost_alloys }
+		upkeep = {
+			alloys = @dest_traveler_armour_medium_upkeep_alloys
+			energy = @dest_traveler_armour_medium_upkeep_energy
+		}
+	}
+	
+	modifier = {
+		ship_shield_add = @dest_traveler_armour_medium_shield_value
+		ship_armor_add = @dest_traveler_armour_medium_armour_value
+	}
+	
+	prerequisites = { "dest_tech_traveler_material" }
+	component_set = "DEST_TRAVELER_ARMOR"
+}
+
+utility_component_template = {
+	key = "LARGE_TRAVELER_ARMOR"
+	size = large
+	icon = "GFX_ship_part_dragon_armor"
+	icon_frame = 1
+	power = 0
+	resources = {
+		category = ship_components
+		cost = { alloys = @dest_traveler_armour_large_cost_alloys }
+		upkeep = {
+			alloys = @dest_traveler_armour_large_upkeep_alloys
+			energy = @dest_traveler_armour_large_upkeep_energy
+		}
+	}
+	
+	modifier = {
+		ship_shield_add = @dest_traveler_armour_large_shield_value
+		ship_armor_add = @dest_traveler_armour_large_armour_value
+	}
+	
+	prerequisites = { "dest_tech_traveler_material" }
+	component_set = "DEST_TRAVELER_ARMOR"
+}

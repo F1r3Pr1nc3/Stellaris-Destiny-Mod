@@ -1,10 +1,10 @@
 ship_design = {
 	name = "Traveler"
-	ship_size = dest_traveler
+	ship_size = dest_traveler_ship_size
 	country_type = dest_traveler_country
 	hide_size = yes
 	section = {
-		template = "dest_traveler_section_key"
+		template = "dest_traveler_ship_section_key"
 		slot = "mid"
 
 		component = {
@@ -209,7 +209,7 @@ ship_design = {
 		}		
 	}
 	
-	required_component = TRAVELER_DRIVE
+	required_component = dest_traveler_drive
 	required_component = COMBAT_COMPUTER_ARTILLERY_AUTONOMOUS
 	required_component = SHIP_THRUSTER_4
 	required_component = SENSOR_4

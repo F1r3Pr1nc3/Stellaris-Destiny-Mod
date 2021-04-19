@@ -7,7 +7,6 @@ dest_traveler_country = {
 	ai = {
 		enabled = no
 	}
-	
 	faction = {
 		neutral = yes
 		needs_border_access = no
@@ -16,15 +15,12 @@ dest_traveler_country = {
 		auto_delete = no
 		#relations = yes
 	}
-
 	custom_diplomacy = yes
 	custom_opinion = yes
-	
 	modules = {
-		exclusive_diplomacy_module = {
-			contact_rule = script_only
-		}
+		exclusive_diplomacy_module = { contact_rule = never }
+		standard_event_module = {} # Needed for events
 		all_technology_module = {}
-		standard_event_module = {}
+		
 	} 
 }

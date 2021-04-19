@@ -1,183 +1,29 @@
 ﻿  l_english:
  ### Flag Localisation
- dest_traveler_in_galaxy:0 "The Traveler has entered the Galaxy"
- dest_traveler_exists:0 "The Traveler Exists"
+ dest_worships_traveler:0 "Worships Traveler"
+ dest_traveler_in_galaxy:0 "Traveler is in Galaxy"
+ dest_traveler_exists:0 "Traveler Exists"
  dest_traveler_arrival_system:0 "Traveler Destination System"
  dest_traveler_destination:0 "Traveler Destination System"
- ### Traveler Events
- # Traveler Spawn/Contact Events
- traveler.2.name:0 "Extragalactic Event"
- traveler.2.desc:0 "Observatories across the Galaxy have reported that a strange event has occured in intergalactic space. Gravitational waves stronger than any previously observed event were detected approximately 40,000 light years outside the galaxy. Oddly, the gravitational waves were accompanied by a burst of an unknown type of energy, far different than anything predicted by the current model of physics. Even stranger, the gravitational waves and unknown energy were detected simultaneously across the entire galaxy seemingly traveling faster than light. Scientists have refered to the event as "paracausal" as the readings seem to have ocurred outside the laws of causality."
- traveler.2.a:0 "Interesting"
- 
- traveler.6.name:0 "Mysterious Object"
- traveler.6.desc:0 "Civillian ships in the [dest_traveler_current_system.GetName] system have reported sightings of a mysterious spherical object. Initially believed to be a rogue planetoid, further investigations have determined that the object is too smooth and uniform to be natural. It appears to move under it's own will, and as such has been nicknamed The Traveler. Our scientists have linked the object to the extragalactic event which occured a year earlier as the Traveler radiates the same energy previously detected."
- traveler.6.a:0 "Interesting. Continue observing the object."
- traveler.6.b:0 "This object must be of a divine origin."
- traveler.6.c:0 "A marvel of some distant civilization!"
- 
- traveler.7.name:0 "Rumors"
- traveler.7.desc.owned:0 "Rumors of a mysterious object travelling through [dest_traveler_current_system_owner.GetName] space have been spreading throughout our population. These rumors describe a white sphere the size of a planetoid apparently moving under it's own will. The [dest_traveler_current_system_owner.GetSpeciesName] have not made a statement about the veracity of these claims."
- traveler.7.desc.unowned:0 "Rumors of a mysterious object travelling through uncolonized space near the [dest_traveler_current_system.GetName] have been spreading throughout our population. These rumors describe a white sphere the size of a planetoid apparently moving under it's own will. Although we have been unable to verify these claims, other empire's have reported similiar rumors in their own population."
- traveler.7.a:0 "Continue looking into these rumors."
- traveler.7.b:0 "This could be the work of the gods."
- traveler.7.c:0 "This could change everything we know."
-
- traveler.8.name:0 "The Traveler"
- traveler.8.desc:0 "The object previously described only in rumors has entered our borders. Our scientists have detected no radio signals emminating from it. Now known as "The Traveler," the object is under constant observation by hundreds of scientists."
- traveler.8.a:0 "Continue observing the object."
- traveler.8.b:0 "Send our priests in place of scientists."
- traveler.8.c:0 "Dedicate our scientists to this project."
-
- traveler.9.name:0 "The Traveler"
- traveler.9.desc:0 "Upon arriving in [Root.GetStarName], [Root.GetName] initial scans revealed a signifigant anomaly. Closer inspection showed that this anomaly matches the description of the object described in recent rumors. [Root.GetName] immediately sent a report back to the Capital.\n\nThe report describes the sphere as appearing neither mechanical, nor organic in nature, while also apparently moving with intelligence. While no radio signals were detected, an unknown energy which matches that of a previously observed extragalactic event seems to radiate from the object. The environment of a planet the object was seen orbiting appeared to be undergoing terraformation. However, no apparent interaction was observed between the object and the planet. A footnote included in the report by [Root.GetLeaderName] requests that the object officialy be called "The Traveler.""
- traveler.9.a:0 "Interesting"
- 
- traveler.11.name:0 "Golden Age"
- traveler.11.desc:0 "The Traveler has arrived in our capital system and has begun orbiting the star. Our scientists have reported hearing voices, which seem to be giving them assistance in their research. Experts are hailing this revelation as the begining of a Golden Age."
- traveler.11.a:0 "Amazing!"
- traveler.11.b:0 "We will ascend with this knowledge."
- 
- traveler.12.name:0 "Golden Age"
- traveler.12.desc:0 "The [dest_traveler_current_system_owner.GetRulerTitle] of [dest_traveler_current_system_owner.GetName] has announced the beginning of a Golden Age within their empire. They claim The Traveler, which is currently orbiting their capital system's star, is granting them knowledge through some unseen method."
- traveler.12.a:0 "Interesting."
- 
- traveler.13.name:0 "Traveler Uplifting"
- traveler.13.desc:0 "A previously primitive species has broadcast a message announcing their arrival to the galactic stage. Initially our scientists are baffled by how such a primitive society has become so technologically advanced in such a short time. However, the message a detailed recent history of their rise into space. The new empire claims that the Traveler, which has been spotted in their home system, granted them the knowledge needed to achieve space travel. This new information only deepens the mystery of The Traveler."
- traveler.13.a:0 "Incredible."
- 
- traveler.15.name:0 "Traveler Returns"
- traveler.15.desc:0 "The Traveler has returned to our home system. After it's long absence, the mysterious sphere has come back, granting us another golden age."
- traveler.15.a:0 "Amazing!"
- traveler.15.b:0 "We will ascend with this knowledge."
-
- # traveler.100.name:0 "Traveler"
- # traveler.100.desc:0 "Current Speaker: [speaker_country.GetName]"
- # traveler.100.a:0 "Request an Election for a New Speaker."
- # traveler.100.b:0 "Request a Golden Age"
- # traveler.100.c:0 "Ask for Guardians"
- # traveler.100.d:0 "Speaker Options"
- # traveler.100.d.notspeaker:0 "Not the Speaker"
- # traveler.100.e:0 "Goodbye"
- 
- # traveler.101.name:0 "Traveler"
- # traveler.101.desc:0 "Current Speaker: [speaker_country.GetName]"
- # traveler.101.a:0 "Request an Election for a New Speaker."
- # traveler.101.b:0 "Request a Golden Age"
- # traveler.101.c:0 "Ask for Guardians"
- # traveler.101.d:0 "Speaker Options"
- # traveler.101.d.notspeaker:0 "Not the Speaker"
- # traveler.101.e:0 "Goodbye"
- 
- # traveler.102.name:0 "Traveler"
- # traveler.102.desc:0 "PLACEHOLDER"
- # traveler.102.a:0 "Start a new Election"
- # traveler.102.a.tooltip:0 "A new Speaker will be chosen by the Traveler."
- # traveler.102.a.timer:0 "New Speaker recently chosen."
- # traveler.102.a.trust:0 "Not enough Trust"
- # traveler.102.b:0 "Back to main menu"
- 
- # traveler.103.name:0 "Traveler"
- # traveler.103.desc:0 "PLACEHOLDER"
- # traveler.103.a:0 "PLACEHOLDER"
- # traveler.103.b:0 "Back to Main Menu"
- 
- # traveler.104.name:0 "Traveler"
- # traveler.104.desc:0 "PLACEHOLDER"
- # traveler.104.a:0 "Send some guardians"
- # traveler.104.a.timer:0 "Recently requested guardians"
- # traveler.104.a.trust:0 "Not enough Trust"
- # traveler.104.a.reply:0 "PLACEHOLDER REPLY"
- # traveler.104.b:0 "Back to main menu."
- 
- # traveler.105.name:0 "Traveler"
- # traveler.105.desc:0 "PLACEHOLDER"
- # traveler.105.a:0 "PLACEHOLDER"
- # traveler.105.b:0 "PLACEHOLDER"
- 
- traveler.400.name:0 "Golden Age - A New AI"
- traveler.400.desc:0 "With the knowledge granted to us by The Traveler, our computing specialists believe they can devise a new, highly advanced method for developing artificial intelligence. However, they require a hefty investment in order to develop such a powerful AI. If the government were to provide this investment, we would have more influence over how it is used. If we do not, the researchers are likely to look into private investors."
- traveler.400.a:0 "Invest in the research."
- traveler.400.b:0 "We can't afford this."
- 
- traveler.401.name:0 "Warmind - Construction"
- traveler.401.desc:0 "The initial research into the new AI project - now named Warmind - and are ready to move forward with a prototype. The newly designed facility will allow the project to develop the new ambitious AI with it's specialized AI core."
- traveler.401.a:0 "Ok."
- 
- traveler.402.name:0 "Warmind - Alpha Build"
- traveler.402.desc:0 "The Warmind scientists are celebrating! The Alpha build of the Warmind AI is a success. Even in these early stages, the Warmind is operating beyond any previous artificial intelligence. It showed exceptional performance during standard combat training simulations. However, in order to perform more extensive tests the supercomputer will require far more energy than it is currently using. The Warmind Project has requested a large sum of energy credits be directed to the the project in order to achieve this."
- traveler.402.a:0 "Allocate the energy from our stockpiles."
- traveler.402.b:0 "Allocate a portion of our generated power."
- 
- traveler.403.name:0 "Warmind - Field Trials"
- traveler.403.desc:0 "An update on the Warmind Project: The Warmind has performed so exceptionally and consistently throughout its simulated tests that the project leads have requested that we begin field tests immediately. The Project has suggested putting it into use in our fleet, and giving it limited control in order to improve combat efficiency."
- traveler.403.a:0 "Put the Warmind to work!"
- traveler.403.b:0 "Perhaps it would be better suited to a scientific field."
- 
- traveler.404.name:0 "Warmind - Upgrades"
- traveler.404.desc:0 "With the Warmind Project excelling at an almost unbelievable rate, the project leads have informed us that another upgrade is needed. A new, massive AI core will need to be built in order for the Warmind to reach its true potential. Although they have yet to design such a computer, they assure us that with the help of our top scientists they will be able to complete it in no time."
- traveler.404.a:0 "Inform the scientists of the research."
- 
- traveler.405.name:0 "Warmind - Rollout"
- traveler.405.desc:0 "While the main Warmind team was busy with the new AI core, a seperate team has been optimizing the Alpha build and has completed what they call "a retail build." Obviously no such AI would ever be cheap enough to sell off the shelf, but this team has presented us their vision of a Warmind on every colony. By building Warmind facilities across an empire, they could assist not only in strategic rolls, but also in improving economic efficiency and research assistance."
- traveler.405.a:0 "We will put this to good use."
- 
- traveler.406.name:0 "Warmind - Online"
- traveler.406.desc:0 "Finally the day has come when the Warmind Project has achieved it's goal of hyper-intelligent AI. Upon activation, this Warmind - officialy named Warmind Prime - will gain executive control of many functions in the [Root.Owner.GetName] such as combat. "
- traveler.406.a:0 "Congratulations."
- 
- traveler.408.name:0 "Golden Age - Medical Miracle"
- traveler.408.desc:0 "The onset of the Golden Age has caused advancement in many fields, but perhaps the most welcomed advancements are those in the medical field. Injuries and diseases previously thought to be fatal are now able to be treated and cured in a matter of days. As a result, the life expectancy in [This.GetName] has increased signifigantly. Our people are rejoicing in the streets."
- 
- traveler.500.name:0 "Gift of the Traveler"
- traveler.500.desc:0 "Our observations of the terraformed planet have revealed that nearly every property of the planet has changed. The mass, temperature, atmospheric makeup, and weather patterns now match closely to our species homeworld. Additionally, life on this planet seems to have grown considerably faster than any other observed planet. Plants grow faster and animals reproduce at a higher rate. The ground team reported that the planet seem far more peaceful than any other planet they've been to, and a higher productivity was reported across the board. The Traveler seems to have crafted this planet for us, but its purpose remains unknown./n/nData we have collected on the terraforming process could allow our scientists to develop new terraforming techniques, opening up expansion to worlds never considered before."
- traveler.500.a:0 "Begin researching this right away."
- 
- traveler.502.name:0 "Light Snuffed Out"
- traveler.502.desc:0 "In the moments before the final strike, a bright, intense, blinding light shone out from the Traveler. The burst of light crossed the galaxy instantaneously like a explosion announcing the death of the enigmatic machine. Sensors across the galaxy picked up gravitational waves more intense than any detected before. In that moment all lifeforms knew: The Traveler was dead."
- traveler.502.a:0 "A momentous day indeed."
- 
- traveler.503.name:0 "Husk of a God"
- traveler.503.desc:0 "The debris gathered from the Traveler is incomprehensibly complicated. While we were unable to determine the uses of the mechanical parts, the raw material could prove useful. Results from testing the material indicate that it is made of no known element. Even stranger, it responds to scanning as if it doesn't exist at all. However, it is incredibly durable and exhibits many unusual properties. By coating ship hulls with the material, the hull integrity, shield capability, heat resistance could all be increased beyond previous capacities."
- traveler.503.a:0 "Research the material for military applications."
- 
- traveler.504.name:0 "Light Snuffed Out"
- traveler.504.desc:0 "In a single instant, every living being felt the overwhelming dread of what had just occured. A bright, blinding light shone out across the entire galaxy, visible from everywhere at once, defying the speed of light. Sensors all across the galaxy - and perhaps the entire universe - flared as gravitational waves, gamma rays, and Light blasted out from the explosion. Without even being told we all knew: The Traveler was dead."
- traveler.504.a:0 "We will never forget this day."
- 
- # Elections
- # traveler.201.name:0 "The Speaker"
- # traveler.201.desc:0 "A new Speaker will be chosen soon"
- 
- # traveler.202.name:0 "The Speaker"
- # traveler.202.desc.speaker:0 "You are now the Speaker"
- # traveler.202.desc.lightaligned:0 "A new speaker has been chosen: [speaker_country.GetName]"
- 
- # Traveler modifiers
- dest_golden_age:0 "Golden Age"
- dest_praising_traveler:0 "Praising The Traveler"
- dest_observing_traveler:0 "Observing The Traveler"
- dest_uplifted_by_traveler:0 "Uplifted By The Traveler"
- dest_traveler_terraformed:0 "Traveler's Gift"
- dest_traveler_terraformed_desc:0 "A world terraformed by The Traveler through mysterious means. The Traveler's power has made this planet friendlier to life than the average planet of this class."
- dest_warmind_invesment:0 "Invested in Warmind Project"
- dest_warmind_test_mil:0 "Warmind Field Tests"
- dest_warmind_test_sci:0 "Warmind Field Tests"
- dest_vex_ruins:0 "Vex Architecture"
- dest_vex_ruins_desc:0 "Strange, paradoxically ancient structures cover the planet's surface and seem to run on endlessly throughout its crust."
- 
+ dest_traveler_to_terraform:0 "Traveler will terraform"
+ dest_traveler_to_enhance:0 "Traveler will enhance"
+ dest_traveler_taken_action:0 "Traveler took action"
+ dest_traveler_quarter_completion:0 "Traveler Modifications 25% Complete"
+ dest_traveler_half_completion:0 "Traveler Modifications 50% Complete"
+ dest_traveler_near_completion:0 "Traveler Modifications 75% Complete"
+  
  ### Countries
  # The Traveler Country type
  TRAVELER:0 "Traveler"
  
- # Traveler Government
+ ### Traveler Government
  DEST_LEADER_TITLE:0 "Ghost"
  
- # Strategic Resource Deposits
+ ### Strategic Resource Deposits
  dest_d_glimmer_deposit:0 "Glimmer Deposit"
  dest_d_glimmer_deposit_desc:0 "A pocket of programmable matter found within the planet's crust. It is useful in producing a wide array of products."
  
- # Technology
+ ### Technology
  dest_tech_glimmer_extraction:0 "Glimmer Extraction"
  dest_tech_glimmer_extraction_desc:0 "Glimmer appears to be found only deep below a planet's surface, but special deep core extractors can help us reach it."
  dest_tech_warmind:0 "Warmind Project"
@@ -189,7 +35,7 @@
  dest_tech_traveler_material:0 "Traveler Material"
  dest_tech_traveler_material_desc:0 "The husk of a dead god. It possesses strange, paracausal properties."
  
- # Planetary buildings
+ ### Planetary buildings
  dest_building_glimmer_network:0 "Glimmer Mine"
  dest_building_glimmer_network_desc:0 "A mine specially equiped with drills capable of reaching glimmer deposits deep below the surface."
  dest_building_warmind_facility:0 "Warmind Facility"
@@ -199,7 +45,7 @@
  dest_building_warmind_copy:0 "Colony Warmind"
  dest_building_warmind_copy_desc:0 "A less powerful Warmind for colony administration uses"
  
- # Jobs
+ ### Jobs
  job_dest_glimmer_collector:0 "Glimmer Programmer"
  job_dest_glimmer_collector_plural:0 "Glimmer Programmers"
  job_dest_glimmer_collector_desc:0 "These capable workers work the machinery that converts Glimmer into usable substances."
@@ -210,11 +56,77 @@
  mod_job_dest_glimmer_collector_add:0 "$job_dest_glimmer_collector$ Jobs"
  # Building Modifiers
  mod_dest_building_glimmer_network_max:0 "Max $dest_building_glimmer_network$"
+ # Traveler Terraformation/Augmentation Modifiers
+ dest_began_terraforming:0 "Glowing World"
+ dest_began_terraforming_desc:0 "The Traveler has started a process on this planet, using some of it's energy it appears as though it starting the processes that will render this world habitable."
+ dest_partial_terraforming:0 "Radiant World"
+ dest_partial_terraforming_desc:0 "Energies from Traveler shine across the planet, everywhere on the surface this world is beginning to develop habitable conditions."
+ dest_completing_terraforming:0 "Living Rock"
+ dest_completing_terraforming_desc:0 "The energies have subsided as does the Traveler's time on this planet. The planet is now nearly as habitable as many of our other worlds."
+ dest_traveler_terraformed_generic:0 "Traveler's Gift"
+ dest_traveler_terraformed_generic_desc:0 "The Traveler has departed from this planet but it's touch is still known, this world seems more livable, more friendly than many of the other worlds we inhabit."
+ dest_traveler_terraformed_spiritualist:0 "Traveler's Gift"
+ dest_traveler_terraformed_spiritualist_desc:0 "The Traveler has departed from this planet but it's touch is still known, this world seems more livable, more friendly than many of the other worlds we inhabit."
+ # Resilient Life Modifier
+ dest_resilient_life_name:0 "Resilient Lifeforms" 
+ dest_resilient_life_low:0 "$dest_resilient_life_name$"
+ dest_resilient_life_low_desc:0 ""
+ dest_resilient_life_moderate:0 "$dest_resilient_life_name$"
+ dest_resilient_life_moderate_desc:0 ""
+ dest_resilient_life_high:0 "$dest_resilient_life_name$"
+ dest_resilient_life_high_desc:0 ""
+ # Strange Materials Modifier
+ dest_strange_materials_name:0 "Strange Composition"
+ dest_strange_materials_low:0 "$dest_strange_materials_name$"
+ dest_strange_materials_low_desc:0 ""
+ dest_strange_materials_moderate:0 "$dest_strange_materials_name$"
+ dest_strange_materials_moderate_desc:0 ""
+ dest_strange_materials_high:0 "$dest_strange_materials_name$"
+ dest_strange_materials_high_desc:0 ""
+ # Mysterious Energies Modifier
+ dest_mysterious_energies_name:0 "Energetic Presence"
+ dest_mysterious_energies_low:0 "$dest_mysterious_energies_name$"
+ dest_mysterious_energies_low_desc:0 ""
+ dest_mysterious_energies_moderate:0 "$dest_mysterious_energies_name$"
+ dest_mysterious_energies_moderate_desc:0 ""
+ dest_mysterious_energies_high:0 "$dest_mysterious_energies_name$"
+ dest_mysterious_energies_high_desc:0 ""
+ # Friendly World Modifier
+ dest_friendly_world_name:0 "Friendly World"
+ dest_friendly_world_low:0 "$dest_friendly_world_name$"
+ dest_friendly_world_low_desc:0 "Something about this planet is rather strange, there appears to be a few aspects of the planet, including environment and wildlife which seems somewhat abnormally calm and occasionally even cooperative towards our activities."
+ dest_friendly_world_moderate:0 "$dest_friendly_world_name$"
+ dest_friendly_world_moderate_desc:0 "This planet maintains a strangely friendly feeling towards us. Many aspects, ranging from the material composition of the planet to the lifeforms appears to be unnaturally cooperative and calm towards us and our activities."
+ dest_friendly_world_high:0 "$dest_friendly_world_name$"
+ dest_friendly_world_high_desc:0 "This planet somehow seems friendlier towards the residents of our nation. The entire planet, from it's composition, the atmosphere, the native inhabitants, and the natural events seems to be strangely mild and even at times cooperative towards our activities."
+ # Traveler modifiers
+ dest_golden_age:0 "Golden Age"
+ dest_praising_traveler:0 "Praising The Traveler"
+ dest_observing_traveler:0 "Observing The Traveler"
+ dest_uplifted_by_traveler:0 "Uplifted By The Traveler"
+ dest_warmind_investment:0 "Invested in Warmind Project"
+ dest_warmind_test_mil:0 "Warmind Field Tests"
+ dest_warmind_test_sci:0 "Warmind Field Tests"
+ dest_vex_ruins:0 "Vex Architecture"
+ dest_vex_ruins_desc:0 "Strange, paradoxically ancient structures cover the planet's surface and seem to run on endlessly throughout its crust."
 
- # Special Projects
+ ### Special Projects
  DEST_TRAV_WARMIND:0 "Warmind Project"
  DEST_TRAV_WARMIND_DESC:0 "With the knowledge granted to us by The Traveler, our computing specialists believe they can devise a new, highly advanced method for developing artificial intelligence."
+ DEST_TRAV_TERRAFORMING_PROJECT:0 "Analyize Terraforming Data"
+ DEST_TRAV_TERRAFORMING_PROJECT_DESC:0 "Temp, need to loc soon"
+ dest_traveler_begin_terraform_planet:0 "Traveler - Terraform Planet"
+ dest_traveler_begin_terraform_planet_DESC:0 "Begin terraforming the planet(Only the Traveler country should see this)."
+ dest_traveler_golden_age_terraform_planet:0 "$dest_traveler_begin_terraform_planet$"
+ dest_traveler_golden_age_terraform_planet_DESC:0 "$dest_traveler_begin_terraform_planet_DESC$"
+ dest_traveler_begin_augment_planet:0 "Traveler - Augment Planet"
+ dest_traveler_begin_augment_planet_DESC:0 "Augment the target planet(Only the Traveler country should see this)."
+ dest_traveler_uplift_primitives:0 "Traveler - Uplift Primitives"
+ dest_traveler_uplift_primitives_DESC:0 "Advances the primitive civilization on the [root.orbit.GetName] by one age."
  
+ ### Traits
+ dest_leader_trait_golden_age:0 "Golden Age Leader"
+ dest_leader_trait_golden_age_desc:0 "This leader was born during the golden age of their nation's existence, and are augmented and supported by wonderous technologies."
  # Event Chain
  traveler_chain_title:0 "The Traveler"
  traveler_chain_desc:0 "The Traveler is in the [dest_traveler_current_system.GetName] system."

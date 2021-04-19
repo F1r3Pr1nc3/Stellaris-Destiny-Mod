@@ -1,0 +1,127 @@
+dest_golden_age = {
+	pop_happiness = 0.25
+	country_engineering_research_produces_mult = 0.15
+	country_society_research_produces_mult = 0.15
+	country_physics_research_produces_mult = 0.15
+	country_unity_produces_mult = 0.10
+}
+
+# dest_golden_age_requested = {
+	# pop_happiness = 0.15
+	# tile_resource_engineering_research_mult = 0.05
+	# tile_resource_physics_research_mult = 0.05
+	# tile_resource_society_research_mult = 0.05
+# }
+
+dest_praising_traveler = {
+	country_physics_research_produces_mult = -0.5
+	country_society_research_produces_mult = -0.5
+	country_engineering_research_produces_mult = -0.5
+	pop_happiness = 0.10
+}
+
+dest_observing_traveler = {	
+	country_physics_research_produces_mult = 0.20
+	country_society_research_produces_mult = 0.10
+	country_engineering_research_produces_mult = 0.10
+}
+
+dest_uplifted_by_traveler = {
+	country_physics_research_produces_mult = 0.25
+	country_society_research_produces_mult = 0.25
+	country_engineering_research_produces_mult = 0.25
+	country_unity_produces_mult = 0.25
+}
+
+### Warmind modifier
+dest_warmind_investment = {
+	country_energy_produces_mult = -0.05
+}
+
+dest_warmind_test_mil = {
+	ship_fire_rate_mult = 0.05
+}
+
+dest_warmind_test_sci = {
+	all_technology_research_speed = 0.05
+}
+
+dest_vex_ruins = {
+	planet_researchers_physics_research_produces_mult = 0.05
+	icon = "gfx/interface/icons/planet_modifiers/pm_vex_architecture.dds"
+	icon_frame = 2
+}
+### Traveler planet enhancements
+# Food Production Boost
+dest_resilient_life_low = {
+
+}
+dest_resilient_life_moderate = {
+
+}
+dest_resilient_life_high = {
+
+}
+# Mineral Production Boost
+dest_strange_materials_low = {
+
+}
+dest_strange_materials_moderate = {
+
+}
+dest_strange_materials_high = {
+
+}
+# Energy Production Boost
+dest_mysterious_energies_low = {
+
+}
+dest_mysterious_energies_moderate = {
+
+}
+dest_mysterious_energies_high = {
+
+}
+# Work on name
+# Pop happiness and habitability bonus
+dest_friendly_world_low = {
+
+}
+dest_friendly_world_moderate = {
+
+}
+dest_friendly_world_high = {
+
+}
+# Put any more ideas below (be good to have 5-6)
+### Idea: More district slots modifier and More pop growth modifier, work in tandem with city modifiers
+
+### Traveler planet terraform only modifiers
+dest_began_terraforming = { # At 25%
+	icon = "gfx/interface/icons/planet_modifiers/pm_faith_in_science.dds"
+	pop_environment_tolerance = -0.75
+	district_farming_max = -10
+	planet_jobs_produces_mult = -0.10
+}
+dest_partial_terraforming = { # At 50%
+	icon = "gfx/interface/icons/planet_modifiers/pm_bleak.dds"
+	pop_environment_tolerance = -0.50
+	district_farming_max = -5
+	planet_jobs_produces_mult = -0.05
+}
+dest_completing_terraforming = { # At 75%
+	icon = "gfx/interface/icons/planet_modifiers/pm_lush.dds"
+	pop_environment_tolerance = -0.10
+	district_farming_max = -2
+}
+dest_traveler_terraformed_generic = { # At 100%
+	icon = "gfx/interface/icons/planet_modifiers/pm_resort_planet.dds"
+	pop_environment_tolerance = 0.10
+	planet_amenities_mult = 0.05
+}
+dest_traveler_terraformed_spiritualist = { # At 100% for spiritualist nations
+	icon = "gfx/interface/icons/planet_modifiers/pm_consecrated_worlds.dds"
+	pop_environment_tolerance = 0.10
+	planet_amenities_mult = 0.05
+	pop_government_ethic_attraction = 0.20
+}
