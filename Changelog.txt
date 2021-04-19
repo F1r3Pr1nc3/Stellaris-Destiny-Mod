@@ -11,4 +11,3 @@ Traveler:
   - Hitpoints = 50000
   - Quadrupled Speed
   - Doubled Acceleration
- 

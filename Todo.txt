@@ -1,11 +1,6 @@
 Traveler Todo
-1.  Redoing traveler decision making
- - Implement primitive uplifting
- - Implement starting golden age
- - Implement limits on what the Traveler can terraform too or augment(not augmenting Ecus etc)
- - Implement the last two planet backgrounds for events
- - Visual events for when you encounter augemented worlds without witnessing the Traveler having done it in your territory
 2.1. Traveler Debugger/Control prompt
+    - Dynamic Mod Menu support
     - Spawn Traveler
     - Check which system the Traveler spawned in
     - Goto the Traveler's current location
@@ -17,6 +12,7 @@ Traveler Todo
     - Opting for different parts of the event chains to display differently
 2.3. Attempt to make a retain compatibility system?
     - Forcibly update obsolete parts of the mod to retain compatibility where possible with new versions
+    - Reworking locatilisation to be interesting and complex
 3.1. Enhancing Golden Ages
     - Implementation of Guardians
     - More technology options
