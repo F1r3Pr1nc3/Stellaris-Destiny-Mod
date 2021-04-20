@@ -54,44 +54,47 @@ dest_vex_ruins = {
 ### Traveler planet enhancements
 # Food Production Boost
 dest_resilient_life_low = {
-
+	planet_jobs_food_produces_mult = 0.10
 }
 dest_resilient_life_moderate = {
-
+	planet_jobs_food_produces_mult = 0.20
 }
 dest_resilient_life_high = {
-
+	planet_jobs_food_produces_mult = 0.30
 }
 # Mineral Production Boost
 dest_strange_materials_low = {
-
+	planet_jobs_minerals_produces_mult = 0.10
 }
 dest_strange_materials_moderate = {
-
+	planet_jobs_minerals_produces_mult = 0.20
 }
 dest_strange_materials_high = {
-
+	planet_jobs_minerals_produces_mult = 0.30
 }
 # Energy Production Boost
 dest_mysterious_energies_low = {
-
+	planet_jobs_minerals_produces_mult = 0.10
 }
 dest_mysterious_energies_moderate = {
-
+	planet_jobs_minerals_produces_mult = 0.20
 }
 dest_mysterious_energies_high = {
-
+	planet_jobs_minerals_produces_mult = 0.30
 }
 # Work on name
 # Pop happiness and habitability bonus
 dest_friendly_world_low = {
-
+	pop_happiness = 0.05
+	pop_habitability = 0.05
 }
 dest_friendly_world_moderate = {
-
+	pop_happiness = 0.1
+	pop_habitability = 0.05
 }
 dest_friendly_world_high = {
-
+	pop_happiness = 0.1
+	pop_habitability = 0.1
 }
 # Put any more ideas below (be good to have 5-6)
 ### Idea: More district slots modifier and More pop growth modifier, work in tandem with city modifiers
