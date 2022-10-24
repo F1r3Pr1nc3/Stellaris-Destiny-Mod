@@ -360,8 +360,8 @@ fleet_event = {
 						NOR = {
 							exists = event_target:terraformable_planet
 							exists = owner
+							exists = event_target:terraformable_planet.owner
 						}
-						NOT = { exists = event_target:terraformable_planet.owner }
 						check_variable = { which = dest_traveler_actions value > 1 }
 					}
 					modifier = {
@@ -1732,23 +1732,23 @@ fleet_event = {
 	}
 }
 
-# On uplifting stage success - notification
-country_event = {
-	id = dest_traveler.1051
-	is_triggered_only = yes
-	hide_window = yes
-	trigger = {  }
-	immediate = {  }
-}
+# # On uplifting stage success - notification
+# country_event = {
+# 	id = dest_traveler.1051
+# 	is_triggered_only = yes
+# 	hide_window = yes
+# 	trigger = {  }
+# 	immediate = {  }
+# }
 
-# On uplifting success success - notification
-country_event = {
-	id = dest_Traveler.1052
-	is_triggered_only = yes
-	hide_window = yes
-	trigger = {  }
-	immediate = {  }
-}
+# # On uplifting success success - notification
+# country_event = {
+# 	id = dest_Traveler.1052
+# 	is_triggered_only = yes
+# 	hide_window = yes
+# 	trigger = {  }
+# 	immediate = {  }
+# }
 
 ### On Actions
 # On action for the traveler to choose what it should do in the destination

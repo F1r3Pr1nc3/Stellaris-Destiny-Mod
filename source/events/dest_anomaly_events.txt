@@ -1,5 +1,4 @@
 namespace = dest_anomaly
-
 ship_event = {
 	id = dest_anomaly.1
 	title = "dest_anomaly.1.name"
@@ -7,19 +6,12 @@ ship_event = {
 	picture = GFX_vex_citadel
 	show_sound = event_ship_bridge
 	location = root
-	
 	is_triggered_only = yes
-	
-	immediate = {
-		
-	}
-	
+	immediate = {  }
 	option = {
 		name = "REMARKABLE"
 		owner = {
-			add_resource = {
-				physics_research = 500
-			}
+			add_resource = { physics_research = 500 }
 		}
 		hidden_effect = {
 			orbit = {
@@ -28,10 +20,8 @@ ship_event = {
 					days = -1
 				}
 			}
-		}		
-		orbit = {
-			add_deposit = d_physics_5
 		}
+		orbit = { add_deposit = d_physics_5 }
 	}
 }
 
@@ -41,13 +31,8 @@ ship_event = {
 	desc = "dest_anomaly.2.desc"
 	picture = GFX_evt_burning_settlement
 	show_sound = event_ship_bridge
-	
 	is_triggered_only = yes
-	
-	immediate = {
-	
-	}
-	
+	immediate = {  }
 	option = {
 		name = "REMARKABLE"
 		owner = {

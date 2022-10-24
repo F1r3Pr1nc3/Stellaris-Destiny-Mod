@@ -79,12 +79,10 @@ country_event = {
 	is_triggered_only = yes
 	# fire_only_once = yes
 	trigger = { has_country_flag = had_golden_age }
-	immediate = { }
+	immediate = {  }
 	option = {
 		name = traveler.15.a
-		trigger = {
-			NOT = { is_spiritualist = yes }
-		}
+		trigger = { is_spiritualist = no }
 		add_modifier = {
 			modifier = "dest_golden_age"
 			days = @dest_golden_age_length
@@ -289,7 +287,7 @@ country_event = {
 	desc = "golden_age.405.desc"
 	picture = GFX_evt_sapient_AI
 	is_triggered_only = yes
-	immediate = { }
+	immediate = {  }
 	option = {
 		name = golden_age.405.a
 		add_research_option = dest_tech_warmind_copy
@@ -336,7 +334,7 @@ event = {
 	id = dest_golden_age.1100
 	is_triggered_only = yes
 	hide_window = yes
-	trigger = { }
+	trigger = {  }
 	immediate = {
 		every_playable_country = {
 			limit = {
@@ -346,7 +344,7 @@ event = {
 			random_list = {
 				1 = { country_event = { id = dest_golden_age.400 } }				# Warmind events
 				1 = { country_event = { id = dest_golden_age.407 } }				# Medical breakthroughs
-				99 = { }
+				99 = {  }
 			}
 		}
 	}

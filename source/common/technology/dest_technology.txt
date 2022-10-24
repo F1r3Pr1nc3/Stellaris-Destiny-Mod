@@ -5,25 +5,18 @@ dest_tech_glimmer_extraction = {
 	category = { materials }
 	prerequisites = { "tech_space_construction" }
 	weight = 80
-	
+
 	weight_modifier = {
 		factor = 1
+		modifier = { factor = 2 has_modifier = "dest_golden_age" }
 		modifier = {
-			factor = 2
-			has_modifier = "dest_golden_age"
+			factor = 0
+			NOT = { has_global_flag = dest_traveler_exists }
 		}
 		modifier = {
 			factor = 0
 			NOT = {
-				has_global_flag = dest_traveler_exists
-			}
-		}
-		modifier = {
-			factor = 0
-			NOT = {
-				any_owned_planet = {
-					has_deposit = dest_d_glimmer_deposit
-				}
+				any_owned_planet = { has_deposit = dest_d_glimmer_deposit }
 			}
 		}
 		modifier = {
@@ -34,7 +27,7 @@ dest_tech_glimmer_extraction = {
 			}
 		}
 	}
-	
+
 	ai_weight = {
 		factor = 4
 		modifier = {
@@ -43,7 +36,7 @@ dest_tech_glimmer_extraction = {
 				area = engineering
 				has_trait = "leader_trait_expertise_materials"
 			}
-		}		
+		}
 	}
 }
 
@@ -55,7 +48,7 @@ dest_tech_warmind = {
 	prerequisites = { "tech_self_aware_logic" }
 	weight = 30
 	is_rare = yes
-	
+
 	weight_modifier = {
 		factor = 0.5
 		modifier = {
@@ -65,12 +58,9 @@ dest_tech_warmind = {
 				has_trait = "leader_trait_expertise_computing"
 			}
 		}
-		modifier = {
-			factor = 0
-			is_gestalt = yes
-		}
+		modifier = { factor = 0 is_gestalt = yes }
 	}
-	
+
 	ai_weight = {
 		factor = 3
 		modifier = {
@@ -79,7 +69,7 @@ dest_tech_warmind = {
 				area = physics
 				has_trait = "leader_trait_expertise_computing"
 			}
-		}		
+		}
 	}
 }
 
@@ -93,10 +83,8 @@ dest_tech_warmind_prime = {
 	weight = 0
 	is_rare = yes
 	ai_update_type = all
-	
-	weight_modifier = {
-		factor = 0
-	}
+
+	weight_modifier = { factor = 0 }
 }
 
 dest_tech_warmind_copy = {
@@ -109,10 +97,8 @@ dest_tech_warmind_copy = {
 	weight = 0
 	is_rare = yes
 	ai_update_type = all
-	
-	weight_modifier = {
-		factor = 0
-	}
+
+	weight_modifier = { factor = 0 }
 }
 
 dest_tech_traveler_material = {
@@ -125,8 +111,6 @@ dest_tech_traveler_material = {
 	weight = 0
 	is_rare = yes
 	ai_update_type = all
-	
-	weight_modifier = {
-		factor = 0
-	}
+
+	weight_modifier = { factor = 0 }
 }

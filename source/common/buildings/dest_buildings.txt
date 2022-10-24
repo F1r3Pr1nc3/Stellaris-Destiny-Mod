@@ -4,37 +4,22 @@ dest_building_warmind_facility = {
 	category = government
 	can_be_disabled = no
 	base_cap_amount = 1
-
-	prerequisites = {
-		"dest_tech_warmind"
-	}
+	prerequisites = { "dest_tech_warmind" }
 	potential = {
 		exists = owner
 		is_capital = yes
 	}
-	allow = {
-		has_upgraded_capital = yes
-	}
-
+	allow = { has_upgraded_capital = yes }
 	resources = {
 		category = planet_buildings
 		cost = {
 			minerals = 750
 			alloys = 50
 		}
-		upkeep = {
-			energy = 5
-		}
+		upkeep = { energy = 5 }
 	}
-
-	country_modifier = {
-		country_base_physics_research_produces_add = 5
-	}
-
-	upgrades = {
-		"dest_building_warmind_prime"
-	}
-
+	country_modifier = { country_base_physics_research_produces_add = 5 }
+	upgrades = { "dest_building_warmind_prime" }
 	ai_weight = {
 		weight = 0
 		modifier = {
@@ -46,47 +31,37 @@ dest_building_warmind_facility = {
 		}
 	}
 }
+
 dest_building_warmind_prime = {
 	base_buildtime = 360
 	icon = "building_institute"
 	category = government
 	can_build = no
 	can_be_disabled = no
-
-	prerequisites = {
-		"dest_tech_warmind_prime"
-	}
+	prerequisites = { "dest_tech_warmind_prime" }
 	potential = {
 		exists = owner
 		is_capital = yes
 	}
-	allow = {
-		has_upgraded_capital = yes
-	}
-
+	allow = { has_upgraded_capital = yes }
 	resources = {
 		category = planet_buildings
 		cost = {
 			minerals = 750
 			alloys = 50
 		}
-		upkeep = {
-			energy = 10
-		}
+		upkeep = { energy = 10 }
 	}
-
 	country_modifier = {
 		country_base_physics_research_produces_add = 20
 		country_base_society_research_produces_add = 20
 		country_base_engineering_research_produces_add = 20
-
-		country_minerals_produces_mult = 0.10
-		country_food_produces_mult = 0.10
-		country_energy_produces_mult = 0.10
-		ship_fire_rate_mult = 0.10
-		all_technology_research_speed = 0.10
+		country_minerals_produces_mult = 0.1
+		country_food_produces_mult = 0.1
+		country_energy_produces_mult = 0.1
+		ship_fire_rate_mult = 0.1
+		all_technology_research_speed = 0.1
 	}
-
 	ai_weight = {
 		weight = 0
 		modifier = {
@@ -98,46 +73,32 @@ dest_building_warmind_prime = {
 		}
 	}
 }
+
 dest_building_warmind_copy = {
 	base_buildtime = 180
 	category = government
 	icon = "building_hypercomms_forum"
 	base_cap_amount = 1
-
-	prerequisites = {
-		"dest_tech_warmind_copy"
-	}
+	prerequisites = { "dest_tech_warmind_copy" }
 	potential = {
-		planet = {
-			is_capital = no
-		}
+		planet = { is_capital = no }
 	}
-	allow = {
-		has_upgraded_capital = yes
-	}
-
+	allow = { has_upgraded_capital = yes }
 	resources = {
 		category = planet_buildings
-		cost = {
-			minerals = 1000
-		}
-		upkeep = {
-			energy = 8
-		}
+		cost = { minerals = 1000 }
+		upkeep = { energy = 8 }
 	}
-
 	planet_modifier = {
-		planet_jobs_minerals_produces_mult = 0.10
-		planet_jobs_food_produces_mult = 0.10
-		planet_jobs_energy_produces_mult = 0.10
+		planet_jobs_minerals_produces_mult = 0.1
+		planet_jobs_food_produces_mult = 0.1
+		planet_jobs_energy_produces_mult = 0.1
 	}
-
 	country_modifier = {
 		country_base_physics_research_produces_add = 10
 		country_base_society_research_produces_add = 10
 		country_base_engineering_research_produces_add = 10
 	}
-
 	ai_weight = {
 		weight = 0
 		modifier = {
@@ -149,31 +110,20 @@ dest_building_warmind_copy = {
 		}
 	}
 }
+
 dest_building_glimmer_network = {
 	base_buildtime = @b1_time
 	category = resource
 	is_capped_by_modifier = yes
 	potential = {
-		NOT = {
-			has_modifier = resort_colony
-		}
+		NOT = { has_modifier = resort_colony }
 	}
 	resources = {
 		category = planet_buildings
-		cost = {
-			minerals = 200
-		}
-		upkeep = {
-			energy = 1
-		}
+		cost = { minerals = 200 }
+		upkeep = { energy = 1 }
 	}
-	planet_modifier = {
-		job_dest_glimmer_collector_add = 1
-	}
-	prerequisites = {
-		"dest_tech_glimmer_extraction"
-	}
-	ai_weight = {
-		weight = 1000
-	}
+	planet_modifier = { job_dest_glimmer_collector_add = 1 }
+	prerequisites = { "dest_tech_glimmer_extraction" }
+	ai_weight = { weight = 1000 }
 }

@@ -1,25 +1,18 @@
-namespace = dest_compatibility
-### Debugger Event Interface
-country_event = {
-	id = dest_compatibility.0
-	is_triggered_only = yes
-	hide_window = yes
-	trigger = {
-		
-	}
-	immediate = {
-		
-	}
-}
-### Compatibility event to coop with Dynamic Mod Menu
-event = {
-	id = dest_compatibility.1000
-	is_triggered_only = yes
-	hide_window = yes
-	trigger = {
-		
-	}
-	immediate = {
-		
-	}
-}
+# namespace = dest_compatibility
+# ### Debugger Event Interface
+# country_event = {
+# 	id = dest_compatibility.0
+# 	is_triggered_only = yes
+# 	hide_window = yes
+# 	trigger = {  }
+# 	immediate = {  }
+# }
+
+# ### Compatibility event to coop with Dynamic Mod Menu
+# event = {
+# 	id = dest_compatibility.1000
+# 	is_triggered_only = yes
+# 	hide_window = yes
+# 	trigger = {  }
+# 	immediate = {  }
+# }

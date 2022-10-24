@@ -10,10 +10,8 @@ dest_leader_trait_golden_age = {
 	leader_potential_add = {
 		from = {
 			has_country_flag = had_golden_age
-			NOR = {
-				# has_country_flag = had_collapse
-				is_gestalt = yes
-			}
+			# NOT = { has_country_flag = had_collapse }
+			is_gestalt = no
 		}
 	}
 	ai_categories = {
