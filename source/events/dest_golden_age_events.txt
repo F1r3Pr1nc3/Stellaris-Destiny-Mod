@@ -1,5 +1,4 @@
 namespace = dest_golden_age
-
 ### Sequencial Golden Age Events
 # Golden Age beginning announcement
 country_event = {
@@ -12,14 +11,16 @@ country_event = {
 	show_sound = event_mystic_reveal_light
 	location = from
 	trigger = {
-		is_country_type = default
+		merg_is_default_empire = yes
 		NOT = { has_country_flag = had_golden_age }
 	}
 	immediate = { set_country_flag = had_golden_age }
 	after = {
 		add_modifier = { modifier = dest_golden_age }
 		every_playable_country = {
-			limit = { NOT = { is_same_empire = root } }
+			limit = {
+				NOT = { is_same_empire = root }
+			}
 			country_event = {
 				id = dest_golden_age.2
 				days = 1
@@ -30,21 +31,21 @@ country_event = {
 			}
 		}
 	}
-	option = {
-		name = dest_golden_age.0.option.generic
-	}
+	option = { name = dest_golden_age.0.option.generic }
 }
+
 # Golden Age over announcement
 country_event = {
 	id = dest_golden_age.1
 	is_triggered_only = yes
 	hide_window = no
 	trigger = {
-		is_country_type = default
+		merg_is_default_empire = yes
 		has_country_flag = had_golden_age
 	}
 	immediate = { remove_modifier = dest_golden_age }
 }
+
 # Announcing beginning of an empire's Golden Age to other empires
 country_event = {
 	id = dest_golden_age.2
@@ -54,10 +55,9 @@ country_event = {
 	desc = dest_golden_age.2.desc
 	picture = GFX_evt_metropolis
 	location = fromfrom
-	option = {
-		name = dest_golden_age.2.option.generic
-	}
+	option = { name = dest_golden_age.2.option.generic }
 }
+
 # Announcing the Traveler starting to uplift another civilisation
 country_event = {
 	id = dest_golden_age.3
@@ -67,53 +67,32 @@ country_event = {
 	desc = dest_golden_age.3.desc
 	picture = GFX_evt_metropolis
 	location = event_target:dest_traveler_fleet
-	
-	option = {
-		name = dest_golden_age.3.option.generic
-	}
+	option = { name = dest_golden_age.3.option.generic }
 }
 
-#recurring Golden Age
+# recurring Golden Age
 country_event = {
 	id = dest_golden_age.4
 	title = "traveler.15.name"
 	desc = "traveler.15.desc"
 	picture = "GFX_evt_metropolis"
-	
 	is_triggered_only = yes
-	#fire_only_once = yes
-	
-	trigger = {
-		has_country_flag = had_golden_age
-	}
-	
-	immediate = {
-	}
-	 
+	# fire_only_once = yes
+	trigger = { has_country_flag = had_golden_age }
+	immediate = { }
 	option = {
 		name = traveler.15.a
 		trigger = {
-			NOT = {
-				OR = {
-					has_ethic = ethic_spiritualist
-					has_ethic = ethic_fanatic_spiritualist
-				}
-			}
+			NOT = { is_spiritualist = yes }
 		}
 		add_modifier = {
 			modifier = "dest_golden_age"
 			days = @dest_golden_age_length
 		}
 	}
-	
 	option = {
 		name = traveler.15.b
-		trigger = {
-			OR = {
-				has_ethic = ethic_spiritualist
-				has_ethic = ethic_fanatic_spiritualist
-			}
-		}
+		trigger = { is_spiritualist = yes }
 		add_modifier = {
 			modifier = "dest_golden_age"
 			days = @dest_golden_age_length
@@ -126,7 +105,9 @@ planet_event = {
 	id = dest_golden_age.1000
 	is_triggered_only = yes
 	hide_window = yes
-	trigger = { from = { has_fleet_flag = dest_traveler_ship } }
+	trigger = {
+		from = { has_fleet_flag = dest_traveler_ship }
+	}
 	immediate = {
 		if = {
 			limit = {
@@ -135,8 +116,16 @@ planet_event = {
 					has_fleet_flag = dest_traveler_ship
 				}
 				NOT = { has_planet_flag = dest_planet_in_golden_age }
-			}		
-			owner = { country_event = { id = dest_golden_age.1 scopes = { from = root fromfrom = event_target:dest_traveler_fleet } } }	
+			}
+			owner = {
+				country_event = {
+					id = dest_golden_age.1
+					scopes = {
+						from = root
+						fromfrom = event_target:dest_traveler_fleet
+					}
+				}
+			}
 			from = { remove_fleet_flag = dest_traveler_in_golden_age_mode }
 			remove_planet_flag = dest_traveler_taking_action
 			set_planet_flag = dest_traveler_taken_action
@@ -153,36 +142,24 @@ country_event = {
 	title = "golden_age.400.name"
 	desc = "golden_age.400.desc"
 	picture = GFX_evt_sapient_AI
-	
 	is_triggered_only = yes
-	
 	trigger = {
-		NOT = { 
+		NOT = {
 			has_country_flag = warmind_started
 			has_technology = dest_tech_warmind
 		}
 	}
-	
-	immediate = {
-		set_country_flag = warmind_started
-	}
-	
+	immediate = { set_country_flag = warmind_started }
 	option = {
 		name = golden_age.400.a
 		trigger = {
 			custom_tooltip_fail = {
 				text = golden_age.400.a.notenoughminerals
-				resource_stockpile_compare = {
-					resource = minerals
-					value > 4999
-				}
+				resource_stockpile_compare = { resource = minerals value > 4999 }
 			}
 			custom_tooltip_fail = {
 				text = golden_age.400.a.notenoughenergy
-				resource_stockpile_compare = {
-					resource = energy
-					value > 4999
-				}
+				resource_stockpile_compare = { resource = energy value > 4999 }
 			}
 		}
 		add_resource = {
@@ -197,10 +174,7 @@ country_event = {
 			}
 		}
 	}
-	
-	option = {
-		name = golden_age.400.b
-	}
+	option = { name = golden_age.400.b }
 }
 
 country_event = {
@@ -208,162 +182,114 @@ country_event = {
 	title = "golden_age.401.name"
 	desc = "golden_age.401.desc"
 	picture = GFX_evt_sapient_AI
-	
 	is_triggered_only = yes
-	
 	immediate = {
-		give_technology = {
-			tech = dest_tech_warmind
-			message = no
-		}
+		give_technology = { tech = dest_tech_warmind message = no }
 	}
-	
-	option = {
-		name = golden_age.401.a
-	}
+	option = { name = golden_age.401.a }
 }
 
-#Warmind - Alpha Build
+# Warmind - Alpha Build
 planet_event = {
 	id = dest_golden_age.402
 	title = "golden_age.402.name"
 	desc = "golden_age.402.desc"
 	picture = GFX_evt_sapient_AI
-	
 	is_triggered_only = no
-	
 	trigger = {
 		has_building = dest_building_warmind_facility
 		NOT = {
-			owner = {
-				has_country_flag = warmind_alpha
-			}
+			owner = { has_country_flag = warmind_alpha }
 		}
 	}
-	
 	immediate = {
 		owner = {
 			set_country_flag = warmind_alpha
-			# country_event = {
-				# id = dest_golden_age.404
-				# days = 720
-			# }
+			# country_event = { id = dest_golden_age.404 days = 720 }
 		}
 	}
-	
 	option = {
-		name = golden_age.402.a #immediate investment
+		name = golden_age.402.a		# immediate investment
 		trigger = {
 			owner = {
-				resource_stockpile_compare = {
-					resource = energy
-					value > 4999
-				}
+				resource_stockpile_compare = { resource = energy value > 4999 }
 			}
 		}
 		owner = {
-			add_resource = {
-				energy = -5000
-			}
+			add_resource = { energy = -5000 }
 		}
 		hidden_effect = {
 			owner = {
-				country_event = {
-					id = dest_golden_age.403
-					days = 100
-				}
+				country_event = { id = dest_golden_age.403 days = 100 }
 			}
 		}
 	}
-	
 	option = {
-		name = golden_age.402.b #prolonged investment
+		name = golden_age.402.b		# prolonged investment
 		owner = {
 			add_modifier = {
 				modifier = dest_warmind_investment
-				days = 720
+				years = 2
 			}
 		}
 		hidden_effect = {
 			owner = {
-				country_event = {
-					id = dest_golden_age.403
-					days = 720
-				}
+				country_event = { id = dest_golden_age.403 days = 720 }
 			}
 		}
 	}
 }
 
-#warmind - field tests
+# warmind - field tests
 country_event = {
 	id = dest_golden_age.403
 	title = "golden_age.403.name"
 	desc = "golden_age.403.desc"
 	picture = GFX_evt_sapient_AI
-	
 	is_triggered_only = yes
-	
 	immediate = {
-		country_event = {
-			id = dest_golden_age.404
-			days = 540
-			random = 180
-		}
+		country_event = { id = dest_golden_age.404 days = 540 random = 180 }
 	}
-	
 	option = {
 		name = golden_age.403.a
 		add_modifier = {
 			modifier = dest_warmind_test_mil
-			days = 360
+			years = 1
 		}
 	}
-	
 	option = {
 		name = golden_age.403.b
 		add_modifier = {
 			modifier = dest_warmind_test_sci
-			days = 360
+			years = 1
 		}
 	}
 }
 
-#warmind - upgrades
+# warmind - upgrades
 country_event = {
 	id = dest_golden_age.404
 	title = "golden_age.404.name"
 	desc = "golden_age.404.desc"
 	picture = GFX_evt_sapient_AI
-	
 	is_triggered_only = yes
-	
 	immediate = {
-		country_event = {
-			id = dest_golden_age.405
-			days = 540
-			random = 180
-		}
+		country_event = { id = dest_golden_age.405 days = 540 random = 180 }
 	}
-	
 	option = {
 		name = golden_age.404.a
 		add_research_option = dest_tech_warmind_prime
 	}
 }
 
-#Warmind - Rollout
+# Warmind - Rollout
 country_event = {
 	id = dest_golden_age.405
 	title = "golden_age.405.name"
 	desc = "golden_age.405.desc"
 	picture = GFX_evt_sapient_AI
-	
 	is_triggered_only = yes
-	
-	immediate = {
-	}
-	
+	immediate = { }
 	option = {
 		name = golden_age.405.a
 		add_research_option = dest_tech_warmind_copy
@@ -375,47 +301,35 @@ planet_event = {
 	title = "golden_age.406.name"
 	desc = "golden_age.406.desc"
 	picture = GFX_evt_sapient_AI
-	
 	is_triggered_only = yes
-	
 	trigger = {
 		has_building = dest_building_warmind_prime
-		NOT = { owner = { has_country_flag = warmind_online } }
+		NOT = {
+			owner = { has_country_flag = warmind_online }
+		}
 	}
-	
 	immediate = {
 		owner = { set_country_flag = warmind_online }
 	}
-	
-	option = {
-		name = golden_age.406.a
-	}
+	option = { name = golden_age.406.a }
 }
+
 country_event = {
 	id = dest_golden_age.407
 	title = "golden_age.407.name"
 	desc = "golden_age.407.desc"
 	picture = GFX_evt_microscopic_life
-	
 	is_triggered_only = yes
-	
 	trigger = {
-		NOT = {
-			has_country_flag = golden_age_medicine
-		}
+		NOT = { has_country_flag = golden_age_medicine }
 	}
-	
 	immediate = {
 		set_country_flag = golden_age_medicine
-		every_owned_leader = {
-			add_trait = dest_leader_trait_golden_age
-		}
+		every_owned_leader = { add_trait = dest_leader_trait_golden_age }
 	}
-	
-	option = {
-		name = golden_age.407.a
-	}
+	option = { name = golden_age.407.a }
 }
+
 ### Golden Age on Actions
 # Golden Age random events
 event = {
@@ -427,14 +341,15 @@ event = {
 		every_playable_country = {
 			limit = {
 				has_modifier = dest_golden_age
-				NOT = { has_ethic = ethic_gestalt_consciousness }
+				is_gestalt = no
 			}
 			random_list = {
-				0.5 = { country_event = { id = dest_golden_age.400 } } # Warmind events
-				0.5 = { country_event = { id = dest_golden_age.407 } } # Medical breakthroughs
+				1 = { country_event = { id = dest_golden_age.400 } }				# Warmind events
+				1 = { country_event = { id = dest_golden_age.407 } }				# Medical breakthroughs
 				99 = { }
 			}
 		}
 	}
 }
+
 # Traveler Golden Age end for playable nations

@@ -8,7 +8,7 @@ Traveler Todo
     - Force the Traveler to move system
 2.2. Event Messaging System
     - Option to 'subscribe' and 'unsubscribe' to different messages of different types
-    - Change how certain visual events are displayed(with a message or with a full event or nothing)
+    - Change how certain visual events are displayed (with a message or with a full event or nothing)
     - Opting for different parts of the event chains to display differently
 2.3. Attempt to make a retain compatibility system?
     - Forcibly update obsolete parts of the mod to retain compatibility where possible with new versions
@@ -37,6 +37,7 @@ Traveler Todo
  - Oryx/Hive rising from Fundament
  - Oryx/Hive invading from another galaxy
  - Pyramid Ships
+
 Side Projects:
  - Reskinning the Traveler to something more original
  - Destiny Portraits
@@ -44,3 +45,8 @@ Side Projects:
  - Traveler Revamp
   - New insta kill 'light weapon'
   - Redoing it's existing arsenal
+
+Some notes:
+The primary bugs:
+A) my pathfinding 'improvements' for the traveller have some holes in them
+B) The Traveller model is ancient, I hadn't updated it from the original mod and as such it is broken

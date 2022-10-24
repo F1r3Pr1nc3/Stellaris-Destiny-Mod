@@ -13,7 +13,7 @@ on_monthly_pulse = {
 }
 on_fleet_enter_orbit = {
 	events = {
-		#dest_traveler.1103 # Event to have traveler perform an action to the planet
+		# dest_traveler.1103 # Event to have traveler perform an action to the planet
 	}
 }
 on_entering_system_fleet = {
@@ -23,8 +23,8 @@ on_entering_system_fleet = {
 		dest_traveler.1102 # If a nation that hasn't discovered the Traveler enters the same system as the Travler
 	}
 }
-# FromFrom = fleet 1
-# FromFromFrom = fleet 2
+# fromfrom = fleet 1
+# fromfromfrom = fleet 2
 on_space_battle_won = {
 	events = {
 		dest_traveler.1105
@@ -37,7 +37,7 @@ on_space_battle_lost = {
 }
 on_planet_transfer = {
 	events = {
-		#dest_traveler.1104 # Swap the Traveler's Gift modifiers for incompatible nations
+		# dest_traveler.1104 # Swap the Traveler's Gift modifiers for incompatible nations
 	}
 }
 

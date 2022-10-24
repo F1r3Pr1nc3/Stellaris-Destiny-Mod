@@ -1,4 +1,4 @@
-#@dest_traveler_terraforming_time = 8
+# @dest_traveler_terraforming_time = 8
 # Regular terraforming
 special_project = {
 	key = "dest_traveler_begin_terraform_planet"
@@ -35,7 +35,7 @@ special_project = {
 	requirements = { shipclass_military = 1 }
 	on_start = {
 		if = {
-			limit = { exists = solar_system.owner }
+			limit = { has_owner = yes }
 			solar_system.owner = { country_event = { id = dest_traveler.1021 scopes = { from = root } } }
 		}
 	}

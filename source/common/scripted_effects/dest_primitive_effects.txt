@@ -18,7 +18,7 @@ dest_uplift_primitives = {
 	}
 	random_owned_ship = {
 		limit = { is_ship_size = primitive_space_station }
-		fleet = { destroy_fleet = THIS }
+		destroy_fleet = fleet
 	}
 }
 dest_primitive_setup_country_effect = {
@@ -46,36 +46,28 @@ dest_primitive_setup_visuals_effect = {
 	if = {
 		limit = { is_species_class = MAM }
 		set_graphical_culture = mammalian_01
-	}
-	else_if = {
+	} else_if = {
 		limit = { is_species_class = REP }
 		set_graphical_culture = reptilian_01
-	}
-	else_if = {
+	} else_if = {
 		limit = { is_species_class = AVI }
 		set_graphical_culture = avian_01
-	}
-	else_if = {
+	} else_if = {
 		limit = { is_species_class = ART }
 		set_graphical_culture = arthropoid_01
-	}
-	else_if = {
+	} else_if = {
 		limit = { is_species_class = MOL }
 		set_graphical_culture = molluscoid_01
-	}
-	else_if = {
+	} else_if = {
 		limit = { is_species_class = FUN }
 		set_graphical_culture = fungoid_01
-	}
-	else_if = {
+	} else_if = {
 		limit = { is_species_class = PLANT }
 		set_graphical_culture = plantoid_01
-	}
-	else_if = {
+	} else_if = {
 		limit = { is_species_class = LITHOID }
 		set_graphical_culture = lithoid_01
-	}
-	else_if = {
+	} else_if = {
 		limit = { is_species_class = NECROID }
 		set_graphical_culture = necroid_01
 	}
@@ -84,25 +76,25 @@ dest_uplift_setup_armies_effect = {
 	remove_all_armies = yes	
 	create_army = {
 		name = random
-		owner = PREV
+		owner = prev
 		species = owner_main_species
 		type = "defense_army"
 	}
 	create_army = {
 		name = random
-		owner = PREV
+		owner = prev
 		species = owner_main_species
 		type = "defense_army"
 	}	
 	create_army = {
 		name = random
-		owner = PREV
+		owner = prev
 		species = owner_main_species
 		type = "defense_army"
 	}	
 	create_army = {
 		name = random
-		owner = PREV
+		owner = prev
 		species = owner_main_species
 		type = "defense_army"
 	}	
@@ -122,16 +114,14 @@ dest_uplift_add_country_resources_effect = {
 			}
 		}
 		add_resource = { food = 500 }
-	}
-	else_if = {
+	} else_if = {
 		limit = { is_lithoid = yes }
 		add_resource = { minerals = 500 }
-	}
-	else = { add_resource = { energy = 250 } }
+	} else = { add_resource = { energy = 250 } }
 	if = {
 		limit = { 
 			NOT = {
-				has_ethic = ethic_gestalt_consciousness
+				is_gestalt = yes
 			}
 		}
 		add_resource = {
@@ -142,25 +132,23 @@ dest_uplift_add_country_resources_effect = {
 dest_uplift_add_post_ftl_buildings_effect = {
 	if = {
 		limit = { 
-			has_authority = auth_hive_mind
+			is_hive_empire = yes
 		}
 		add_building = building_hive_capital
 		add_building = building_hive_node
 		add_building = building_research_lab_1
 		add_building = building_foundry_1
 		add_building = building_spawning_pool
-	}
-	else_if = {
+	} else_if = {
 		limit = {
-			has_authority = auth_machine_intelligence
+			is_machine_empire = yes
 		 }
 		 add_building = building_machine_capital
 		 add_building = building_robot_assembly_plant
 		 add_building = building_uplink_node
 		 add_building = building_research_lab_1
 		 add_building = building_foundry_1
-	}
-	else = {		
+	} else = {		
 		add_building = building_capital
 		add_building = building_bureaucratic_1
 		add_building = building_research_lab_1

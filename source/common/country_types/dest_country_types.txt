@@ -13,7 +13,7 @@ dest_traveler_country = {
 		generate_borders = no
 		needs_colony = no
 		auto_delete = no
-		#relations = yes
+		# relations = yes
 	}
 	custom_diplomacy = yes
 	custom_opinion = yes

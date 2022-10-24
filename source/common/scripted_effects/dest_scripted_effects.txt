@@ -26,16 +26,14 @@ dest_traveler_terraform_planet = {
 					limit = { is_wet = no }
 					change_pc = rl_habitable_normal
 				}
-			}
-			else_if = {
+			} else_if = {
 				limit = { is_dry = yes }
 				change_pc = rl_habitable_normal
 				while = {
 					limit = { is_dry = no }
 					change_pc = rl_habitable_normal
 				}
-			}
-			else_if = {
+			} else_if = {
 				limit = { is_cold = yes }
 				change_pc = rl_habitable_normal
 				while = {
@@ -58,13 +56,11 @@ dest_traveler_apply_random_modifiers = {
 						limit = { has_modifier = dest_resilient_life_moderate }
 						remove_modifier = dest_resilient_life_moderate
 						add_modifier = { modifier = dest_resilient_life_high }
-					}
-					else_if = {
+					} else_if = {
 						limit = { has_modifier = dest_resilient_life_low }
 						remove_modifier = dest_resilient_life_low
 						add_modifier = { modifier = dest_resilient_life_moderate }
-					}
-					else = {
+					} else = {
 						add_modifier = { modifier = dest_resilient_life_low }
 					}
 					modifier = {
@@ -84,13 +80,11 @@ dest_traveler_apply_random_modifiers = {
 						limit = { has_modifier = dest_strange_materials_moderate }
 						remove_modifier = dest_strange_materials_moderate
 						add_modifier = { modifier = dest_strange_materials_high }
-					}
-					else_if = {
+					} else_if = {
 						limit = { has_modifier = dest_strange_materials_low }
 						remove_modifier = dest_strange_materials_low
 						add_modifier = { modifier = dest_strange_materials_moderate }
-					}
-					else = {
+					} else = {
 						add_modifier = { modifier = dest_strange_materials_low }
 					}
 					modifier = {
@@ -110,13 +104,11 @@ dest_traveler_apply_random_modifiers = {
 						limit = { has_modifier = dest_mysterious_energies_moderate }
 						remove_modifier = dest_mysterious_energies_moderate
 						add_modifier = { modifier = dest_mysterious_energies_high }
-					}
-					else_if = {
+					} else_if = {
 						limit = { has_modifier = dest_mysterious_energies_low }
 						remove_modifier = dest_mysterious_energies_low
 						add_modifier = { modifier = dest_mysterious_energies_moderate }
-					}
-					else = {
+					} else = {
 						add_modifier = { modifier = dest_mysterious_energies_low }
 					}
 					modifier = {
@@ -136,13 +128,11 @@ dest_traveler_apply_random_modifiers = {
 						limit = { has_modifier = dest_friendly_world_moderate }
 						remove_modifier = dest_friendly_world_moderate
 						add_modifier = { modifier = dest_friendly_world_high }
-					}
-					else_if = {
+					} else_if = {
 						limit = { has_modifier = dest_friendly_world_low }
 						remove_modifier = dest_friendly_world_low
 						add_modifier = { modifier = dest_friendly_world_moderate }
-					}
-					else = {
+					} else = {
 						add_modifier = { modifier = dest_friendly_world_low }
 					}
 					modifier = {

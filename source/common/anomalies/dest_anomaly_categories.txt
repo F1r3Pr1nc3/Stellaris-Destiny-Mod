@@ -1,9 +1,9 @@
-#vex ruins
+# vex ruins
 dest_category_vex_ruins = {
 	desc = "dest_category_vex_ruins_desc"
 	picture = GFX_evt_archaeological_dig
 	level = 1
-	#risk = 
+	# risk = 
 	
 	spawn_chance = {
 		base = 1
@@ -28,7 +28,7 @@ dest_category_destroyed_by_hive = {
 	desc = "dest_category_destroyed_by_hive_desc"
 	picture = GFX_evt_archaeological_dig
 	level = 1
-	#risk = 
+	# risk = 
 	
 	spawn_chance = {
 		modifier = {

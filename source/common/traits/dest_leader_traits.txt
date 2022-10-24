@@ -1,6 +1,5 @@
 dest_leader_trait_golden_age = {
 	cost = 1
-	modification = no
 	initial = no
 	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_adaptable.dds"
 	self_modifier = {
@@ -12,8 +11,8 @@ dest_leader_trait_golden_age = {
 		from = {
 			has_country_flag = had_golden_age
 			NOR = {
-				#has_country_flag = had_collapse
-				has_ethic = ethic_gestalt_consciousness
+				# has_country_flag = had_collapse
+				is_gestalt = yes
 			}
 		}
 	}

@@ -1,8 +1,7 @@
-version="1.0.1"
+version="1.0.6"
 tags={
 	"Events"
 }
-name="Destiny - The Traveler - Updated"
+name="Destiny - The Traveler - 3.6"
 picture="thumbnail.png"
-supported_version="3.0.*"
-remote_file_id="2406970757"
+supported_version="3.6.*"
